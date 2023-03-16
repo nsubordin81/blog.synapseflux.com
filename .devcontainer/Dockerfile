@@ -1,0 +1,15 @@
+# Our own public container that we've published to assist with this project
+# More info at: https://github.com/excellalabs/blog-in-a-box-container
+FROM ghcr.io/excellalabs/blog-in-a-box-container:ruby2.7.3-node16
+
+VOLUME /docs
+WORKDIR /docs
+
+COPY aliases.sh /etc/profile.d/alias.sh
+
+# Coverts CRLF based files (such as those on windows devices) to LF line endings for container
+RUN dos2unix /etc/profile.d/alias.sh
+
+RUN cat /etc/profile.d/alias.sh >> ~/.bashrc
+
+EXPOSE 4000
