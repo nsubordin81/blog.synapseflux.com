@@ -6,7 +6,7 @@ excerpt: "Welcome to Modularity in Functional Programming! In this series, I wil
 
 ## Introduction To This Series
 
-Welcome to Modularity in Functional Programming! In this series, I will be addressing how using aspects of the functional paradigm can lead to program components that are easier to reuse and expand upon. I will be working through some of the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."1 I will provide my own take on how to relate to modularity in functional programming and give you some runnable code examples in the Scala 3 programming language so that you can experiment with these powerful tools yourself. For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions or inputs to achieve more reuse in programs.
+Welcome to Modularity in Functional Programming! In this series, I will be addressing how using aspects of the functional paradigm can lead to program components that are easier to reuse and expand upon. I will be working through some of the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] I will provide my own take on how to relate to modularity in functional programming and give you some runnable code examples in the Scala 3 programming language so that you can experiment with these powerful tools yourself. For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions or inputs to achieve more reuse in programs.
 
 ## What Do I Mean by Modular Design?  
 
@@ -14,7 +14,7 @@ Forget about software development for a minute and consider general examples of 
 
 Consider another example of modular design -- the modern squat rack used by weightlifters. They are standard steel frames with various attachments that facilitate a variety of exercises. All the squat rack equipment fits in a 10x10 room in your home instead of paying that $30 a month gym membership fee.
 
-LEGO® blocks are also often used as a tangible modularity example.2 There seems to be a LEGO® set now for every intellectual property under the sun. But you can still attach your Harry Potter Set to a bucket you found in your parents or grandparents' closet from the 1960s. You can mix and match these sets to create original pieces. Their connectors all work the same way. You can connect the blocks with their larger DUPLO® siblings. You can build a house out of a set meant for a spaceship or a boat out of pieces intended for a castle.  
+LEGO® blocks are also often used as a tangible modularity example.[^2] There seems to be a LEGO® set now for every intellectual property under the sun. But you can still attach your Harry Potter Set to a bucket you found in your parents or grandparents' closet from the 1960s. You can mix and match these sets to create original pieces. Their connectors all work the same way. You can connect the blocks with their larger DUPLO® siblings. You can build a house out of a set meant for a spaceship or a boat out of pieces intended for a castle.  
 
 The common theme of these examples is a mechanism to connect pieces together. As a result, you get use out of the pieces you already have instead of having to start over.  
 
@@ -26,7 +26,7 @@ Functional modularity is sometimes a better choice for flexibility and extensibi
 
 ## Example 1: Modular Design in List Construction with Scala
 
-If you would like to follow along, all you need is the Scala3 tools installed on your machine. View instructions specific to your OS here on the scala download page. Once installed, fire up a read-eval-print-loop (REPL) for Scala3 by typing ‘Scala’ into your terminal.
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS here on the scala download page. Once installed, fire up a read-eval-print-loop (REPL) for Scala3 by typing ‘Scala’ into your terminal.
 
 The first example we have is a modular pattern for performing operations on lists.  
 
@@ -48,11 +48,11 @@ Or, even more clear for our example we can use the prefix instead of infix notat
     val myList = ::(1,(::(2,(::(3, Nil)))))
 ```
 
-Constructing the list with this syntax is verbose and less readable, but it reveals that this double colon operator, which is typically referred to as 'cons', can be viewed as a function we are calling multiple times to make our list.3 What 'cons' does is build an ordered pair out of its first and second arguments. The first argument is an object of some type, and the second argument is a list of that same type of object. In the code examples above, we constructed a linked list by calling 'cons' in a nested fashion. The first argument holds an element of the list, and the second argument holds a reference to the rest of the list. This continues until we get to the innermost 'cons' call, holding the last element of the list as its first argument and the Nil companion object as its second to terminate the list.  
+Constructing the list with this syntax is verbose and less readable, but it reveals that this double colon operator, which is typically referred to as 'cons', can be viewed as a function we are calling multiple times to make our list.[^3] What 'cons' does is build an ordered pair out of its first and second arguments. The first argument is an object of some type, and the second argument is a list of that same type of object. In the code examples above, we constructed a linked list by calling 'cons' in a nested fashion. The first argument holds an element of the list, and the second argument holds a reference to the rest of the list. This continues until we get to the innermost 'cons' call, holding the last element of the list as its first argument and the Nil companion object as its second to terminate the list.  
 
 In our linked list example, we see how some higher-level functions can build more complex functionality. Starting with a simple 2 argument function, we can build a complicated list structure. It does not have to stop there either. Alternate invocation patterns using 'cons' lead to other data structures like trees, tuples, and graphs.  
 
-Technically, Scala is using a case class instance rather than a function to be the cons operator. Using a case class supports deconstructing of lists when pattern matching. Scala also creates these case class instances using a method on the List class instead of having a standalone function. Having a method on List to build the 'cons' objects supports having that infix notation for building lists you see in the syntax of the second example above. Lisp varieties of functional languages also use data structures rather than just functions in their implementation of the 'cons' interface, because it is more efficient to do so even though it is possible to implement 'cons' with just functions and no data structures or user defined types.4 Despite these implementation details, what is important for our purposes is that 'cons' is a functional interface that, when provided an element to prepend and a list to prepend it to, will always return a new list with that prepended element at its head.
+Technically, Scala is using a case class instance rather than a function to be the cons operator. Using a case class supports deconstructing of lists when pattern matching. Scala also creates these case class instances using a method on the List class instead of having a standalone function. Having a method on List to build the 'cons' objects supports having that infix notation for building lists you see in the syntax of the second example above. Lisp varieties of functional languages also use data structures rather than just functions in their implementation of the 'cons' interface, because it is more efficient to do so even though it is possible to implement 'cons' with just functions and no data structures or user defined types.[^4] Despite these implementation details, what is important for our purposes is that 'cons' is a functional interface that, when provided an element to prepend and a list to prepend it to, will always return a new list with that prepended element at its head.
 
 How does building lists in this fashion compare to implementations of LinkedList you have seen in other languages or in data structures courses? A typical one I know of is building a list with 'Node' objects where each 'Node' has an element and a pointer to another 'Node'. A strict mechanical comparison between using 'cons' and the 'Node' approach does not appear to make this approach more than a novelty, a kind of distinction without a difference. Seeing the recursive nature of 'cons' may even make this approach feel more complicated at first. It therefore helps to take a step back and look at the intent driving us to use a functional interface for the linkages.  
 
@@ -68,7 +68,7 @@ This time instead of constructing lists we will perform operations on them. We w
 
 Here we have our main insight. There is an extractable, reusable pattern here. “Return the result of applying [some operation] to the last element of a list and another call to this function on the rest of the list until you reach the base case of an empty list then return [some operation] applied to the accumulated result and [some value]." In the case of sum, the [some operation] function happens to be addition. The empty case's [some value] also happens to return zero. These two concrete values for [some operation] and [some value] make this accumulator what it is. But we could have used a different operator and base case return value to get a different accumulator. As we will see in one of the examples below, using 1 and the * operator would yield the product of every item in the list instead.  
 
-You can encapsulate this accumulation pattern of combining list elements into a higher order function. When you combine the list starting with the last or rightmost 2 items and advancing backwards towards the front, the conventional name for this function is 'fold right' (or foldRight as we will refer to it as Scala adopts CamelCase for methods). FoldRight has broad applicability. It is often made available in collections in functional language libraries. Here is the listing for foldRight in the Scala 2.13 standard library as of this post:5
+You can encapsulate this accumulation pattern of combining list elements into a higher order function. When you combine the list starting with the last or rightmost 2 items and advancing backwards towards the front, the conventional name for this function is 'fold right' (or foldRight as we will refer to it as Scala adopts CamelCase for methods). FoldRight has broad applicability. It is often made available in collections in functional language libraries. Here is the listing for foldRight in the Scala 2.13 standard library as of this post:[^5]
 
 ```scala
     final override def foldRight[B](z: B)(op: (A, B) => B): B = {
@@ -88,7 +88,7 @@ FoldRight’s signature takes an argument 'z', which is the value to return in c
 
 We then create an accumulator variable 'acc' and a variable 'these'. 'Acc' will store the accumulated result. 'These' is the list we are calling foldRight on.  
 
-We reverse 'these' so we process from the last element of the list to the first element.6  
+We reverse 'these' so we process from the last element of the list to the first element.[^6]  
 
 We then iterate over the 'these' list until it is empty, doing the following in each iteration:
 
@@ -122,7 +122,7 @@ In "Why Functional Programming Matters," John Hughes discusses another way to vi
 
 Programming in this way is exciting in much the same way that building with Legos is. Finding ways to reuse foldRight in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like foldRight into your own coding projects.  
 
-Where Can I Learn More?
+## Where Can I Learn More?
 
 As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, “Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
 
@@ -134,14 +134,14 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
 
 ## Footnotes
 
-1 A link to a pdf for “Why Functional Programming Matters” can be found under "Background Papers" on this page, and a link to one of the keynote addresses mentioned can be found here
+[^1]: A link to a pdf for “Why Functional Programming Matters” can be found under "Background Papers" on this page, and a link to one of the keynote addresses mentioned can be found here
 
-2 LEGO® and DUPLO® are trademarks of the LEGO Group of companies which does not sponsor, authorize, or endorse this site
+[^2]: LEGO® and DUPLO® are trademarks of the LEGO Group of companies which does not sponsor, authorize, or endorse this site
 
-3The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found here
+[^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found here
 
-4 For more on proving the cons interface can be implemented solely with functions, see the reference to Church Encoding here:
+[^4]: For more on proving the cons interface can be implemented solely with functions, see the reference to Church Encoding here:
 
-5 I took this definition of foldRight for List directly from the Scala 2.13 standard library. This is also the immutable list class that Scala 3 uses, because Scala 3 uses the Scala 2.13 standard library. here is the foldRight source listing from List.scala
+[^5]: I took this definition of foldRight for List directly from the Scala 2.13 standard library. This is also the immutable list class that Scala 3 uses, because Scala 3 uses the Scala 2.13 standard library. here is the foldRight source listing from List.scala
 
-6 Reverse is a function defined elsewhere in the same Immutable List class. Note that reverse only needs to be called on the list because this is an iterative style implementation of foldRight. In a recursive version of this method the innermost function would be invoked first, so the elements would be processed right to left already. Functional languages also provide a foldLeft in some cases, and the choice of which to use is often one of algorithmic efficiency, which is out of the scope of this article.
+[^6]: Reverse is a function defined elsewhere in the same Immutable List class. Note that reverse only needs to be called on the list because this is an iterative style implementation of foldRight. In a recursive version of this method the innermost function would be invoked first, so the elements would be processed right to left already. Functional languages also provide a foldLeft in some cases, and the choice of which to use is often one of algorithmic efficiency, which is out of the scope of this article.
