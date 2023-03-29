@@ -11,26 +11,26 @@
 
 # Theme Settings
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin: "mint" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 future: false # whether to publish future posts by default
 locale: "en-US"
-title: "Blog in a Box Demo Site"
+title: "Synapse Flux | Blog"
 title_separator: "-"
-subtitle: "A painless on-ramp to your blogging experience." # site tagline that appears below site title in masthead
-name: "BlogInABox Demo"
-description: "Blog in a box aims to be your painless on-ramp to a blogging experience, offering sensible defaults, an easy to use development environment, and steps to take you all the way to hosting. We want you to put your voice out there."
-url: "https://bloginaboxdemo.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+subtitle: "Computation, Creativity, Expression" # site tagline that appears below site title in masthead
+name: "Taylor Bird"
+description: "Computation, creativity, expression. This blog aims to publish articles both narrow and broad at the intersection of these three disciplines."
+url: "https://blog.synapseflux.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
-repository: "excellalabs/blog-in-a-box" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository: "nsubordin81/blog.synapseflux.com" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo: # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title: # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute: 200 # used to compute reading time
 comments:
-  provider: "giscus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider: "false" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname: # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -101,30 +101,30 @@ analytics:
 
 # Site Author
 author:
-  name: "Author Name"
+  name: "Taylor Bird"
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "I am an **amazing** person."
-  location: "The Interwebs"
+  bio: "Professionally Taylor is a data scientist and software developer for Excella Consulting where he works with really cool people to tackle interesting problems. Personally he likes exploring the ideas that make up this blog, getting lost in creative worlds others create, and creating fledgling ideas of his own."
+  location: "Eastern US"
   email: # Add your e-mail here to add it to the author info.
   links: # NOTE: You can add custom links here as well. You can use a label and font-awesome class
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:your.name@email.com"
+      url: "mailto:taylorbryanbird@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://bloginaboxdemo.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/excellalabs"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://blog.synapseflux.com"
+    # - label: "Twitter"
+    #   icon: "fab fa-fw fa-twitter-square"
+    #   url: "https://twitter.com/excellalabs"
+    # - label: "Facebook"
+    #   icon: "fab fa-fw fa-facebook-square"
+    #   # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/excellalabs"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://github.com/nsubordin81"
+    # - label: "Instagram"
+    #   icon: "fab fa-fw fa-instagram"
+    # url: "https://instagram.com/"
 
 # Site Footer
 footer:
