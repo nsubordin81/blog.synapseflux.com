@@ -79,7 +79,7 @@ baidu_site_verification:
 
 # Social Sharing
 twitter:
-  username: excellalabs
+  username: nsubordin81
 facebook:
   username:
   app_id:
@@ -103,7 +103,7 @@ analytics:
 author:
   name: "Taylor Bird"
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "Professionally Taylor is a data scientist and software developer for Excella Consulting where he works with really cool people to tackle interesting problems. Personally he likes exploring the ideas that make up this blog, getting lost in creative worlds others create, and creating fledgling ideas of his own."
+  bio: "Professionally Taylor is a data scientist and software developer for Excella Consulting where he works with really cool people to tackle interesting problems. Personally he likes exploring the ideas that make up this blog, getting lost in the creative worlds of others, and fiddling with fledgling creations of his own."
   location: "Eastern US"
   email: # Add your e-mail here to add it to the author info.
   links: # NOTE: You can add custom links here as well. You can use a label and font-awesome class
@@ -131,13 +131,13 @@ footer:
   links: # NOTE: You can add custom links here as well. You can use a label and font-awesome class alongside the ones below
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/excellalabs"
+      url: "https://twitter.com/nsubordin81"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/excellalabs/blog-in-a-box"
+      url: "https://github.com/nsubordin81"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
