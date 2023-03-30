@@ -22,9 +22,11 @@ The common theme of these examples is a mechanism to connect pieces together. As
 
 ## Modular Design Outside The Scope Of This Post
 
-Ok, back to programming. this idea of getting use out of pieces you already have instead of writing new pieces is a part of every programming style to some extent. So I think providing some of my own background in "seeking modularity" with coding style and structure will showcase some of these contrasting styles as I encountered them, and maybe get you excited in the same way I was excited when I learned about the functional way.
+Ok, back to programming. this idea of getting use out of pieces you already have instead of writing new pieces is a part of every programming style to some extent. I'll talk about one such style, the imperative object-oriented style. This is the style I learned to program in, and my desire to talk about functional modularity comes from my growing appreciation for functional object-oriented programming as an alternative style.
 
-I count myself fortunate in being part of an early cohort of public high school students that had access to computer science specific courses. Computer Science curriculums of the time used the C++ language for instruction and programming homework. In college when I declared my C.S. major, my class projects across all courses were mostly in Java. If I had to guess, I'd say these language choices were to prepare students for industry, learning institutions decided to standardize on a language we were likely to use in the workforce. But one side-effect of this choice for my education was that I was trained to think in the style that these languages emphasized, which for C++ ISO/IEC 14882:2003 and java 1.5 seems to be what is called an 'imperative object-oriented' style.
+My working definition of object-oriented programming comes from Alan Kay who coined 'object-oriented'. It is a style of programming where you represent parts of your program as 'objects' that could be thought of as miniature computers that hide both how they store information and how they manipulate it and interact with the other objects through passed messages. This idea was very exciting to me because it felt like an intuitive way to hide ***** and I remember deciding to stick with computer science as a major after learning about it.
+
+My working definition of im
 
 For this post my working definition of Object-oriented code is the idea that your program can model really captured my imagination and is a big reason that I decided to pursue programming as a career choice.
 
