@@ -6,9 +6,11 @@ excerpt: "Welcome to Modularity in Functional Programming! In this series, I wil
 
 ## Introduction To This Series
 
-Welcome to Modularity in Functional Programming! In this series, I'll write about using the functional paradigm to move away from writing code as whole programs that achieve a single purpose and towards writing code in pieces that can be combined together for many purposes. I will be working through some of the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] In each post, I'll share my thoughts on a portion of John's memo and provide runnable code examples in the Scala 3 programming language to demonstrate these ideas in a way that you interact with.
+Welcome to Modularity in Functional Programming! In this series, I'll write about using the functional paradigm to move away from writing code as whole programs that achieve a single purpose and towards writing code in pieces that can be combined together for many purposes.
 
-For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions or inputs to achieve more reuse in programs.
+To kick the series off, I will do some posts working through the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] In each post, I'll share my thoughts on a portion of John's memo and provide runnable code examples in the Scala 3 programming language to demonstrate these ideas in a way that you interact with.
+
+For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions in different ways to do more with less.
 
 ## What Do I Mean by Modular Design?  
 
