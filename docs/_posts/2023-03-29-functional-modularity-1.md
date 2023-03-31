@@ -24,7 +24,9 @@ The common theme of these examples is a mechanism to connect pieces together. As
 
 Now that we are all picturing modularity in some form, we can move on to discuss what John Hughes meant by "gluing programs together." In the memo, Hughes brings this up when defending the unique value of programming in a functional way. He points out that everyone at some point realized that modular programming efforts tended to be more likely to succeed.
 
-The next thing he says is really important to his point. He explains that other languages are chasing modularity by allowing organized subdivision of their programs, but that this does not suffice because for true modularity when we break things apart we must already be thinking about how we are going to glue them back together.
+The next thing he says is really important to his point. He explains that other language paradigms are chasing modularity by allowing organized subdivision of their programs, but that this does not suffice because for true modularity when we break things apart we must already be thinking about how we are going to glue them back together.
+
+Our little trip outside of the programming domain at the beginning of this read helps us take in the weight of Hughes's statement here. Take the non-modular version of whichever device above resonated with you (or another one that you though of, I'm using a stand mixer where all it has is egg beater attachments) and now imagine just sawing it in half. Now you have the tough task of getting it to work for its original purpose, and also mostly likely your two halves cannot be recombined into any new useful thing either! As Hughes points out "The ways in which one can divide up the original problem depend directly on the ways in which one can glue solutions together."
 
 This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure functional programming comes with more constraints than other approaches, he admits, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.[^1]
 
@@ -145,7 +147,7 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
 
       OOP programs promise modularity because you can write objects one time and reuse and recombine them in different ways, plus you can do it in a safe way since objects hide how they represent things internally from the rest of the program. 
       
-      I think Hughes stayed silent on the topic of OOP modularity because it is an independent idea to his thesis about the importance of functional programs. Object-oriented and functional paradigms coexist just fine, and the modularity the provide is complimentary. 
+      I think Hughes stayed silent on the topic of OOP modularity because it is an independent idea to his thesis about the importance of functional programs. Object-oriented and functional paradigms coexist just fine, and the modularity they provide is complimentary. 
       
       In fact, Scala 3 which we are using for this post's hands on exercises is a great example of one that emphasizes object-oriented and functional paradigms working together. If Hughes was warning readers off of any particular paradigm it would likely be the imperative paradigm, which by its nature breaks some of the constraints that make functional code work. 
       
