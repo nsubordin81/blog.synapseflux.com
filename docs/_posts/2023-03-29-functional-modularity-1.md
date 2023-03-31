@@ -6,7 +6,7 @@ excerpt: "Welcome to Modularity in Functional Programming! In this series, I wil
 
 ## Introduction To This Series
 
-Welcome to Modularity in Functional Programming! In this series, I'll write about using the functional paradigm to move away from writing code as whole programs that achieve a single purpose and towards writing code in pieces that can be combined together for many purposes.
+Welcome to Modularity in Functional Programming! In this series, I'll write about how to stop writing programs that only do one thing and instead write code in pieces that can be combined to do many things.
 
 To kick the series off, I will do some posts working through the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] In each post, I'll share my thoughts on a portion of John's memo and provide runnable code examples in the Scala 3 programming language to demonstrate these ideas in a way that you interact with.
 
@@ -14,17 +14,19 @@ For this first post, we will talk about what Hughes referred to as "Gluing Progr
 
 ## What Do I Mean by Modular Design?  
 
-Forget about software development for a minute and consider general examples of modular design. For example, if you have ever used a KitchenAid stand mixer, you will know that there is one base with a motor inside and a general-purpose connector that lets you attach gadgets for a range of tasks. From beating eggs to kneading dough and even coring, peeling, and slicing, you only need one base. There is no need to buy a separate appliance for each purpose.  
+Let's take a quick detour from programming and consider general examples of modular design. For example, if you have ever used a KitchenAid stand mixer, you will know that there is one base with a motor inside and a general-purpose connector that lets you attach gadgets for a range of tasks. From beating eggs to kneading dough and even coring, peeling, and slicing, you only need one base. There is no need to buy a separate appliance for each purpose.  
 
 Consider another example of modular design -- the modern squat rack used by weightlifters. They are standard steel frames with various attachments that facilitate a variety of exercises. All the squat rack equipment fits in a 10x10 room in your home instead of paying that $30 a month gym membership fee.
 
 The common theme of these examples is a mechanism to connect pieces together. As a result, you get use out of the pieces you already have instead of having to start over.  
 
-## Modular Design Outside The Scope Of This Post
+## Modular Software Design Outside Functional Programming
 
-Ok, back to programming. this idea of getting use out of pieces you already have instead of writing new pieces is a part of every programming style to some extent. I'll talk about one such style, the imperative object-oriented style. This is the style I learned to program in, and my desire to talk about functional modularity comes from my growing appreciation for functional object-oriented programming as an alternative style.
+Ok, back to programming. This idea of getting use out of existing pieces of code instead of writing new pieces is a part of every programming style to some extent. I'll talk about one such style, the imperative object-oriented style. This is the style I learned to program in, and my desire to talk about functional modularity comes from my growing appreciation for functional object-oriented programming as an alternative to imperative object-oriented style.
 
-My working definition of object-oriented programming for this talk on modularity is probably an gross simplification of the one from Alan Kay, who coined 'object-oriented'. You represent your program with smaller containers that could be very simple but also just as complex as a computer itself. These containers embody concepts in the problem space your program is looking to solve, and they accomplish the goals of the program by talking to each other. When I first learned about this idea it convinced me to focus on programming for my major because while making programs from collections of primitives like numbers and strings had its own charm, with objects it was clearer to me how to make a whole out of the sum of its parts and not have to rewrite parts over and over.
+My working definition of object-oriented programming for this talk on modularity is probably an gross over-simplification of the one from Alan Kay, who coined 'object-oriented'. You represent your program with smaller containers called objects that could be very simple but also just as complex as a computer itself. These containers embody concepts and actors in your program, and they accomplish the goals of the program by talking to each other. When I first learned about this idea it felt convinced me to focus on programming for my major because while making programs from collections of primitives like numbers and strings had its own charm, with objects it was clearer to me how to make a whole out of the sum of its parts and not have to rewrite parts over and over.
+
+Object-oriented code is a wonderful way to achieve modularity and there are many systems out there using it to great effect. However, there are a lot of design decisions left to the programmer about what gets to be an object and what doesn't, how objects should communicate,
 
 My working definition of im
 
