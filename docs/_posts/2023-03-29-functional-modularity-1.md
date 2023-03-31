@@ -20,9 +20,9 @@ Consider another example of modular design -- the modern squat rack used by weig
 
 The common theme of these examples is a mechanism to connect pieces together. As a result, you get use out of the pieces you already have instead of having to start over.  
 
-## Modular Software Design Outside Functional Programming
+## Functional Modularity v. Imperative Modularity
 
-Ok, back to programming. This idea of using modularity to get more mileage out of code is a part of every programming style to some extent. I'll talk about one such style, imperative object-oriented programming. This is the style I learned to program in, and my desire to talk about functional modularity comes from my growing appreciation for functional object-oriented programming as an alternative to imperative object-oriented programming. I'll spend a little time in this section defining imperative and object-oriented methods as a contrast with the functional methods discussed here.
+Ok, back to programming. The idea of using modular design to get more mileage out of code is a part of every programming style to some extent. This series focuses on the functional paradigm, and we are referring to a memo in which John Hughes makes the case that it does a better job of creating modular code than the procedural or structured paradigms in common use at the time.
 
 My working definition of object-oriented programming for this talk on modularity is probably an gross over-simplification of the one from Alan Kay, who coined 'object-oriented'. You represent your program with smaller containers called objects that could be very simple but also just as complex as a computer itself. These containers embody concepts and actors in your program, and they accomplish the goals of the program by talking to each other. When I first learned about this idea it felt convinced me to focus on programming for my major because while making programs from collections of primitives like numbers and strings had its own charm, with objects it was clearer to me how to make a whole out of the sum of its parts and not have to rewrite parts over and over.
 
