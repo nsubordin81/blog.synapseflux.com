@@ -14,13 +14,19 @@ For this first post, we will talk about what Hughes referred to as "Gluing Progr
 
 ## What Do I Mean by Modular Design?  
 
-Let's take a quick detour from programming and consider general examples of modular design. For example, if you have ever used a KitchenAid stand mixer, you will know that there is one base with a motor inside and a general-purpose connector that lets you attach gadgets for a range of tasks. From beating eggs to kneading dough and even coring, peeling, and slicing, you only need one base. There is no need to buy a separate appliance for each purpose.  
+Let us take a quick detour from programming and consider general examples of modular design. For example, if you have ever used a KitchenAid stand mixer, you will know that there is one base with a motor inside and a general-purpose connector that lets you attach gadgets for a range of tasks. From beating eggs to kneading dough and even coring, peeling, and slicing, you only need one base. There is no need to buy a separate appliance for each purpose.  
 
 Consider another example of modular design -- the modern squat rack used by weightlifters. They are standard steel frames with various attachments that facilitate a variety of exercises. All the squat rack equipment fits in a 10x10 room in your home instead of paying that $30 a month gym membership fee.
 
 The common theme of these examples is a mechanism to connect pieces together. As a result, you get use out of the pieces you already have instead of having to start over.  
 
-## Functional Modularity v. Imperative Modularity
+## Modular Design and Functional Glue
+
+Now that we are all picturing modularity in some form, we can move on to discuss what John Hughes meant by "gluing programs together." In the memo, Hughes brings this up when defending the unique value of programming in a functional way. He points out that everyone at some point realized that modular programming efforts tended to be more likely to succeed.
+
+The next thing he says is really important to his point. He explains that other languages are chasing modularity by allowing organized subdivision of their programs, but that this does not suffice because for true modularity when we break things apart we must already be thinking about how we are going to glue them back together.
+
+This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure functional programming comes with more constraints than other approaches, he admits, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.
 
 Ok, back to programming. The idea of using modular design to get more mileage out of code is a part of every programming style to some extent. This series focuses on the functional paradigm, and we are referring to a memo in which John Hughes makes the case that it does a better job of creating modular code than the procedural or structured paradigms in common use at the time.
 
