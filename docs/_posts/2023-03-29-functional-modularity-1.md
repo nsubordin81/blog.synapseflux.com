@@ -28,17 +28,11 @@ The next thing he says is really important to his point. He explains that other 
 
 This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure functional programming comes with more constraints than other approaches, he admits, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.
 
-Ok, back to programming. The idea of using modular design to get more mileage out of code is a part of every programming style to some extent. This series focuses on the functional paradigm, and we are referring to a memo in which John Hughes makes the case that it does a better job of creating modular code than the procedural or structured paradigms in common use at the time.
+If your background is like mine you might be wondering where object-oriented programming (OOP) fits into this argument. Any discussion of modularity surely should include some mention of OOP, right? Coined by Alan Kay, object-oriented programming paradigm is one in which you write your program as a collection of objects, little models of concepts that achieve a program's goals by sending and receiving each other's messages.
 
-My working definition of object-oriented programming for this talk on modularity is probably an gross over-simplification of the one from Alan Kay, who coined 'object-oriented'. You represent your program with smaller containers called objects that could be very simple but also just as complex as a computer itself. These containers embody concepts and actors in your program, and they accomplish the goals of the program by talking to each other. When I first learned about this idea it felt convinced me to focus on programming for my major because while making programs from collections of primitives like numbers and strings had its own charm, with objects it was clearer to me how to make a whole out of the sum of its parts and not have to rewrite parts over and over.
+Hughes remains silent on the modularity of object-oriented programs in his memo, even though early OOP languages Simula and Smalltalk had been around for years when he wrote it. I'm guessing because it wasn't the battle he was trying to fight, he only brings up one other paradigm in the memo and it is only to show by analogy that simply listing what a paradigm means does not convince people to use it. Object-oriented programming is compatible with functional programming and provides complimentary modularity benefits. The style of programming Hughes is trying to convince people to move away from in his memo is more the overall imperative paradigm.  
 
-Object-oriented code is a wonderful way to achieve modularity and there are many systems out there using it to great effect. However, there are a lot of design decisions left to the programmer about what gets to be an object and what doesn't, how objects should communicate,
-
-My working definition of im
-
-For this post my working definition of Object-oriented code is the idea that your program can model really captured my imagination and is a big reason that I decided to pursue programming as a career choice.
-
-Functional modularity is sometimes a better choice for flexibility and extensibility than object-oriented modularity. Functional programming tends to not require classes to achieve reuse and it enforces adherence to constraints like immutability that make units of code more predictable. This post will show how with functional techniques you can construct powerful, abstract building blocks out of composed function behaviors.  
+The two types of glue Hughes focuses on are higher-order functions and lazy evaluation. This post will introduce higher-order functions, I will likely follow it up with some more examples in a future post or two, and then we'll cover lazy evaluation.
 
 ## Example 1: Modular Design in List Construction with Scala
 
