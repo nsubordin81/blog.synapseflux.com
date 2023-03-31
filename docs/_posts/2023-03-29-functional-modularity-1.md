@@ -8,9 +8,9 @@ excerpt: "Welcome to Modularity in Functional Programming! In this series, I wil
 
 Welcome to Modularity in Functional Programming! In this series, I'll write about how to stop writing programs that only do one thing and instead write code in pieces that can be combined to do many things.
 
-To kick the series off, I will do some posts working through the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] In each post, I'll share my thoughts on a portion of John's memo and provide runnable code examples in the Scala 3 programming language to demonstrate these ideas in a way that you interact with.
+To kick the series off, I will do some posts working through the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] In each post, I'll share my thoughts on a portion of John's memo and provide runnable code examples in the Scala 3 programming language for an interactive way to engage with this material.
 
-For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions in different ways to do more with less.
+For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions in different ways.
 
 ## What Do I Mean by Modular Design?  
 
@@ -26,11 +26,7 @@ Now that we are all picturing modularity in some form, we can move on to discuss
 
 The next thing he says is really important to his point. He explains that other languages are chasing modularity by allowing organized subdivision of their programs, but that this does not suffice because for true modularity when we break things apart we must already be thinking about how we are going to glue them back together.
 
-This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure functional programming comes with more constraints than other approaches, he admits, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.
-
-If your background is like mine you might be wondering where object-oriented programming (OOP) fits into this argument. Any discussion of modularity surely should include some mention of OOP, right? Coined by Alan Kay, object-oriented programming paradigm is one in which you write your program as a collection of objects, little models of concepts that achieve a program's goals by sending and receiving each other's messages.
-
-Hughes remains silent on the modularity of object-oriented programs in his memo, even though early OOP languages Simula and Smalltalk had been around for years when he wrote it. I'm guessing because it wasn't the battle he was trying to fight, he only brings up one other paradigm in the memo and it is only to show by analogy that simply listing what a paradigm means does not convince people to use it. Object-oriented programming is compatible with functional programming and provides complimentary modularity benefits. The style of programming Hughes is trying to convince people to move away from in his memo is more the overall imperative paradigm, in which you are allowed to modify what you put in variables after you create them and you tend to write out all the algorithmic steps of your program in the way a computer'c CPU would pull data into its registers and operate on them.  
+This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure functional programming comes with more constraints than other approaches, he admits, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.[^1]
 
 The two types of glue Hughes focuses on are higher-order functions and lazy evaluation. This post will introduce higher-order functions, I will likely follow it up with some more examples in a future post or two, and then we'll cover lazy evaluation.
 
@@ -144,12 +140,21 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
 
 ## Footnotes
 
-[^1]: A link to a pdf for “Why Functional Programming Matters” can be found under "Background Papers" on this page, and a link to one of the keynote addresses mentioned can be found here
+[^1]: If your background is like mine, you might be wondering where object-oriented programming (OOP) fits into this argument.
+      Any discussion of modularity surely should include some mention of OOP, right? Coined by Alan Kay, object-oriented programming paradigm is one in which you write your program as a collection of objects, little models of concepts that achieve a program's goals by sending and receiving each other's messages.
 
-[^2]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found here
+      OOP programs promise modularity because you can write objects one time and reuse and recombine them in different ways, plus you can do it in a safe way since objects hide how they represent things internally from the rest of the program. 
+      
+      I think Hughes stayed silent on the topic of OOP modularity because it is an independent idea to his thesis about the importance of functional programs. Object-oriented and functional paradigms coexist just fine, and the modularity the provide is complimentary. 
+      
+      In fact, Scala 3 which we are using for this post's hands on exercises is a great example of one that emphasizes object-oriented and functional paradigms working together. If Hughes was warning readers off of any particular paradigm it would likely be the imperative paradigm, which by its nature breaks some of the constraints that make functional code work. 
+      
+      Imperative object-oriented code is what I learned in school and used for years, and my personal mileage with it is that you can be productive quickly but a functional approach can help prevent issues with shared state across objects and other pitfalls that are easy to fall into when you scale your programs.
 
-[^3]: For more on proving the cons interface can be implemented solely with functions, see the reference to Church Encoding here:
+[^2]: A link to a pdf for “Why Functional Programming Matters” can be found under "Background Papers" on this page, and a link to one of the keynote addresses mentioned can be found here
 
-[^4]: I took this definition of foldRight for List directly from the Scala 2.13 standard library. This is also the immutable list class that Scala 3 uses, because Scala 3 uses the Scala 2.13 standard library. here is the foldRight source listing from List.scala
+[^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found here
+
+[^4]: For more on proving the cons interface can be implemented solely with functions, see the reference to Church Encoding here:
 
 [^5]: Reverse is a function defined elsewhere in the same Immutable List class. Note that reverse only needs to be called on the list because this is an iterative style implementation of foldRight. In a recursive version of this method the innermost function would be invoked first, so the elements would be processed right to left already. Functional languages also provide a foldLeft in some cases, and the choice of which to use is often one of algorithmic efficiency, which is out of the scope of this article.
