@@ -152,7 +152,7 @@ Let us break this down.
 
 7. At the end, we return 'acc' which will be the result of applying the operation to all items in the list.  
 
-FoldRight is a higher order function because it takes in function 'op' as an argument and uses 'op' in a way that influences its return value. This is the glue we've been searching for. With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several contextual uses outside of the concrete way we were originally trying to apply it. In my stand mixer example, it would be like realizing we had that drive shaft and there was no reason why we had to put egg beaters on it, we could use a dough hook instead!
+FoldRight is a higher order function because it takes in function 'op' as an argument and uses 'op' in a way that influences its return value. This is the glue we've been searching for! With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several uses outside of the way we were originally trying to apply it. In my stand mixer example, it would be like realizing that if we change the motor attachment then a whisk/egg beater was only one of many stirring actions we could support.
 
 While you may not be able to bake delicious cakes with it, foldRight proves extremely versatile. Here are some examples of foldRight you can try in your Scala 3 REPL:
 
@@ -168,6 +168,7 @@ While you may not be able to bake delicious cakes with it, foldRight proves extr
     // append 2 lists together
     val otherList = List(4, 5, 6)
     myList.foldRight(otherList)(_::_)
+    //TODO map!
 ```
 
 Notice how terse these definitions are and how they don’t require you to read through the detail of how the list is combined each time. FoldRight owns the repetitive functional form. We simply pass in the operation and base case result. The example list above is also far from exhaustive as far as things you can do with foldRight, but already they show four common operations being greatly simplified.
