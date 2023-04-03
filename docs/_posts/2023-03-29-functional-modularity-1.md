@@ -24,11 +24,11 @@ The common theme of these examples is a mechanism to connect pieces together. As
 
 Now that we are all picturing modularity in some form, we can move on to discuss what John Hughes meant by "gluing programs together." In the memo, Hughes brings this up when defending the unique value of programming in a functional way. He points out that everyone in the computer science community at some point agreed that modular programming efforts tended to be more likely to succeed than their single purpose counterparts, and so new languages of the time such as Ada and Modula-II "included features specifically designed to help improve modularity."
 
-The next thing he says is really important to his point. He explains that other language paradigms are chasing modularity by allowing organized subdivision of their programs, but that allowing for subdivision alone does not suffice because as he points out for true modularity _when we break things apart we must already be thinking about how we are going to glue them back together._
+The next thing he says is really important to his point. He explains that these other languages and the paradigms they rely on are chasing modularity by allowing organized subdivision of their programs, but that allowing for subdivision alone does not suffice because as he points out, for true modularity _when we break things apart we must already be thinking about how we are going to glue them back together._
 
 Our little trip outside of the programming domain at the beginning of this read helps us take in the weight of Hughes's statement here. Take the non-modular precursor to whichever device above resonated with you (or another one that you brought with you from your imagination, I'm using a stand mixer that only supports two egg beater attachments) and now imagine you try to 'modularize' it by just sawing it in half. Now you have the tough task of getting it to work for its original purpose, and also mostly likely your two halves cannot be recombined into any new useful thing either!
 
-This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure functional programming comes with more constraints like not allowing values to be modified in place, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.[^1]
+This focus on putting things back together with 'glue' is the benefit Hughes claims for the functional paradigm. Sure, functional programming comes with more constraints like not allowing values to be modified in place, but it is all in service of breaking things down into general purpose pieces that can be safely recombined in different ways.[^1]
 
 The two types of glue Hughes focuses on are higher-order functions and lazy evaluation. This post will introduce higher-order functions, which I plan to follow up with some more examples in a future post or two, and then we'll cover lazy evaluation.
 
@@ -66,11 +66,11 @@ How does building lists in this fashion compare to implementations of LinkedList
 
 A strict mechanical comparison between using 'cons' and the 'Node' approach does not appear at first blush to make 'cons' more than a novelty, a kind of distinction without a difference from the 'Node' approach. Seeing the recursive nature of 'cons' may even make it feel more complicated at first. It therefore helps to take a step back and look at the intent driving us to use a functional interface for the links as opposed to structures with pointers to each other's memory addresses. We will see that it ties back to the conversation about modularity.
 
-By using functions to build the list and by always returning the successively larger chunks of list as new results instead of modifying an existing partial list, the 'cons' approach is doing what Hughes described and breaking up the problem of list construction in a way that we can later glue it back together in different ways. Every 'cons' invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior of what we did from just linking the elements of the list together to some other outcome. Also, since 'cons' and our modifications to it would not do anything other then return a new output, we do not have to worry that there would be any other impact on the list by making these changes.
+By using functions to build the list and by always returning the successively larger chunks of list as new results instead of modifying an existing partial list, the 'cons' approach is doing what Hughes described and planning ahead to a future where lists will be deconstructed and then reconstructed into new forms. Every 'cons' invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior of what we did from just linking the elements of the list together to some other outcome. Also, since 'cons' and our modifications to it would not do anything other then return a new output, we do not have to worry that there would be any other impact on the list by making these changes.
 
-To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity but maybe hadn't capitalized on it yet (in my example of the stand mixer maybe someone changed out the two beaters for one drive shaft, but still wasn't thinking about how that drive could be modified to support multiple attachments). That's what the 'cons' approach and the functional axioms that enable it are doing.
+To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity (in my example of the stand mixer maybe someone changed out the two beaters for one drive shaft). A function provided a subdivided way to build our list, and as we will see next it is also a type of function that will give us the to power to reconstruct the list differently later.
 
-But if 'cons' is an example of how to divide and conquer the problem of building a list, where is the glue to put things back together, and how do we use it? Out of the two Hughes's memo mentions, the one we cover in this post lies in a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight and we will see how it glues together the idea of substituting in an accumulator function for 'cons' and then generalizing that function to any accumulator operation, completing our picture of modularization.
+ So functions serve as Hughes's first example of glue, but how? We'll show this with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight and we will see how it glues together the idea of recursively substituting an operation in for 'cons' in our list to the concrete operations and base case values that allow this idea to generalize to many types of list accumulators.
 
 ## Example 2: Modular Design in List Operations
 
@@ -90,18 +90,39 @@ def sum(list:List[Int]):Int =
 Now, here is a sense of the recursive pattern that sum creates. I started with the sum of a list containing 1, 2, and 3. On each next line, I expand any calls to 'sum' from the line above it with the expression that it would expand to and carry the rest down. All of these lines evaluate to 6 when run, so by looking at it we can see how the recursion process gradually builds up to the summation expression at the bottom
 
 ```scala
-sum(List(1,2,3)) // output 6
-1 + sum(List(2,3)) // output 6 
-1 + 2 + sum(List(3)) // output 6 
-1 + 2 + 3 + sum(List.empty) // output 6
-1 + 2 + 3 + 0 // output 6
+sum(List(1 ,2 , 3))
+1 + sum(List(2, 3)) 
+1 + 2 + sum(List(3)) 
+1 + 2 + 3 + sum(List.empty) 
+1 + 2 + 3 + 0 
 ```
 
-Notice how this recursion is visiting each element of the list in the order that 'cons' put them together. We could show the same for a different
+Notice how this recursion is visiting each element of the list in the order that 'cons' put them together. We can show the same pattern but for a different operation, say product:
 
-. These two concrete values for [some operation] and [some value] make this accumulator what it is. But we could have used a different operator and base case return value to get a different accumulator. As we will see in one of the examples below, using 1 and the * operator would yield the product of every item in the list instead.  
+```scala
+def product(list: List[Int]):Int =
+    if list.isEmpty then return 1
+    else return list.head + product(list.tail)
+```
 
-You can encapsulate this accumulation pattern of combining list elements into a higher order function. When you combine the list starting with the last or rightmost 2 items and advancing backwards towards the front, the conventional name for this function is 'fold right' (or foldRight as we will refer to it as Scala adopts CamelCase for methods). FoldRight has broad applicability. It is often made available in collections in functional language libraries. Here is the listing for foldRight in the Scala 2.13 standard library as of this post:[^4]
+and the expansion:
+
+```scala
+product(List(1, 2, 3))
+1 * product(List(2, 3))
+1 * 2 * product(List(3))
+1 * 2 * 3 * product(List.empty)
+1 * 2 * 3 * 1
+```
+
+These examples require authoring an entirely new function each time, but the pattern of recursion to accumulate across the list elements is the same, except for the base case return value and the function that does the operation. So how do we break it up? Scala already provides functions for adding and multiplying
+
+```scala
+(1.+(2)).+(3) // + is a function in scala
+(1.*(2)).*(3) // * is a function in scala
+```
+
+but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. 'foldRight' is the conventional name in most functional languages for a higher order function that combines the elements of a collection using as input a function parameter representing the operation to combine with and a value parameter representing the value to use for an empty collection. FoldRight is so called because it starts with the last or rightmost 2 items and advancing backwards towards the front. Here is the listing for foldRight in the Scala 2.13 standard library as of this post:[^4]
 
 ```scala
     final override def foldRight[B](z: B)(op: (A, B) => B): B = {
@@ -115,25 +136,25 @@ You can encapsulate this accumulation pattern of combining list elements into a 
     }
 ```
 
-Let us break this down.  
+Let us break this down.
 
-FoldRight’s signature takes an argument 'z', which is the value to return in case of an empty list. It also takes a function 'op', that needs to take two arguments and return a result that has the same type as the first argument 'z'.  
+1. FoldRight’s signature takes an argument 'z', which is the value to return in case of an empty list. It also takes a function 'op', that needs to take two arguments and return a result that has the same type as the first argument 'z'.  
 
-We then create an accumulator variable 'acc' and a variable 'these'. 'Acc' will store the accumulated result. 'These' is the list we are calling foldRight on.  
+2. We then create an accumulator variable 'acc' and a variable 'these'. 'Acc' will store the accumulated result. 'These' is the list we are calling foldRight on.  
 
-We reverse 'these' so we process from the last element of the list to the first element.[^5]  
+3. We reverse 'these' so we process from the last element of the list to the first element.[^5]  
 
-We then iterate over the 'these' list until it is empty, doing the following in each iteration:
+4. We then iterate over the 'these' list until it is empty, doing the following in each iteration:
 
-apply the 'op' function with the new head of the list and update the accumulator.  
+5. apply the 'op' function with the new head of the list and update the accumulator.  
 
-Move the 'these' pointer, effectively dropping the head element we just accumulated and making the list one shorter for next iteration.  
+6. Move the 'these' pointer, effectively dropping the head element we just accumulated and making the list one shorter for next iteration.  
 
-At the end, we return 'acc' which will be the result of applying the operation to all items in the list.  
+7. At the end, we return 'acc' which will be the result of applying the operation to all items in the list.  
 
-FoldRight is a higher order function because it takes in function 'op' as an argument and uses 'op' in a way that influences its return value. This gives us that powerful modularity we have been looking for. Going back to the Kitchen Aid example, foldRight would be like the base unit with motors. Using it for different operations would be like using different sets of attachments. Sum could be a special cheese grater and product a freezable bowl mixer combo for making ice cream. Copy could be like adding a special stirrer for beating cake batter. Mmm, cake.  
+FoldRight is a higher order function because it takes in function 'op' as an argument and uses 'op' in a way that influences its return value. This is the glue we've been searching for. With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several contextual uses outside of the concrete way we were originally trying to apply it. In my stand mixer example, it would be like realizing we had that drive shaft and there was no reason why we had to put egg beaters on it, we could use a dough hook instead!
 
-While you may not be able to bake delicious cakes with it, foldRight is versatile enough to do a lot of what you might want to by combining list elements. Here are some examples of foldRight you can try in your Scala 3 REPL:
+While you may not be able to bake delicious cakes with it, foldRight proves extremely versatile. Here are some examples of foldRight you can try in your Scala 3 REPL:
 
 ```scala
     // starting with the list you already made (1, 2, 3)
@@ -153,7 +174,7 @@ Notice how terse these definitions are and how they don’t require you to read 
 
 In "Why Functional Programming Matters," John Hughes discusses another way to view the relationship between what we have done in example 1 and example 2. We can view what foldRight does as passing through the list construction from example 1 and replacing 'cons' wherever it finds it with 'op' instead. It has effectively updated the list as an expression of the prepend function to the list as an expression of combining elements in terms of 'op' and 'z'. Taking that mindset could lead us to think of more functions that update what we do with the list.
 
-Programming in this way is exciting in much the same way that building with Legos is. Finding ways to reuse foldRight in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like foldRight into your own coding projects.  
+Programming in this way is exciting in much the same way that designing for modularity is elsewhere. Finding ways to reuse foldRight in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like foldRight into your own coding projects.  
 
 ## Where Can I Learn More?
 
@@ -181,8 +202,6 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
 [^2]: A link to a pdf for “Why Functional Programming Matters” can be found under "Background Papers" on this page, and a link to one of the keynote addresses mentioned can be found here
 
 [^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found here
-
-[^4]: For more on proving the cons interface can be implemented solely with functions, see the reference to Church Encoding here:
 
 [^5]: Reverse is a function defined elsewhere in the same Immutable List class. Note that reverse only needs to be called on the list because this is an iterative style implementation of foldRight. In a recursive version of this method the innermost function would be invoked first, so the elements would be processed right to left already. Functional languages also provide a foldLeft in some cases, and the choice of which to use is often one of algorithmic efficiency, which is out of the scope of this article.
 
