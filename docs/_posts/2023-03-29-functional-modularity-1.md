@@ -70,15 +70,36 @@ By using functions to build the list and by always returning the successively la
 
 To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity but maybe hadn't capitalized on it yet (in my example of the stand mixer maybe someone changed out the two beaters for one drive shaft, but still wasn't thinking about how that drive could be modified to support multiple attachments). That's what the 'cons' approach and the functional axioms that enable it are doing.
 
-But if 'cons' is the breaking up, what is the glue to put things back together, and how do we use it? The answer lies in a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight and we will see how it glues together the idea of substituting in an accumulator function for 'cons' and then generalizing that function to any accumulator operation, completing our picture of modularization.
+But if 'cons' is an example of how to divide and conquer the problem of building a list, where is the glue to put things back together, and how do we use it? Out of the two Hughes's memo mentions, the one we cover in this post lies in a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight and we will see how it glues together the idea of substituting in an accumulator function for 'cons' and then generalizing that function to any accumulator operation, completing our picture of modularization.
 
 ## Example 2: Modular Design in List Operations
 
-This time instead of constructing lists we will perform operations on them. We will use the same example as John Hughes's “Why Functional Programming Matters” of summing the items of a list. Hughes presents the summing procedure as a recursive pattern, or a pattern that calls itself until some base case condition is met. The base case for the sum function is that it received an empty list as input, and for this it returns zero. The recursive case is that a list was passed in with one or more elements, and in this case it will keep expanding the list and setting up nested function calls to add an element to the remainder of the list until it exhausts the list, at which point it has reached the base case and so will add 0.
+This time instead of constructing lists we will perform operations on them. We will use the same example as John Hughes's “Why Functional Programming Matters” of summing the items of a list. Hughes presents the summing procedure as a recursive pattern, or a pattern that calls itself until some base case condition is met.
 
-When visualized, this looks a lot like replacing 'cons' with 'sum'.
+The base case condition for the sum function is that it received an empty list as input, and for this it returns 0. The recursive case is that a list was passed in with one or more elements, and in this case it will set up nested stack frames that add an element to a call to itself without that item in the list until it exhausts the list, at which point it has reached the base case and so will add 0.
 
-Here we have our main insight. There is an extractable, reusable pattern here. “Return the result of applying [some operation] to the last element of a list and another call to this function on the rest of the list until you reach the base case of an empty list then return [some operation] applied to the accumulated result and [some value]." In the case of sum, the [some operation] function happens to be addition. The empty case's [some value] also happens to return zero. These two concrete values for [some operation] and [some value] make this accumulator what it is. But we could have used a different operator and base case return value to get a different accumulator. As we will see in one of the examples below, using 1 and the * operator would yield the product of every item in the list instead.  
+Below is first the recursive definition of sum described above.
+
+```scala
+// original function
+def sum(list:List[Int]):Int = 
+    if list.isEmpty then return 0
+    else return list.head + sum(list.tail)
+```
+
+Now, here is a sense of the recursive pattern that sum creates. I started with the sum of a list containing 1, 2, and 3. On each next line, I expand any calls to 'sum' from the line above it with the expression that it would expand to and carry the rest down. All of these lines evaluate to 6 when run, so by looking at it we can see how the recursion process gradually builds up to the summation expression at the bottom
+
+```scala
+sum(List(1,2,3)) // output 6
+1 + sum(List(2,3)) // output 6 
+1 + 2 + sum(List(3)) // output 6 
+1 + 2 + 3 + sum(List.empty) // output 6
+1 + 2 + 3 + 0 // output 6
+```
+
+Notice how this recursion is visiting each element of the list in the order that 'cons' put them together. We could show the same for a different
+
+. These two concrete values for [some operation] and [some value] make this accumulator what it is. But we could have used a different operator and base case return value to get a different accumulator. As we will see in one of the examples below, using 1 and the * operator would yield the product of every item in the list instead.  
 
 You can encapsulate this accumulation pattern of combining list elements into a higher order function. When you combine the list starting with the last or rightmost 2 items and advancing backwards towards the front, the conventional name for this function is 'fold right' (or foldRight as we will refer to it as Scala adopts CamelCase for methods). FoldRight has broad applicability. It is often made available in collections in functional language libraries. Here is the listing for foldRight in the Scala 2.13 standard library as of this post:[^4]
 
