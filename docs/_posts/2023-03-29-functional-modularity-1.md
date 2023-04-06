@@ -44,7 +44,7 @@ In Scala 3, creating a list has a clear, literal syntax:
     val myList = List(1, 2, 3)
 ```
 
-But let us look deeper. This syntax is a convenient sugar to make the language simpler to write in. An equal way to build a list element by element in Scala 3 without the sugar is this:
+But let us look deeper. This syntax is a convenient sugar to make the language simpler to write in. An equal way to build a list element-by-element in Scala 3 without the sugar is this:
 
 ```scala
     val myList = 1::2::3::Nil
@@ -62,15 +62,11 @@ In the code examples above, we constructed a linked list by calling 'cons' in a 
 
 In our linked list example, we see how capturing the idea of prepending into a 'cons' function can build more complex functionality. Starting with the simple 2 argument function, we have formed a list structure. It does not have to stop there either. Small alterations to the 'cons' interface lead to other data structures like trees, tuples, and graphs.[^4]
 
-How does building lists in this fashion compare to implementations of LinkedList you have seen in other languages or in data structures courses? A typical one I know of is building a list with 'Node' structures where each 'Node' has an element and a pointer to the address in memory of the next 'Node'.
-
-A strict mechanical comparison between using 'cons' and the 'Node' approach does not appear at first blush to make 'cons' more than a novelty, a kind of distinction without a difference from the 'Node' approach. Seeing the recursive nature of 'cons' may even make it feel more complicated at first. It therefore helps to take a step back and look at the intent driving us to use a functional interface for the links as opposed to structures with pointers to each other's memory addresses. We will see that it ties back to characteristics of functional programming and the conversation about modularity.
-
 By using functions to build the list and by always returning the increasingly larger chunks of list as new results instead of modifying an existing partial list, the 'cons' approach is doing what Hughes described and planning ahead to a future where lists will be deconstructed and then reconstructed into new forms. Every 'cons' invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior of what we did from just linking the elements of the list together to some other outcome. Also, since 'cons' and our modifications to it would not do anything other then return a new output, we do not have to worry that there would be any other impact on the list by making these changes.
 
-To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity (in my example of the stand mixer maybe someone changed out the two beaters for one drive shaft). A function provided a subdivided way to build our list, and as we will see next it is also a type of function that will give us the to power to reconstruct the list differently later.
+To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity (in my example of the stand mixer maybe someone changed out the two beaters for one drive shaft). 'Cons' shows us a way of dividing up a problem like building a list into a function that performs just a piece of the work. The functional rules the 'cons' interface follows, like returning the same output every time for a given element, are opening up the opportunity for adding new behaviors.
 
- So functions serve as Hughes's first example of glue, but how? We'll show this with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight and we will see how it glues together the idea of recursively substituting an operation in for 'cons' in our list to the concrete operations and base case values that allow this idea to generalize to many types of list accumulators.
+ So functions serve as Hughes's first example of glue, but how? We'll show this with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight and we will see how it glues together operations on lists to a recursive pattern that performs this operation between all list elements and accumulates a result.
 
 ## Example 2: Modular Design in List Operations
 
@@ -87,7 +83,7 @@ def sum(list:List[Int]):Int =
     else return list.head + sum(list.tail)
 ```
 
-Now, here is a sense of the recursive pattern that sum creates. I started with the sum of a list containing 1, 2, and 3. On each next line, I expand any calls to 'sum' from the line above it with the expression that it would expand to and carry the rest down. All of these lines evaluate to 6 when run, so by looking at it we can see how the recursion process gradually builds up to the summation expression at the bottom
+Now, here is a sense of the recursive pattern that sum creates. I started with the sum of a list containing 1, 2, and 3. On each next line, I expand any calls to 'sum' from the line above it with the expression that it would expand to and carry the rest down. All of these lines evaluate to 6 when run, so by looking at it we can see how the recursion process gradually builds up to the summation expression at the bottom:
 
 ```scala
 sum(List(1 ,2 , 3))
@@ -97,7 +93,7 @@ sum(List(1 ,2 , 3))
 1 + 2 + 3 + 0 
 ```
 
-Notice how this recursion is visiting each element of the list in the order that 'cons' put them together. We can show the same pattern but for a different operation, say product:
+We can show the same pattern but for a different operation, say product:
 
 ```scala
 def product(list: List[Int]):Int =
