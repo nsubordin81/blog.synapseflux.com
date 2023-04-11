@@ -166,7 +166,8 @@ While you may not be able to bake delicious cakes with it, foldRight proves extr
     // append 2 lists together
     val otherList = List(4, 5, 6)
     myList.foldRight(otherList)(_::_)
-    // with some light functional composition, copy above becomes map, where in this case f is the function 'double'
+    // compose this double function with the copy function above 
+    // to demonstrate applying a function to every element (map)
     def double(x:Int):Int = 2*x
     myList.foldRight(List.empty)(double(_)::_)
 ```
