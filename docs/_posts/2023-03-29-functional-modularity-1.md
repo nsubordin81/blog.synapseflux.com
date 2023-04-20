@@ -11,7 +11,7 @@ Welcome to Modularity in Functional Programming! In this series, I'll write abou
 
 To kick the series off, I will do some posts working through the ideas covered in John Hughes's foundational memo "Why Functional Programming Matters."[^1] In each post, I'll share my thoughts on a portion of John's memo and provide runnable code examples in the Scala 3 programming language that you can try.
 
-For this first post, we will talk about what Hughes referred to as "Gluing Programs Together." This refers to the idea of achieving reuse by gluing functions to other functions in different ways. To skip over the introduction and get right to the examples, [click here](#example-1-modular-design-in-list-construction-with-scala).
+For this first post, we will talk about what Hughes referred to as "Gluing Functions Together." This refers to the idea of achieving reuse by gluing functions to other functions in different ways. To skip over the introduction and get right to the examples, [click here](#example-1-modular-design-in-list-construction-with-scala).
 
 ## What Do I Mean by Modular Design?  
 
@@ -23,7 +23,7 @@ The common theme of these examples is a mechanism to connect pieces together. As
 
 ## Modular Design and Functional Glue
 
-Now that we are all picturing modularity in some form, we can move on to discuss what John Hughes meant by "gluing programs together." In the memo, Hughes brings this up when defending the unique value of programming in a functional way. He points out that everyone in the computer science community at some point agreed that modular programming efforts tended to be more likely to succeed than their single purpose counterparts, and so new languages of the time such as Ada and Modula-II "included features specifically designed to help improve modularity."
+Now that we are all picturing modularity in some form, we can move on to discuss what John Hughes meant by "gluing functions together." In the memo, Hughes brings this up when defending the unique value of programming in a functional way. He points out that everyone in the computer science community at some point agreed that modular programming efforts tended to be more likely to succeed than their single purpose counterparts, and so new languages of the time such as Ada and Modula-II "included features specifically designed to help improve modularity."
 
 He explains that these other languages and the paradigms they rely on are chasing modularity by allowing organized subdivision of their programs. However, allowing for subdivision alone does not suffice to achieve modularity. As he points out, for true modularity _when we break things apart we must already be thinking about how we are going to glue them back together._
 
@@ -180,7 +180,7 @@ Programming in this way is exciting in much the same way that designing for modu
 
 As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, “Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
 
-In this post we looked at section 3 of "Why Functional Programming Matters.” Its name in the article “Gluing Programs Together.” My hope was to reduce some of the assumptions the original memorandum makes about an academic audience by replacing the more rigorous proofs in the memo with analogy and entry level definitions. I was still, however, hoping to highlight the benefit of applying these ideas in the way Hughes's paper lit a fire under me when I first read it. I also wanted it to be a more interactive, hands-on learning experience so I used executable Scala3 code instead of pseudocode and I will aim to do this with future articles.  
+In this post we looked at section 3 of "Why Functional Programming Matters.” Its name in the article “Gluing Functions Together.” My hope was to reduce some of the assumptions the original memorandum makes about an academic audience by replacing the more rigorous proofs in the memo with analogy and entry level definitions. I was still, however, hoping to highlight the benefit of applying these ideas in the way Hughes's paper lit a fire under me when I first read it. I also wanted it to be a more interactive, hands-on learning experience so I used executable Scala3 code instead of pseudocode and I will aim to do this with future articles.  
 
 Thanks for taking this journey with me. Questions? Comments? I would love to connect with you! Feel free to reach out via my social links.  
 
