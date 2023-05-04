@@ -5,17 +5,17 @@ excerpt: "Welcome to Modularity in Functional Programming! In this series, I wil
 classes: wide
 ---
 
-In the first post of this series, we covered what modularity means and how functional programming is uniquely qualified to provide you modularity when writing programs. We covered examples from the "Gluing Functions Together" portion of John Hughes's 1984 memo titled "Why Functional Programming Matters." We will make this second post a short one. It will cover two more examples from that section of the memo with accompanying Scala 3 sample code.
+In the first post of this series, we covered what modularity means and how functional programming is uniquely qualified to provide you modularity when writing programs. We covered examples from the "Gluing Functions Together" portion of John Hughes's 1984 memo titled "Why Functional Programming Matters." This second post will build on those ideas and cover two more examples from that section of the memo with accompanying Scala 3 sample code.
 
-While the first post demonstrated modularity with higher order functions, primarily with the higher order function foldRight and a list of single elements, these two examples extend that to show that the same composition can be done to perform operations on lists of lists as well as trees.
+While the first post demonstrated modularity with higher order functions, primarily with the higher order function foldRight and a list of single elements, these two examples extend that to show that the same manner of function composition can be done to perform operations on more complex data structures such as lists of lists and trees.
 
-After this post, we will move on to the second idea Hughes presented in his memo, "Gluing Programs Together" with lazy evaluation.
+After this post, we will move on to the second idea Hughes presented in his memo, "Gluing Programs Together", which focuses on a feature common to many functional programming languages known as lazy evaluation.
 
 If you missed the first post in this series, you can find it [here](/2023/03/functional-modularity-1/)), I recommend going back and reading that post as it explains the ideas these examples are expanding upon.
 
 ## Example 1: Higher Order Functions To Operate On Matrices
 
-If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download/). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing ‘scala’ into your terminal.
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download/). While in the first post I recommended using a scala 3 REPL to code these examples, because we start working with language constructs in scala that expect us to organize our code into files, I found it easier to use a [scala 3 worksheet](https://docs.scala-lang.org/scala3/book/tools-worksheets.html) in Visual Studio Code for these examples.
 
 In our first example, we will move on from lists of single elements to a 2 dimensional list, or list of lists. When the members of each list are numeric types, this grid style data structure is often called a matrix. You may know from mathematics or data analysis that matrices can be useful structures to operate on, so it is helpful to know that what we've learned so far about composing functions in a modular way can get you to working with matrices without much additional work. First, let's define a matrix:
 
@@ -23,41 +23,122 @@ In our first example, we will move on from lists of single elements to a 2 dimen
     val myMatrix = List(List(1,2), List(3,4), List(5,6))
 ```
 
-Now, let's set a goal. We want to add together every item in the matrix. Since we are using this modular approach of composing a solution from known functions, we can be confident that if we break down the problem into sub-problems and define functions for those, we can compose these functions to arrive at a working solution.
+Now, let's set a goal. We want to add together every item in the matrix. By following our modular approach with functional building blocks and higher order functions as glue, we can confidently break down the problem into function sub-problems and compose them to arrive at a solution.
 
-We have a list of lists, so the first sub problem may be to sum all the items of each of these inner lists. In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
+A matrix is a list of lists, so the first sub problem may be to sum all the items of each of these inner lists. In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
 
 ```scala
     def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
-This sums the elements of a list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list [^1]. That will give us a list of intermediate sums, which we will need to then sum to get our final result. All together it looks like this:
+This sums the elements of a list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list [^1]:
 
 ```scala
-    sum(myMatrix.map(sum))
+    myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
 ```
+
+ That will give us a list of intermediate sums. We already have a sum function to sum over a list, and we can use that on this list of intermediate sums to get the total for the matrix. All together it looks like
+
+```scala
+    sum(myMatrix.map(sum)) // res: 21
+```
+
+With this example we took the higher order function 'glue' that we learned to apply to folding a list and operations like sum, and with just one more higher order function (with map) and one more function composition (with sum), we were able to handle an operation over a whole matrix. Whereas the folding of the list was the main feature of the set of examples in the first post, now it is just a component of a larger 'glued together' function.
+
+Our final example on gluing functions together will be even slightly more complex and involve folding trees, but we will still be able to build it up from the ideas we've already covered.
 
 ## Example 2: Higher Order Functions To Operate On Trees
 
+For this last example of gluing functions together, we will continue to explore the composition of functions with higher order functions while working on a tree data structure.
+
+First, let's discuss the properties of our tree. every element of the tree is a 'Node', and every 'Node' can have 0 or more children. You may be most familiar with the binary tree which have a simpler structure with a maximum of two children, but in this case the number of children per 'Node' is not given a limit. Here is our definition of the Tree type:
+
 ```scala
     sealed trait Tree[A]
-    case class Node[A](value: A, Children: List[Tree[A]]) extends Tree[A]
+    case class Node[A](value: A, children: List[Tree[A]]) extends Tree[A]
+```
+
+We use a sealed trait as our parent type for 'Tree' to force all subtypes of this trait into the same file and so that later when use the 'match' keyword the compiler can check for us that we have created case statements for  all types of trees that are defined. In our tree type definition, there is only one subtype called 'Node'. 'Node' has a value, whose type is generic and given by the type parameter 'A'. Using a type parameter this way will allow the compiler to help us enforce how types are used in our class without having to declare a concrete type like 'Int' up front and lock our tree into being only a tree for 'Int' values. The node's second member is 'children', a list of Trees that will also use type 'A'. Below we create a simple tree and visualize what it would look like:
+
+```scala
+val myTree =
+  Node(
+    1,
+    List(Node(2, List()), Node(3, List(Node(4, List()), Node(5, List()))), Node(6, List()))
+  )
+
+/*
+    Here is what myTree would look like:
+
+                     1
+                   / | \  
+                  2  3  6
+                    / \
+                   4   5
+*/
+```
+
+If you aren't familiar with trees, the above visualization shows a way to think about their organization. The structure is hierarchical, and even though we could draw it left to right it woulds still have a defined flow of edges that start at 'Node' 1 and branch out to its children and grandchildren and so on. Notice that the Nodes with empty lists represent terminal points in the tree. In our version of the tree data structure, this is how we represent the concept of 'leaves'.
+
+There are many operations you can do on a tree, and we are going to demonstrate the folding operation that we've been covering on this data structure. As with folding lists and matrices, the goal will be to accumulate values in some fashion across all the elements and end up with a single result object.
+
+For our tree version of fold, we are adding the requirement that the operation that accumulates from one level to another on the tree can potentially be different than the operation that accumulates across all of a node's children. For example, if we wanted to we could fold so that parents are added to their children but their siblings are subtracted from them. Remember that for lists and matrices we were performing one operation, such as sum, over the entire data structure.
+
+Building fold will be tougher this time, but we will still use the same ideas of higher order functions and composing function calls to get to our answer. Our first task is to break down the tasks of combining the tree elements into parts and think about how we will apply them.
+
+the first case we can consider is accumulating elements as we move down the tree. a simple tree to work with for this would be nodes that only have one child:
+
+```scala
+val treeLine = Node(1, List(Node(2, List(Node(3,(List()))))))
+```
+
+With the restriction that we can only have one child, we essentially have an overcomplicated list to deal with. It is a good sub problem though because we've eliminated the challenge of dealing with a child 'Node's' siblings. Working with this simpler tree, we just need a way to handle trees with one child and leaves. Here's a way to account for those cases:
+
+```scala
+def foldTreeLine[A](f: (A, A) => A, a: A, tree: Tree[A]): A =
+tree match {
+  case Node(value, List())        => f(value, a)
+  case Node(value, first :: rest) => f(value, foldTreeLine(f, a, first))
+}
+```
+
+This function makes use of a technique we haven't covered yet in this series. It is known as 'pattern matching,' and while the Scala programming language has had it as a feature since its earliest versions, in 2023 as languages have picked up more functional features and pattyou can either find pattern matching or a proposal for it in many of the mainstream programming languages. you can read more about pattern matching [here](), but for the purposes of this article, you can think of it as being like the even more common `switch` statement, except instead of being limited to cases involving primitive types, you can match over an object type and the cases can be expressed as patterns that the matched object may or may not meet. You can use the variables from your case pattern in the code that handles that case. In the above example, we match on
+
+```scala
+val treeLineFoldResult: Int = foldTreeLine((a: Int, b: Int) => a + b, 0, treeLine)
+```
+
+```scala
+val treeList = List(Node(1, List()), Node(2, List()), Node(3, List()))
+```
+
+```scala
+def foldTreeList[A](g: (A, A) => A, a: A, treeList: List[Tree[A]]): A =
+  treeList match {
+    case Node(value, children) :: rest =>
+      g(value, foldTreeList(g, a, rest))
+    case Nil => a
+  }
+```
+
+```scala
+val foldTreeListResult: Int = foldTreeList((a: Int, b: Int) => a + b, 0, treeList)
 ```
 
 ```scala
 object Tree {
   def reduceTree[A](f: (A, A) => A, g: (A, A) => A, a: A, tree: Tree[A]): A =
     tree match {
-      case Node(label, children) => f(label, reduceTreePrime(f, g, a, children))
+      case Node(label, children) => f(label, reduceSubtree(f, g, a, children))
     }
-  def reduceTreePrime[A](
+  def reduceSubtree[A](
       f: (A, A) => A,
       g: (A, A) => A,
       a: A,
       subtrees: List[Tree[A]]
   ): A = subtrees match {
     case first :: rest =>
-      g(reduceTree(f, g, a, first), reduceTreePrime(f, g, a, rest))
+      g(reduceTree(f, g, a, first), reduceSubtree(f, g, a, rest))
     case List() => a
   }
 
@@ -65,14 +146,6 @@ object Tree {
 ```
 
 ```scala
-val tree =
-  Node(
-    1,
-    List(Node(2, List()), Node(3, List(Node(4, List()), Node(5, List()))))
-  )
-```
-
-```scala
 val sum =
-  Tree.reduceTree((a: Int, b: Int) => a + b, (a: Int, b: Int) => a + b, 0, tree)
+  Tree.reduceTree((a: Int, b: Int) => a + b, (a: Int, b: Int) => a + b, 0, myTree)
 ```
