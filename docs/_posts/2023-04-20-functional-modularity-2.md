@@ -146,9 +146,20 @@ def foldTreeList[A](g: (A, A) => A, a: A, treeList: List[Tree[A]]): A =
   }
 ```
 
+Ok, so in this sub-problem, a few things are happening:
+
+1. we are pattern matching again on `treeList` which is an object of type `List[Tree[A]]`, with 2 cases:
+    - the first case's pattern matches on a deconstruction of `treeList` into a `first`::`rest` and then `first` into a tree which can be represented as `Node(value, children)`.
+    - the second case just matches on `Nil`, which is the empty companion object to scala's `List` class we've seen in the first post.
+2. If we match on the first case, we will call a new function `g` that takes two arguments that have the same type as our `A` type and returns a result of that same type. For the first argument we use the `value` of the `Node` at the head of our list, and then for the second value, we do a recursive call with the `rest` of the list. Since `rest` is also a `List[Tree[A]]` we will be able to process the rest of the list until we reach the empty list and have our base case be the second argument to `g`.
+
+Here is an example of how you would call this subroutine:
+
 ```scala
 val foldTreeListResult: Int = foldTreeList((a: Int, b: Int) => a + b, 0, treeList)
 ```
+
+Now we have 2 parts of the problem, but each of them can only match on their own type, and each of them can only call their own function. I'm about to show you you can compose these functions in such a way that you can achieve the overall goal. Another opportunity to pause before reading through to this solution.
 
 ```scala
 object Tree {
