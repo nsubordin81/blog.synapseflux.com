@@ -3,6 +3,7 @@ layout: single
 title: About
 permalink: /about/
 author_profile: true
+classes: wide
 ---
 
 Welcome to Synapse Flux Blog space. I'm Taylor. Virtual handshake if you shake hands. If you don't, then greetings and welcome to my site.
