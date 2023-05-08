@@ -3,6 +3,7 @@ title: "Modularity With Functional Programming Part 2"
 date: 2023-04-20 00:00:00 -0500
 excerpt: "Welcome to Modularity in Functional Programming! In this series, I will be addressing how using aspects of the functional paradigm can lead to program components that are easier to reuse and expand upon."
 classes: wide
+published: false
 ---
 
 In the first post of this series, we covered what modularity means and how functional programming is uniquely qualified to provide you modularity when writing programs. We covered examples from the "Gluing Functions Together" portion of John Hughes's 1984 memo titled "Why Functional Programming Matters." This second post will build on those ideas and cover two more examples from that section of the memo with accompanying Scala 3 sample code.
@@ -23,7 +24,7 @@ In our first example, we will move on from lists of single elements to a 2 dimen
     val myMatrix = List(List(1,2), List(3,4), List(5,6))
 ```
 
-Now, let's set a goal. We want to add together every item in the matrix. By following our modular approach with functional building blocks and higher order functions as glue, we can confidently break down the problem into function sub-problems and compose them to arrive at a solution.
+Now, let's set a goal. We want to add together every item in the matrix. By following our modular approach with functional building blocks and higher order functions as glue, we can confidently break down the problem into sub-problem functions and compose them to arrive at a solution.
 
 A matrix is a list of lists, so the first sub problem may be to sum all the items of each of these inner lists. In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
 
@@ -31,7 +32,7 @@ A matrix is a list of lists, so the first sub problem may be to sum all the item
     def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
-This sums the elements of a list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list [^1]:
+This sums the elements of a list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list. Even though we derived map, it is also available for Immutable List in Scala[^1]:
 
 ```scala
     myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
