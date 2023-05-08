@@ -7,7 +7,7 @@ author_profile: true
 
 Welcome to Synapse Flux Blog space. I'm Taylor. Virtual handshake if you shake hands. If you don't, then greetings and welcome to my site.
 
-If you stick around and get to know me through my content, you'll probably pick up that what excites me is exploring big ideas one little detail at a time. That is what you will get here with the theme I've selected, blending computation with creativity and expression. I landed on Computation, Creativity, and Expression because:
+If you stick around and get to know me through my content, you'll probably pick up that what excites me is exploring big ideas one little detail at a time. That is what you will get here with the theme I've selected, blending computation with creativity and expression. I landed on computation, creativity, and expression because:
 
 - I believe they are woven into humanity's most exciting contemporary endeavors,
 - Out of all the things we do as humans, I'm drawn into these three again and again to examine by themselves or in combination with each other,
