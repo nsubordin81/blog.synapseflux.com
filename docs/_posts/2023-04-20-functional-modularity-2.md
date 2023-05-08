@@ -3,7 +3,6 @@ title: "Modularity With Functional Programming Part 2"
 date: 2023-04-20 00:00:00 -0500
 excerpt: "Welcome to Modularity in Functional Programming! In this series, I will be addressing how using aspects of the functional paradigm can lead to program components that are easier to reuse and expand upon."
 classes: wide
-published: false
 ---
 
 In the first post of this series, we covered what modularity means and how functional programming is uniquely qualified to provide you modularity when writing programs. We covered examples from the "Gluing Functions Together" portion of John Hughes's 1984 memo titled "Why Functional Programming Matters." This second post will build on those ideas and cover two more examples from that section of the memo with accompanying Scala 3 sample code.
