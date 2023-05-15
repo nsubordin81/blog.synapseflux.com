@@ -9,9 +9,12 @@
         "Giscus",
         "Namecheap",
         "tada",
-        "prepending"
+        "prepending",
+        "pseudocode"
     ],
-    "ignoreWords": [],
+    "ignoreWords": [
+        "Sheeran"
+    ],
     "ignoreRegExpList": [
         "\\((.*)\\)", // Markdown links
         "uid: (.*)", // uid lines,
