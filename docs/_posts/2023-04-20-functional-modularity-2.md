@@ -117,7 +117,7 @@ In the above example,
 1. We use the `sealed trait` and `Node` `case class` we defined above to restrict what can be matched.
 2. We match on the tree parameter that is passed in, and inside the match we specify two variations of Node to match on.
 3. For the first case we set up a pattern with a Node that has two attributes, `value` and `List()`.
-    - This means that the `tree` object we pass in would need to have something in value, we don't specify what but whatever it is now lives in that `value` variable and the compiler can infer that the object refered to by `value` is goinge to have the parameterized type `A`.
+    - This means that the `tree` object we pass in would need to have something in value, we don't specify what but whatever it is now lives in that `value` variable and the compiler can infer that the object referred to by `value` is goinge to have the parameterized type `A`.
     - We also specify that the first case's `Node` its `children` should be an empty list.
     - If the object pointed to by `tree` meets that pattern, we call our passed in function `f` and pass in the `value` member of our matched `Node`.
 4. For the second case, our `Node` still has a `value` for its `value` member, but then its children needs to be a non-empty list.
