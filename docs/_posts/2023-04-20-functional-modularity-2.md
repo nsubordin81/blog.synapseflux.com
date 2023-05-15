@@ -128,7 +128,7 @@ In the above example,
 val treeLineFoldResult: Int = foldTreeLine((a: Int, b: Int) => a + b, 0, treeLine)
 ```
 
-Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explictly ignoring the `rest` portion of that pattern match in each case. We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for all of these trees. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f`.
+Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explicitly ignoring the `rest` portion of that pattern match in each case. We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for all of these trees. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f`.
 
 Now we have to try and break down and work on dealing with `rest` as a subroutine. We need a function that can execute a function over a list of trees. I like to start thinking through these problems with a simple example of the data structure, so here is an example of a list of trees:
 
