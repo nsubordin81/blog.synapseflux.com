@@ -117,7 +117,7 @@ In the above example,
 1. We use the `sealed trait` and `Node` `case class` we defined above to restrict what can be matched.
 2. We match on the tree parameter that is passed in, and inside the match we specify two variations of Node to match on.
 3. For the first case we set up a pattern with a Node that has two attributes, `value` and `List()`.
-    - This means that the `tree` object we pass in would need to have something in value, we don't specify what but whatever it is now lives in that `value` variable and the compiler can infer that the object refered to by `value` is goinge to have the parameterized type `A`.
+    - This means that the `tree` object we pass in would need to have something in value, we don't specify what but whatever it is now lives in that `value` variable and the compiler can infer that the object referred to by `value` is going to have the parameterized type `A`.
     - We also specify that the first case's `Node` its `children` should be an empty list.
     - If the object pointed to by `tree` meets that pattern, we call our passed in function `f` and pass in the `value` member of our matched `Node`.
 4. For the second case, our `Node` still has a `value` for its `value` member, but then its children needs to be a non-empty list.
@@ -128,7 +128,7 @@ In the above example,
 val treeLineFoldResult: Int = foldTreeLine((a: Int, b: Int) => a + b, 0, treeLine)
 ```
 
-Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explictly ignoring the `rest` portion of that pattern match in each case. We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for all of these trees. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f`.
+Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explicitly ignoring the `rest` portion of that pattern match in each case. We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for all of these trees. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f`.
 
 Now we have to try and break down and work on dealing with `rest` as a subroutine. We need a function that can execute a function over a list of trees. I like to start thinking through these problems with a simple example of the data structure, so here is an example of a list of trees:
 

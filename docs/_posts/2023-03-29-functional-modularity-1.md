@@ -125,7 +125,7 @@ These examples require authoring an entirely new function each time, but the pat
 (1.*(2)).*(3) // * is a function in scala
 ```
 
-but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. FoldRight is so called because it starts with the last or rightmost 2 items in the collecation and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
+but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. FoldRight is so called because it starts with the last or rightmost 2 items in the collection and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
 
 ```scala
 def foldRight[A, B](z:B)(f:(A,B) => B)(l:List[A]): B = l match
@@ -201,7 +201,7 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
       
       Imperative object-oriented code is what I learned in school and used for years, and my personal mileage with it is that you can be productive quickly but a functional approach can help prevent issues with shared mutable state and other pitfalls that are easy to fall into when you scale your programs.
 
-[^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here](https://en.wikipedia.org/wiki/Cons#:~:text=In%20computer%20programming%2C%20cons%20(%2F,%2C%20or%20(cons)%20pairs.)
+[^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here](<https://en.wikipedia.org/wiki/Cons#:~:text=In%20computer%20programming%2C%20cons%20(%2F,%2C%20or%20(cons)%20pairs.>)
 
 [^4]: Even though this article and the John Hughes memo will refer to 'cons' as though it were implemented entirely with functions, it usually isn't in practice. Scala uses a case class and factory method to build a list and hold it in memory, and it isn't alone. Lisp and other functional languages have opted for data structures because a truly stateless functional approach isn't as performant. For more on proving the 'cons' interface can be implemented solely with functions, see the reference to Church Encoding [here](https://en.wikipedia.org/wiki/Cons)
 
