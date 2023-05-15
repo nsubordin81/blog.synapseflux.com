@@ -125,7 +125,7 @@ These examples require authoring an entirely new function each time, but the pat
 (1.*(2)).*(3) // * is a function in scala
 ```
 
-but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. FoldRight is so called because it starts with the last or rightmost 2 items in the collecation and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
+but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. FoldRight is so called because it starts with the last or rightmost 2 items in the collection and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
 
 ```scala
 def foldRight[A, B](z:B)(f:(A,B) => B)(l:List[A]): B = l match
