@@ -87,9 +87,10 @@ val myTree =
 */
 ```
 
-If you aren't familiar with the tree data structure, here is a quick run down. 
-- The above visualization shows a way to think about a tree's organization. 
-- The structure is hierarchical, and even though we could draw this tree left to right it woulds still have no circular connections and it would have defined parent-child relationships. 
+If you aren't familiar with the tree data structure, here is a quick run down.
+
+- The above visualization shows a way to think about a tree's organization.
+- The structure is hierarchical, and even though we could draw this tree left to right it woulds still have no circular connections and it would have defined parent-child relationships.
 - Notice also that the `Node` elements with empty lists represent terminal points in the tree. These are commonly referred to as "leaves."
 - I mentioned earlier that our `Tree` trait was using the generic type parameter `A`. This example takes advantage of that, as the Scala compiler's powerful type inference is able to infer from the integers we pass in for each `value` argument that we are making a `Tree[Int]` type tree without us having to indicate it. The compiler would also throw an excpetion if we were to mix in objects of other types as `value`s for some of these `Nodes`. I left out the type annotation from myTree which would have looked like `val myTree: Tree[Int]`, but it is good practice to include type annotations that are otherwise inferrable for humans reading your code except where you feel it is hurting readability.
 
@@ -127,7 +128,7 @@ In the above example,
     - If the object pointed to by `tree` meets that pattern, we call our passed in function `f` and pass in the `value` member of our matched `Node`.
 4. For the second case, our `Node` still has a `value` for its `value` member, but then its `children` member needs to be a non-empty list.
     - This is because for the list we deconstruct using our familiar `::`, or `cons` operator from the first post and we are able to specify the name for the first element of the list, `first`, and the name for the variable that holds the rest of the elements, `rest`.
-    - If we match on this pattern, then we call the passed in function `f` with our `value` as the first argument, and then a recursive call to `foldTreeLine` with the same function `f`, `a` our base case return value, and the first element of the `Node`'s list of trees as the tree argument. Note that we are only safe throwing away the `rest` member representing the rest of the elements of the list because we put that constraint on our tree representation (`treeLine` and trees like it) that each Node's `children` list can only have one element. 
+    - If we match on this pattern, then we call the passed in function `f` with our `value` as the first argument, and then a recursive call to `foldTreeLine` with the same function `f`, `a` our base case return value, and the first element of the `Node`'s list of trees as the tree argument. Note that we are only safe throwing away the `rest` member representing the rest of the elements of the list because we put that constraint on our tree representation (`treeLine` and trees like it) that each Node's `children` list can only have one element.
 
 Here is an example of calling this `foldTreeLine` function on our sample tree using the `sum` function, which should correctly sum the values in the `tree's` `Nodes`:
 
@@ -135,7 +136,7 @@ Here is an example of calling this `foldTreeLine` function on our sample tree us
 val treeLineFoldResult: Int = foldTreeLine((a: Int, b: Int) => a + b, 0, treeLine)
 ```
 
-Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explictly ignoring the `rest` portion of that pattern match in each case. 
+Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explictly ignoring the `rest` portion of that pattern match in each case.
 
 We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for trees where Nodes can have more than one child. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f`.
 
@@ -161,7 +162,7 @@ Ok, so in this sub-problem, a few things are happening:
 1. we are pattern matching again on `treeList`, which is an object of type `List[Tree[A]]`, with 2 cases:
     - the first case's pattern match takes a deconstruction of `treeList` into a `first`::`rest` and then further deconstructs `first` into a tree which can be represented as `Node(value, children)`.
     - the second case just matches on `Nil`, which is the empty companion object to scala's `List` class we've seen in the first post.
-2. If we match on the first case, we will call a new function `g` that takes two arguments that have the same type as our `A` type and returns a result of that same type. For the first argument we use the `value` of the `Node` at the head of our list, and then for the second value, we do a recursive call with the `rest` of the list. 
+2. If we match on the first case, we will call a new function `g` that takes two arguments that have the same type as our `A` type and returns a result of that same type. For the first argument we use the `value` of the `Node` at the head of our list, and then for the second value, we do a recursive call with the `rest` of the list.
 3. Since `rest` is also a `List[Tree[A]]`, it matches our `List` type for the `treeList` parameter and it will continue to mach for all recursive calls including when we reach the base case of `Nil` and match on the second pattern to return `a` as the second argument to the final call to `g`.
 
 Here is an example of how you would call this subroutine:
@@ -193,10 +194,11 @@ object Tree {
 }
 ```
 
-The above solution uses function composition to tie together the two functions that we seperately designed to cover the components of this tree fold operation.[^3] 
-1. `foldTreeLine` and its problem of applying some function `f` down the nodes a a tree is represented in `reduceTree`'s single case `match` statement. But remember we had to pick the first element of the list in our recursive calls before to end up with a `Tree` type argument each time. 
-2. Now we don't, because `reduceTree` delegates this job to `reduceSubtree`, which takes in the entire list of children. `reduceSubTree` has the logic we put in to fold across a list using some function `g` and return when we had exhausted the list and hit `Nil`. 
-3. This would cover the first time we had to process children, but then what if each of those children has children? To account for this, we are replacing the first argument in the call to `g` with a call  _back_ to the `reduceTree` function, so as we move across the `subtrees` list, we will try to also move down into that `Node's` children. These functions calling each other allow for recursion both down and across the tree. 
+The above solution uses function composition to tie together the two functions that we seperately designed to cover the components of this tree fold operation.[^3]
+
+1. `foldTreeLine` and its problem of applying some function `f` down the nodes a a tree is represented in `reduceTree`'s single case `match` statement. But remember we had to pick the first element of the list in our recursive calls before to end up with a `Tree` type argument each time.
+2. Now we don't, because `reduceTree` delegates this job to `reduceSubtree`, which takes in the entire list of children. `reduceSubTree` has the logic we put in to fold across a list using some function `g` and return when we had exhausted the list and hit `Nil`.
+3. This would cover the first time we had to process children, but then what if each of those children has children? To account for this, we are replacing the first argument in the call to `g` with a call  _back_ to the `reduceTree` function, so as we move across the `subtrees` list, we will try to also move down into that `Node's` children. These functions calling each other allow for recursion both down and across the tree.
 4. In all of this we managed to also meet the criteria we gave ourselves that we would need to be able to support different functions for folding across nodes on the same level and folding down by having `f` and `g` be separate functions. If we wanted to enforce only one folding function for both, we could have stuck with just one function, like `f` and used it in both contexts. Alternatively, we can just pass the same function in for `f` and `g`, as we do in the example below.
 
 To demonstrate this solution working, below is a call to the `reduceTree` function using sum as the operation to fold with for both parent-child and sibling directions.
@@ -208,18 +210,18 @@ val sum =
 
 ## Summary
 
-These 2 additional exaples took what we covered in the first post of the series and expanded it to show that with higher order functions and function composition, functions that we define for simpler problems can generalize to more complicated data representations. 
+These 2 additional exaples took what we covered in the first post of the series and expanded it to show that with higher order functions and function composition, functions that we define for simpler problems can generalize to more complicated data representations.
 
-The solutions to folding over a matrix and a tree were more involved and did require more up front thought to break down problems, but what I'm hoping is you also got a sense for how programming in this way encourages the reuse of general purpose functions such as `foldRight` and `map`, and also encourages the typically helpful approach of solving complex problems by first subdividing them into simpler parts. 
+The solutions to folding over a matrix and a tree were more involved and did require more up front thought to break down problems, but what I'm hoping is you also got a sense for how programming in this way encourages the reuse of general purpose functions such as `foldRight` and `map`, and also encourages the typically helpful approach of solving complex problems by first subdividing them into simpler parts.
 
-Another significant benefit we have by programming in this mode is we have avoided the state mutations that arise from using imperative constructs such as varibale assignment and looping, so our code are threadsafe as a matter of course and we can reuse the functions we make with them, like `matrixSum`, `reduceSubTree`, and `reduceTree` that we've created here, just based on the inputs and return values of their signature and their description without worrying that combining them will have unintended effects. 
+Another significant benefit we have by programming in this mode is we have avoided the state mutations that arise from using imperative constructs such as varibale assignment and looping, so our code are threadsafe as a matter of course and we can reuse the functions we make with them, like `matrixSum`, `reduceSubTree`, and `reduceTree` that we've created here, just based on the inputs and return values of their signature and their description without worrying that combining them will have unintended effects.
 
 If you want to further prove to yourself that these functions are easily combined, I suggest trying to combine what we created here with some requirement. For example, create a `Tree[List[List[Int]]]`, or tree of matrices, and then find use some composition of the functions you've defined through this post to find either the sum or another type of accumulation across all of the tree elements.
 
 With "gluing functions together" sufficiently covered, the next post in the series will introduce the concept of 'lazy evaluation' which will help us think a level higher and "glue programs together."
 
-
 ## Where Can I Learn More?
+
 _(I'm copying this section to the bottom of every post in the series to make it easy to find, so no need to read it again if you've been following along!)_
 
 As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, “Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
