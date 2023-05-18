@@ -7,17 +7,21 @@ classes: wide
 
 In the first post of this series, we covered what modularity means and how functional programming is uniquely qualified to provide you modularity. We covered examples from the "Gluing Functions Together" portion of John Hughes's 1984 memo titled "Why Functional Programming Matters." This second post will build on those ideas and cover two more examples from that section of the memo with accompanying Scala 3 sample code.
 
-While the first post demonstrated modularity with higher order functions, primarily with the higher order function foldRight and a list of single elements, these two examples extend that to show that the same manner of function composition and application of higher order functions can be done to perform operations on more complex data structures such as lists of lists and trees.
+While the first post's focus was primarily with the higher order function foldRight and a list of single elements, the two examples in this post extend that to show that the ideas of modularity through function composition and higher order functions can be used to perform operations on more complex data structures such as lists of lists and trees.
 
-After this post, we will move on to the second idea Hughes presented in his memo, "Gluing Programs Together", which focuses on a feature common to many functional programming languages known as "lazy evaluation."
+After this, The third post in this series will move on to the second idea Hughes presented in his memo, "Gluing Programs Together", which focuses on a feature common to many functional programming languages known as "lazy evaluation."
 
-If you missed the first post in this series, you can find it [here](/2023/03/functional-modularity-1/), I recommend going back and reading that post as it explains the ideas the following examples will expand upon.
+If you missed the first post in this series, you can find it [here](/2023/03/functional-modularity-1/), I recommend going back and reading it as it explains the ideas we are about to expand on.
 
 ## Example 1: Higher Order Functions To Operate On Matrices
 
-If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](<https://www.scala-lang.org/download/>). While in the first post I recommended using a scala 3 REPL to code these examples, for these I recommend an editor like Visual Studio Code instead because we start working with slightly larger programs and it will be easier to write more out before submitting to the interpreter and have existing code saved to experiment with later. I found it easier to use a [scala 3 worksheet](<https://docs.scala-lang.org/scala3/book/tools-worksheets.html>) in Visual Studio Code for these examples.
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](<https://www.scala-lang.org/download/>).
 
-In our first example, we will move on from lists of single elements to a 2 dimensional list, or list of lists. When the members of each list are numeric types, this grid style data structure is often called a matrix. You may know from mathematics or data analysis that matrices can be useful structures to operate on, so it is helpful to know that what we've learned so far about composing functions in a modular way can get you to working with matrices without much additional work. First, let's define a matrix:
+While in the first post I recommended using a scala 3 REPL to code these examples, for these I recommend an editor like Visual Studio Code and [scala 3 worksheets](<https://docs.scala-lang.org/scala3/book/tools-worksheets.html>) instead. We start working with slightly larger programs in these examples, and it will be easier to write longer procedures out and save them for later instead of submitting to a CLI interpreter. With worksheets we still get the REPL benefit of not having to perform manual compile and run steps each time we want to see intermediate results.
+
+In our first example, we will move on from lists of single elements to a 2 dimensional list, or list of lists. When the members of each list are numeric types, this grid style data structure is often called a "matrix." You may know from mathematics or data analysis that matrices can be useful structures to operate on, so this example adds a flavor of applicability to what we've learned so far. We can add very little code to what we already did in the first post with lists to start working with matrices.
+
+First, let's define a concrete example matrix:
 
 ```scala
     val myMatrix = List(List(1,2), List(3,4), List(5,6))
@@ -25,21 +29,23 @@ In our first example, we will move on from lists of single elements to a 2 dimen
 
 Now, let's set a goal. We want to add together every item in the matrix. By following our modular approach with functional building blocks and higher order functions as glue, we can confidently break down the problem into sub-problem functions and compose them to arrive at a solution.
 
-A matrix is a list of lists, so the first sub problem may be to sum all the items of each of these inner lists. In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
+A matrix is a list of lists, so the first sub problem we'll choose is to sum all the items of each of these inner lists. In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
 
 ```scala
     def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
-This sums the elements of a list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list. Even though we derived map, it is also available for Immutable List in Scala[^1]. We'll use this libary method for convenience:
+This sums the elements of a single list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list. Even though we derived map, it is also available for Immutable List in Scala[^1]. We'll use this library method for convenience:
 
 ```scala
     myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
 ```
 
- Mapping over the matrix with the sum function will give us a list of intermediate row-wise sums. These intermediate sums are just a list of numbers again, so we can use our existing sum function on it to get the total for the matrix. All together it looks like
+ Mapping over the matrix with the sum function will give us a list of intermediate row-wise sums. These intermediate sums are just a list of numbers again, so we can use our existing sum function on that list to get the total for the matrix. All together it looks like
 
 ```scala
+    def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
+
     def matrixSum(matrix: List[List[Int]]): Int = sum(matrix.map(sum))
 
     val result = matrixSum(myMatrix)
@@ -194,7 +200,7 @@ object Tree {
 }
 ```
 
-The above solution uses function composition to tie together the two functions that we seperately designed to cover the components of this tree fold operation.[^3]
+The above solution uses function composition to tie together the two functions that we separately designed to cover the components of this tree fold operation.[^3] Note I've not actually used `foldTreeLine` or `foldTreeList` directly in the solution, because neither function by itself could solve the whole problem. Instead I've introduced the new names `reduceTree` and `reduceSubTree` for the functions that embody those subproblem solutions but are altered to solve the problem in a way that generalizes to all `Trees`. Here is some detail of what is going on in the code:
 
 1. `foldTreeLine` and its problem of applying some function `f` down the nodes a a tree is represented in `reduceTree`'s single case `match` statement. But remember we had to pick the first element of the list in our recursive calls before to end up with a `Tree` type argument each time.
 2. Now we don't, because `reduceTree` delegates this job to `reduceSubtree`, which takes in the entire list of children. `reduceSubTree` has the logic we put in to fold across a list using some function `g` and return when we had exhausted the list and hit `Nil`.
