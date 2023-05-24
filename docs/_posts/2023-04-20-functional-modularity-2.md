@@ -17,7 +17,7 @@ If you missed the first post in this series, you can find it [here](/2023/03/fun
 
 If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](<https://www.scala-lang.org/download/>).
 
-While in the first post I recommended using a scala 3 REPL to code these examples, for these I recommend an editor like Visual Studio Code and [scala 3 worksheets](<https://docs.scala-lang.org/scala3/book/tools-worksheets.html>) instead. We start working with slightly larger programs in these examples, and it will be easier to write longer procedures out and save them for later instead of submitting to a CLI interpreter. With worksheets we still get the REPL benefit of not having to perform manual compile and run steps each time we want to see intermediate results.
+While in the first post I recommended using a scala 3 REPL to code these examples, for these I recommend an editor like Visual Studio Code and [scala 3 worksheets](<https://docs.scala-lang.org/scala3/book/tools-worksheets.html>) instead. We start working with slightly larger programs in these examples, and it will be easier to write longer procedures out and save them for later instead of submitting commands to a CLI interpreter. With worksheets we still get the REPL benefit of not having to perform manual compile and run steps each time we want to see intermediate results.
 
 In our first example, we will move on from lists of single elements to a 2 dimensional list, or list of lists. When the members of each list are numeric types, this grid style data structure is often called a "matrix." You may know from mathematics or data analysis that matrices can be useful structures to operate on, so this example adds a flavor of applicability to what we've learned so far. We can add very little code to what we already did in the first post with lists to start working with matrices.
 
@@ -25,17 +25,28 @@ First, let's define a concrete example matrix:
 
 ```scala
     val myMatrix = List(List(1,2), List(3,4), List(5,6))
+
+    /* visual
+    [ 
+      [ 1, 2 ],
+      [ 3, 4 ],
+      [ 5, 6]
+    ]
 ```
 
-Now, let's set a goal. We want to add together every item in the matrix. By following our modular approach with functional building blocks and higher order functions as glue, we can confidently break down the problem into sub-problem functions and compose them to arrive at a solution.
+Now, let's set a goal. We want to add together every item in the matrix.
 
-A matrix is a list of lists, so the first sub problem we'll choose is to sum all the items of each of these inner lists. In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
+We'll keep to our modular approach, with functional building blocks and higher order functions as glue. This way we can confidently break down the problem into sub-problem functions and compose them to arrive at a solution.
+
+A matrix is a list of lists, so the first sub problem we'll choose is to sum all the items of each of these inner lists.
+
+In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
 
 ```scala
     def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
-This sums the elements of a single list, but we need to sum the elements of each of the lists in our list of lists. So we can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list. Even though we derived map, it is also available for Immutable List in Scala[^1]. We'll use this library method for convenience:
+Sum by itself will only sum the items of one list, but we have a list made of lists. We need to apply sum to every sub-list. We can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list. Even though we derived map from foldRight in the first post, it is also available natively for Immutable List in Scala[^1]. We'll use this library method for convenience:
 
 ```scala
     myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
@@ -51,7 +62,9 @@ This sums the elements of a single list, but we need to sum the elements of each
     val result = matrixSum(myMatrix)
 ```
 
-With this example we took the higher order function 'glue' that we learned to apply to folding a list and operations like sum, and with just one more higher order function (map) and one more function composition (sum), we were able to handle an operation over a whole matrix. Whereas the folding of the list was the main feature of the set of examples in the first post, now it is just a component of a larger 'glued together' function that works on a more complex data structure.
+With this example we took the higher order function 'glue' that we already used for folding a list, and with just one more higher order function (map) and one more function composition (sum), we were able to handle an operation over a whole matrix.
+
+Whereas the folding of the list was the main feature of the set of examples in the first post, now it is just a component of a larger 'glued together' function that works on a more complex data structure.
 
 Our final example on gluing functions together will be even slightly more complex and involve folding trees, but we will still be able to build it up from the ideas we've already covered.
 
@@ -59,7 +72,7 @@ Our final example on gluing functions together will be even slightly more comple
 
 For this last example of gluing functions together, we will continue to explore composition of functions using higher order functions while working on a tree data structure.
 
-First, let's discuss the properties of our tree. every element of the tree is a `Node`, and every `Node` can have 0 or more `children`. You may be most familiar with the binary tree which have a simpler structure with a maximum of 2 `children`, but in this case the number of `children` per `Node` is not given a limit. Here is our definition of the `Tree` type:
+First, let's discuss the properties of our tree. every element of the tree is a `Node`, and every `Node` can have 0 or more `children`. You may be most familiar with binary trees, which have a simpler structure to the trees we are talking about here but with a maximum of 2 `children`. In this case the number of `children` per `Node` is not given a limit. Here is our definition of the `Tree` type:
 
 ```scala
     sealed trait Tree[A]
@@ -68,7 +81,7 @@ First, let's discuss the properties of our tree. every element of the tree is a 
 
 Some things to note about this definition:
 
-1. We use a sealed trait as our parent type for `Tree`. This will force all subtypes of this trait into the same file so nobody can extend the available subtypes elsewhere. It will also ensure that later, when use the `match` keyword to match on an object of the `Tree` type, the compiler can check for us that we have created case statements for all types of trees that are defined.
+1. We use a sealed trait as our parent type for `Tree`. A sealed trait will force all subtypes of this trait into the same file so nobody can extend the available subtypes elsewhere. It will also ensure that later, when use the `match` keyword to pattern match on an object of the `Tree` type, the compiler can check for us that we have created `case` statements for all types of trees that are defined.
 2. In our `Tree` type definition, there is only one subtype extending the trait. It is called `Node`.
 3. `Node` has a `value` member, whose type is generic and given by the type parameter `A`. Using a generic type parameter this way will allow the compiler to help us enforce how types are used in our class without having to declare a concrete type like `Int` for `value` up front and lock our tree into being only a tree for `Int` objects.
 4. The node's second member is `children`, a list of Trees that will also use type `A` for their `value` members.
@@ -79,7 +92,13 @@ Below we create a simple tree and visualize what it would look like:
 val myTree =
   Node(
     1,
-    List(Node(2, List()), Node(3, List(Node(4, List()), Node(5, List()))), Node(6, List()))
+    List( 
+      Node(2, List()), 
+      Node(3, List(
+        Node(4, List()), Node(5, List()))
+      ), 
+      Node(6, List())
+    )
   )
 
 /*
@@ -96,11 +115,11 @@ val myTree =
 If you aren't familiar with the tree data structure, here is a quick run down.
 
 - The above visualization shows a way to think about a tree's organization.
-- The structure is hierarchical, and even though we could draw this tree left to right it woulds still have no circular connections and it would have defined parent-child relationships.
+- The structure is hierarchical, and even though we could draw this tree left to right it would still have no circular connections and it would have defined parent-child relationships.
 - Notice also that the `Node` elements with empty lists represent terminal points in the tree. These are commonly referred to as "leaves."
-- I mentioned earlier that our `Tree` trait was using the generic type parameter `A`. This example takes advantage of that, as the Scala compiler's powerful type inference is able to infer from the integers we pass in for each `value` argument that we are making a `Tree[Int]` type tree without us having to indicate it. The compiler would also throw an excpetion if we were to mix in objects of other types as `value`s for some of these `Nodes`. I left out the type annotation from myTree which would have looked like `val myTree: Tree[Int]`, but it is good practice to include type annotations that are otherwise inferrable for humans reading your code except where you feel it is hurting readability.
+- #TODO MOVE THIS DOWN TO A FOOTNOTE I mentioned earlier that our `Tree` trait was using the generic type parameter `A`. This example takes advantage of that, as the Scala compiler's powerful type inference is able to infer from the integers we pass in for each `value` argument that we are making a `Tree[Int]` type tree without us having to indicate it. The compiler would also throw an excpetion if we were to mix in objects of other types as `value`s for some of these `Nodes`. I left out the type annotation from myTree which would have looked like `val myTree: Tree[Int]`, but it is good practice to include type annotations that are otherwise inferrable for humans reading your code except where you feel it is hurting readability.
 
-There are many operations you can do on a tree, but for consistency with the memo and our prior examples we are going to continue exploring "fold". As with folding lists and matrices, the goal for folding trees will be to accumulate values across all the elements with some operation and end up with a single result object.
+Let's continue exploring higher order function glue with folding trees. As with folding lists and matrices, the goal for folding trees will be to accumulate values across all the elements with some operation and end up with a single result object.
 
 For our tree version of fold, we are adding the requirement that there are two functions, one to accumulate from parent to child `Nodes`, and one to accumulate across sibling `Nodes`. Remember that for lists and matrices we were performing one operation, such as sum, over the entire data structure. For this tree folding, we should be able to use the same operation for both combining down and across a tree, but have the option to use a different one for each of these if we choose. For example, with the fold we are aiming for, if we wanted to we could fold so that parents are summed with their children but siblings are combined by taking the difference.
 
