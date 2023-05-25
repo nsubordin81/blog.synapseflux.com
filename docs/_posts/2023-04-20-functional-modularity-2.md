@@ -160,7 +160,7 @@ In the above example,
 1. We use the `sealed trait` and `Node` `case class` we defined above to restrict what an instance of `Tree[A]` can match to.
 2. We match on the tree parameter that is passed in, and inside the match we specify two deconstructed variations of `Node` to match on.
 3. For the first case, we set up a pattern with a Node that has two attributes, `value` and `List()`.
-    - This means that the `tree` object we pass in would need to have something in value, we don't specify what but whatever it is now lives in that `value` variable and the compiler can infer that the object refered to by `value` is going to have whatever type gets assigned to `A`.
+    - This means that the `tree` object we pass in would need to have something in value, we don't specify what but whatever it is now lives in that `value` variable and the compiler can infer that the object referred to by `value` is going to have whatever type gets assigned to `A`.
     - We also specify that in the first case's `Node`, its `children` should be an empty list.
     - If the object pointed to by `tree` meets that pattern, we call our passed in function `f` and pass in the `value` member of our matched `Node`.
 4. For the second case, our `Node` still has a `value` for its `value` member, but then its `children` member needs to be a non-empty list.
@@ -173,7 +173,7 @@ Here is an example of calling this `foldTreeLine` function on our sample tree us
 val treeLineFoldResult: Int = foldTreeLine((a: Int, b: Int) => a + b, 0, treeLine)
 ```
 
-Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explictly ignoring the `rest` portion of that pattern match in each case.
+Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explicitly ignoring the `rest` portion of that pattern match in each case.
 
 We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for trees where Nodes can have more than one child. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f` to combine them.
 
@@ -252,7 +252,7 @@ These 2 additional examples took what we covered in the first post of the series
 
 The solutions to folding over a matrix and a tree were more involved and did require more up front thought to break down problems, but what I'm hoping is you also got a sense for how programming in this way encourages the reuse of general purpose functions such as `foldRight` and `map`, and also encourages the typically helpful approach of solving complex problems by first subdividing them into simpler parts.
 
-Another significant benefit we have by programming in this mode is we have avoided the state mutations that arise from using imperative constructs such as varibale assignment and looping, so it will just follow that our code is threadsafe and simpler to reason about. We can reuse the functions we make with them, like `matrixSum`, `reduceSubTree`, and `reduceTree` that we've created here, just based on the inputs and return values of their signature and their description without worrying that combining them will have unintended effects.
+Another significant benefit we have by programming in this mode is we have avoided the state mutations that arise from using imperative constructs such as variable assignment and looping, so it will just follow that our code is thread-safe and simpler to reason about. We can reuse the functions we make with them, like `matrixSum`, `reduceSubTree`, and `reduceTree` that we've created here, just based on the inputs and return values of their signature and their description without worrying that combining them will have unintended effects.
 
 If you want to further prove to yourself that these functions are easily combined, I suggest trying to combine what we created here with some requirement. For example, create a `Tree[List[List[Int]]]`, or tree of matrices, and then find use some composition of the functions you've defined through this post to find either the sum or another type of accumulation across all of the tree elements.
 
