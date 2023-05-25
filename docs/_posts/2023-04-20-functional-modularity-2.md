@@ -260,7 +260,7 @@ With "gluing functions together" sufficiently covered, the next post in the seri
 
 ## Where Can I Learn More?
 
-#### (I'm copying this section to the bottom of every post in the series to make it easy to find, so no need to read it again if you've been following along!)
+(I'm copying this section to the bottom of every post in the series to make it easy to find, so no need to read it again if you've been following along!)
 
 As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, “Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
 
