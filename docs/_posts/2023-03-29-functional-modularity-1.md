@@ -189,7 +189,7 @@ In this post we looked at section 3 of "Why Functional Programming Matters." Its
 
 Thanks for taking this journey with me. Questions? Comments? I would love to connect with you! Feel free to reach out via my social links.  
 
- Until Next Time... Or for you stand mixer/Portal fans out there, until we run out of cake!
+Until Next Time... Or for you stand mixer/Portal fans out there, until we run out of cake!
 
 ## Footnotes
 
