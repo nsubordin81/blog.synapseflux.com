@@ -65,7 +65,7 @@ In our linked list example, we see how capturing the idea of prepending into a `
 
 This approach to building list does a few things worth noting for our conversation about modularity. First, it uses a simple function in `cons` that represents the sub-problem of adding one item to a list as the only tool to build the list. Second, the calls to `cons` always return the increasingly larger chunks of list as a new result instead of modifying some existing partial list that lives outside the function.
 
-Following rules like this is how functional approaches do what Hughes described and plan ahead for "gluing back together" by combining behaviors that operate on the data. Every 'cons' invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior from just linking the elements of the list together to some other outcome. Also, since `cons` and future functions would not do anything outside of their scope, we do not have to worry that there would be any other impact on the original list or the new data we create other than what we intended.
+Following rules like this is how functional approaches do what Hughes described and plan ahead for "gluing back together" by combining behaviors that operate on the data. Every `cons` invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior from just linking the elements of the list together to some other outcome. Also, since `cons` and future functions would not do anything outside of their scope, we do not have to worry that there would be any other impact on the original list or the new data we create other than what we intended.
 
 To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity (in my example of the stand mixer maybe someone changed out the insertion point for the two beaters for a drive shaft with a universal attachment). Following the principles of functional programming, we have laid the groundwork for future modularity in a similar way.
 
@@ -125,7 +125,7 @@ These examples require authoring an entirely new function each time, but the pat
 (1.*(2)).*(3) // * is a function in scala
 ```
 
-but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. FoldRight is so called because it starts with the last or rightmost 2 items in the collection and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
+but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function `foldRight`. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. `foldRight` is so called because it starts with the last or rightmost 2 items in the collection and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
 
 ```scala
 def foldRight[A, B](z:B)(f:(A,B) => B)(l:List[A]): B = l match
@@ -133,7 +133,7 @@ def foldRight[A, B](z:B)(f:(A,B) => B)(l:List[A]): B = l match
     case head::tail => f(head, foldRight(z)(f)(l.tail))
 ```
 
-Now you can represent both sum and product with the same foldRight function, by passing different values for the base case and function to be performed during the fold. here are examples of that:
+Now you can represent both sum and product with the same `foldRight` function, by passing different values for the base case and function to be performed during the fold. here are examples of that:
 
 ```scala
 foldRight(0)((a: Int, b: Int) => a + b)(List(1, 2, 3)) // res: 6
@@ -142,18 +142,18 @@ foldRight(1)((a: Int, b: Int) => a * b)(List(1, 2, 3)) // res 6
 
 Let's quickly do a breakdown of this function.
 
-1. We are dealing with two generic types, 'A' and 'B', where 'A' represents the type of the objects in the incoming list and 'B' represents the type of the result foldRight returns.
-2. We have 3 parameters. 'z' of type 'B', the value to return for an empty list, 'f' is the function representing the operation we perform between each pair of list elements, and 'l' the original list passed in.
-3. The base case is we have 'Nil', where 'l' has no elements. In this case we return 'z'
-4. In the recursive case, we pattern match on the list using the 'cons' operator with 'head::tail'. Then we invoke our 'f' function, but before evaluating these calls to 'f' we are doing a recursive call to foldRight and building up the call stack until we reach the Nil case. The end result is a nested series of calls to 'f' that will be popped off the call stack, un-suspended, and evaluated, looking something like if we were to do
+1. We are dealing with two generic types, `A` and `B`, where `A` represents the type of the objects in the incoming list and `B` represents the type of the result foldRight returns.
+2. We have 3 parameters. `z` of type `B`, the value to return for an empty list; `f` is the function representing the operation we perform between each pair of list elements; and `l` the original list passed in.
+3. The base case is we have `Nil`, where `l` has no elements. In this case we return `z`
+4. In the recursive case, we pattern match on the list using the `cons` operator with `head::tail`. Then we invoke our `f` function, but before evaluating these calls to `f` we are doing a recursive call to `foldRight` and building up the call stack until we reach the `Nil` case. The end result is a nested series of calls to `f` that will be popped off the call stack, un-suspended, and evaluated, looking something like if we were to do
 
 `f(a(0), f(a(1), ... f(a(n-1), f(a(n), z))))`.
 
-The above example using the recursive form matches closely to our definitions of sum and product and also to the version Hughes uses in his memo. Back in our first example with 'cons', we spoke about how functional style was giving us a way to break a solution down while leaving the door open for interesting ways to glue it back together. This foldRight example puts that on display. With this implementation the pattern match shows that foldRight is specifically looking for that 'cons' link between elements, and then it is combining a new function 'f' in place of 'cons' to accumulate a value based on that function's evaluation. Since foldRight is a higher order function, 'f' doesn't to be a specific function, we can do this combining with any behavior we like.
+The above example using the recursive form matches closely to our definitions of sum and product and also to the version Hughes uses in his memo. Back in our first example with `cons`, we spoke about how functional style was giving us a way to break a solution down while leaving the door open for interesting ways to glue it back together. This foldRight example puts that on display. With this implementation the pattern match shows that foldRight is specifically looking for that `cons` link between elements, and then it is combining a new function `f` in place of `cons` to accumulate a value based on that function's evaluation. Since `foldRight` is a higher order function, `f` doesn't to be a specific function, we can do this combining with any behavior we like.
 
-We got there! We've built the programming version of our multi-purpose kitchen appliance, our all-in-one home gym apparatus, the printed circuit board in the computer I'm using to write this article, etc., all with some adherence to functional constraints and a function that can accept another function as a parameter. With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several uses outside of the way we were originally trying to apply it. In the stand mixer example, it would be like realizing that if we change the motor attachment then a whisk/egg beater was only one of many stirring actions we could support.
+We got there! We've built the programming version of our multi-purpose kitchen appliance, our all-in-one home gym apparatus, the printed circuit board in the computer I'm using to write this article, etc. -- all with some adherence to functional constraints and a function that can accept another function as a parameter. With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several uses outside of the way we were originally trying to apply it. In the stand mixer example, it would be like realizing that if we change the motor attachment then a whisk/egg beater was only one of many stirring actions we could support.
 
-While you may not be able to bake delicious cakes with it, foldRight proves extremely versatile. Here are some examples of foldRight you can try in your Scala 3 REPL, using the List implementation of foldRight from Scala's standard library[^5]:
+While you may not be able to bake delicious cakes with it, `foldRight` proves extremely versatile. Here are some examples of `foldRight` you can try in your Scala 3 REPL, using the List implementation of foldRight from Scala's standard library[^5]:
 
 ```scala
     val myList = List(1, 2, 3)
@@ -201,9 +201,9 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
       
       Imperative object-oriented code is what I learned in school and used for years, and my personal mileage with it is that you can be productive quickly but a functional approach can help prevent issues with shared mutable state and other pitfalls that are easy to fall into when you scale your programs.
 
-[^3]: The operator's name 'cons' in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here][conslink]
+[^3]: The operator's name `cons` in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here][conslink]
 
-[^4]: Even though this article and the John Hughes memo will refer to 'cons' as though it were implemented entirely with functions, it usually isn't in practice. Scala uses a case class and factory method to build a list and hold it in memory, and it isn't alone. Lisp and other functional languages have opted for data structures because a truly stateless functional approach isn't as performant. For more on proving the 'cons' interface can be implemented solely with functions, see the reference to Church Encoding [here](https://en.wikipedia.org/wiki/Cons)
+[^4]: Even though this article and the John Hughes memo will refer to `cons` as though it were implemented entirely with functions, it usually isn't in practice. Scala uses a case class and factory method to build a list and hold it in memory, and it isn't alone. Lisp and other functional languages have opted for data structures because a truly stateless functional approach isn't as performant. For more on proving the `cons` interface can be implemented solely with functions, see the reference to Church Encoding [here](https://en.wikipedia.org/wiki/Cons)
 
 [^5]: [here is the foldRight source listing from List.scala](https://github.com/Scala/Scala/blob/v2.13.3/src/library/Scala/collection/immutable/List.Scala#L79) Even though this listing is from 2.13, this is also the immutable list class that Scala 3 uses, because Scala 3 uses the Scala 2.13 standard library. If you read the listing, you may be surprised to find that foldRight is implemented in an imperative fashion in the ImmutableList class, using a while loop control structure. Because the while loop would be applying the function from left to right, the list must be reversed for foldRight to ensure elements are processed in right to left order. While I don't know the reason for sure, I'd wager the decision to use this imperative approach is that foldRight in its easiest to read recursive form is not tail-recursive and can lead to stack overflow errors. If you'd like to learn more about this, [here is an article that covers it in depth](https://oldfashionedsoftware.com/2009/07/10/scala-code-review-foldleft-and-foldright/)
 
