@@ -13,7 +13,7 @@ The two examples in this post extend the first post's "functions as glue" concep
 
 Following this post the series will move on to the second idea Hughes presented in his memo, "Gluing Programs Together", which focuses on a feature common to many functional programming languages known as "lazy evaluation."
 
-If you missed the first post in this series, you can find it [here](/2023/03/functional-modularity-1/), I recommend going back and reading it if the ideas of modularity and higher order functions presented here are feeling unfamiliar.
+If you missed the first post in this series, you can find it [here]({% post_url 2023-03-29-functional-modularity-1 %})), I recommend going back and reading it if the ideas of modularity and higher order functions presented here are feeling unfamiliar.
 
 ## Example 1: Higher Order Functions To Operate On Matrices
 
