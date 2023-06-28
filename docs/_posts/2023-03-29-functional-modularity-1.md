@@ -35,7 +35,7 @@ The two types of glue Hughes focuses on are higher-order functions and lazy eval
 
 ## Example 1: Modular Design in List Construction with Scala
 
-If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download/). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing ‘scala’ into your terminal.
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download/). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing 'scala' into your terminal.
 
 The aspect of programming we'll focus on to show modularity will be constructing and manipulating a List data structure. We'll start with creating a list.
 
@@ -172,7 +172,7 @@ While you may not be able to bake delicious cakes with it, foldRight proves extr
     myList.foldRight(List.empty)(double(_)::_)
 ```
 
-Notice how terse these definitions are and how they don’t require you to read through the detail of how the list is combined each time. FoldRight owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
+Notice how terse these definitions are and how they don't require you to read through the detail of how the list is combined each time. FoldRight owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
 
 Programming in this way is exciting in much the same way that designing for modularity is elsewhere. Finding ways to reuse foldRight in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like foldRight into your own coding projects.  
 
@@ -201,7 +201,7 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
       
       Imperative object-oriented code is what I learned in school and used for years, and my personal mileage with it is that you can be productive quickly but a functional approach can help prevent issues with shared mutable state and other pitfalls that are easy to fall into when you scale your programs.
 
-[^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here][conslink]
+[^3]: The operator's name 'cons' in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here][conslink]
 
 [^4]: Even though this article and the John Hughes memo will refer to 'cons' as though it were implemented entirely with functions, it usually isn't in practice. Scala uses a case class and factory method to build a list and hold it in memory, and it isn't alone. Lisp and other functional languages have opted for data structures because a truly stateless functional approach isn't as performant. For more on proving the 'cons' interface can be implemented solely with functions, see the reference to Church Encoding [here](https://en.wikipedia.org/wiki/Cons)
 
