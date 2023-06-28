@@ -69,7 +69,7 @@ Following rules like this is how functional approaches do what Hughes described 
 
 To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity (in my example of the stand mixer maybe someone changed out the insertion point for the two beaters for a drive shaft with a universal attachment). Following the principles of functional programming, we have laid the groundwork for future modularity in a similar way.
 
- So functions serve as Hughes's first example of glue, but how? Let's find out with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight, and we will see how it glues operations on lists with a recursive pattern that performs this operation between all list elements and accumulates a result.
+So functions serve as Hughes's first example of glue, but how? Let's find out with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight, and we will see how it glues operations on lists with a recursive pattern that performs this operation between all list elements and accumulates a result.
 
 ## Example 2: Modular Design in List Operations
 
