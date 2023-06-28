@@ -177,9 +177,9 @@ def double(x:Int):Int = 2*x
 myList.foldRight(List.empty)(double(_)::_)
 ```
 
-Notice how terse these definitions are and how they don't require you to read through the detail of how the list is combined each time. FoldRight owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
+Notice how terse these definitions are and how they don't require you to read through the detail of how the list is combined each time. `foldRight` owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
 
-Programming in this way is exciting in much the same way that designing for modularity is elsewhere. Finding ways to reuse foldRight in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like foldRight into your own coding projects.  
+Programming in this way is exciting in much the same way that designing for modularity is elsewhere. Finding ways to reuse `foldRight` in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like `foldRight` into your own coding projects.  
 
 ## Where Can I Learn More?
 
