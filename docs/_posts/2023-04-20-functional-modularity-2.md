@@ -48,7 +48,7 @@ In the first post of this series we covered how the higher-order function foldRi
 def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
-Sum by itself will only sum the items of one list, but we have a list made of lists. We need to apply sum to every sub-list. We can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list.
+`sum` by itself will only sum the items of one list, but we have a list made of lists. We need to apply sum to every sub-list. We can use another function that we derived from `foldRight`, called `map`, to apply the `sum` function over every element (inner list) of the outer list.
 
 Even though we derived map from foldRight in the first post, it is also available natively for Immutable List in Scala[^1]. We'll use this library method for convenience:
 
@@ -106,13 +106,13 @@ val myTree: Tree[Int] =
   )
 
 /*
-    Here is what myTree would look like:
+Here is what myTree would look like:
 
-                     1
-                   / | \  
-                  2  3  6
-                    / \
-                   4   5
+                  1
+                / | \  
+              2  3  6
+                / \
+                4   5
 */
 ```
 
