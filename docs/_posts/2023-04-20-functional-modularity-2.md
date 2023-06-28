@@ -26,14 +26,14 @@ In our first example, we will move on from lists of single elements to a 2 dimen
 First, let's define a concrete example matrix:
 
 ```scala
-    val myMatrix = List(List(1,2), List(3,4), List(5,6))
+val myMatrix = List(List(1,2), List(3,4), List(5,6))
 
-    /* visual
-    [ 
-      [ 1, 2 ],
-      [ 3, 4 ],
-      [ 5, 6]
-    ]
+/* visual
+[ 
+  [ 1, 2 ],
+  [ 3, 4 ],
+  [ 5, 6]
+]
 ```
 
 Now, let's set a goal. We want to add together every item in the matrix.
@@ -45,7 +45,7 @@ A matrix is a list of lists, so the first sub problem we'll choose is to sum all
 In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
 
 ```scala
-    def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
+def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
 Sum by itself will only sum the items of one list, but we have a list made of lists. We need to apply sum to every sub-list. We can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list.
@@ -53,17 +53,17 @@ Sum by itself will only sum the items of one list, but we have a list made of li
 Even though we derived map from foldRight in the first post, it is also available natively for Immutable List in Scala[^1]. We'll use this library method for convenience:
 
 ```scala
-    myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
+myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
 ```
 
  Mapping over the matrix with the sum function will give us a list of intermediate row-wise sums. These intermediate sums are just a list of numbers again, so we can use our existing sum function on that list to get the total for the matrix. Putting everything we've done so far together, it looks like:
 
 ```scala
-    def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
+def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 
-    def matrixSum(matrix: List[List[Int]]): Int = sum(matrix.map(sum))
+def matrixSum(matrix: List[List[Int]]): Int = sum(matrix.map(sum))
 
-    val result = matrixSum(myMatrix)
+val result = matrixSum(myMatrix)
 ```
 
 With this example we took the higher order function 'glue' that we already used for folding a list, and with just one more higher order function (mapping over the inner lists) and one more function composition (taking the sum of the list of intermediate results), we were able to handle the sum operation over a whole matrix.
@@ -79,8 +79,8 @@ For this last example of gluing functions together, we will continue to explore 
 First, let's discuss the properties of our tree. every element of the tree is a `Node`, and every `Node` can have 0 or more `children`. You may be most familiar with binary trees, which have a simpler structure to the trees we are talking about here with a maximum of 2 `children`. In this case the number of `children` per `Node` is not given a limit. Here is our definition of the `Tree` type:
 
 ```scala
-    sealed trait Tree[A]
-    case class Node[A](value: A, children: List[Tree[A]]) extends Tree[A]
+sealed trait Tree[A]
+case class Node[A](value: A, children: List[Tree[A]]) extends Tree[A]
 ```
 
 Some things to note about this definition:
@@ -228,7 +228,6 @@ object Tree {
       g(reduceTree(f, g, a, first), reduceSubtree(f, g, a, rest))
     case Nil => a
   }
-
 }
 ```
 

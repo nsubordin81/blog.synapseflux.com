@@ -42,19 +42,19 @@ The aspect of programming we'll focus on to show modularity will be constructing
 In Scala 3, creating a list has a clear, literal syntax:
 
 ```scala
-    val myList = List(1, 2, 3)
+val myList = List(1, 2, 3)
 ```
 
 But let us look deeper. This syntax is a convenience to make the language simpler to write in. These types of niceties in programming languages are often playfully dubbed 'sugars'. An equal way to build a list element-by-element in Scala 3 without the sugar is this:
 
 ```scala
-    val myList = 1::2::3::Nil
+val myList = 1::2::3::Nil
 ```
 
 Or, even more clear for our example we can use the prefix instead of infix notation and write it as  
 
 ```scala
-    val myList = ::(1,(::(2,(::(3, Nil)))))
+val myList = ::(1,(::(2,(::(3, Nil)))))
 ```
 
 Constructing the list with this syntax is verbose and less readable, but it reveals that this double colon operator '::', which is typically referred to as 'cons', can be viewed as a function we are calling multiple times to make our list.[^3] What 'cons' does is prepend an item to a collection of other items that match that item's type. The first argument is an object of some type, and the second argument is a list of that same type of object.
