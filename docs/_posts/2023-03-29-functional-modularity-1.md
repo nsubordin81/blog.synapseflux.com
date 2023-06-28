@@ -118,7 +118,7 @@ product(List(1, 2, 3))
 1 * 2 * 3 * 1
 ```
 
-These examples require authoring an entirely new function each time, but the pattern of recursion to accumulate across the list elements is the same, except for the base case return value and the function that does the operation. So how do we break it up? Scala already provides functions for adding and multiplying
+These examples require authoring an entirely new function each time, but the pattern of recursion to accumulate across the list elements is the same, except for the base case return value and the function that does the operation. So how do we break it up? Scala already provides functions for adding and multiplying:
 
 ```scala
 (1.+(2)).+(3) // + is a function in scala
