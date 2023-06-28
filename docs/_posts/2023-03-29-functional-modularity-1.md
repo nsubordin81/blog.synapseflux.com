@@ -156,20 +156,25 @@ We got there! We've built the programming version of our multi-purpose kitchen a
 While you may not be able to bake delicious cakes with it, `foldRight` proves extremely versatile. Here are some examples of `foldRight` you can try in your Scala 3 REPL, using the List implementation of foldRight from Scala's standard library[^5]:
 
 ```scala
-    val myList = List(1, 2, 3)
-    // sum
-    myList.foldRight(0)(_+_)
-    // product
-    myList.foldRight(1)(_*_)
-    // make a copy
-    myList.foldRight(List.empty)(_::_)
-    // append 2 lists together
-    val otherList = List(4, 5, 6)
-    myList.foldRight(otherList)(_::_)
-    // compose this double function with the copy function above 
-    // to demonstrate applying a function to every element (map)
-    def double(x:Int):Int = 2*x
-    myList.foldRight(List.empty)(double(_)::_)
+val myList = List(1, 2, 3)
+
+// sum
+myList.foldRight(0)(_+_)
+
+// product
+myList.foldRight(1)(_*_)
+
+// make a copy
+myList.foldRight(List.empty)(_::_)
+
+// append 2 lists together
+val otherList = List(4, 5, 6)
+myList.foldRight(otherList)(_::_)
+
+// compose this double function with the copy function above 
+// to demonstrate applying a function to every element (map)
+def double(x:Int):Int = 2*x
+myList.foldRight(List.empty)(double(_)::_)
 ```
 
 Notice how terse these definitions are and how they don't require you to read through the detail of how the list is combined each time. FoldRight owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
