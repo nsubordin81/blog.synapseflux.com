@@ -35,7 +35,7 @@ The two types of glue Hughes focuses on are higher-order functions and lazy eval
 
 ## Example 1: Modular Design in List Construction with Scala
 
-If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](<https://www.scala-lang.org/download/>). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing ‘scala’ into your terminal.
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing ‘scala’ into your terminal.
 
 The aspect of programming we'll focus on to show modularity will be constructing and manipulating a List data structure. We'll start with creating a list.
 
