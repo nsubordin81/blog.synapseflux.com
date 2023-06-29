@@ -123,7 +123,6 @@ If you aren't familiar with the tree data structure, here is a quick run down.
 - This is a Tree[Int], we chose Int as the type of teh values in the nodes and bound this instance of Tree to the Int type[^4].
 
 Let's continue exploring higher order function glue with folding trees. As with folding lists and matrices, the goal for folding trees will be to accumulate values across all the elements with some operation and end up with a single result object.
-
 For our tree version of fold, we are adding the requirement that there are two functions, one to accumulate from parent to child `Nodes`, and one to accumulate across sibling `Nodes`. Remember that for lists and matrices we were performing one operation, such as sum, over the entire data structure. For this tree folding, we should be able to use the same operation for both combining down and across a tree, but have the option to use a different operation for each of these accumulations if we choose. For example, with the fold we are aiming for, if we wanted to we could fold so that parents are summed with their children but siblings are combined by taking the difference.
 
 Building fold will be tougher this time, but we will still use the same ideas of higher order functions and composing function calls to get to our answer. Our first step is to break down the tasks of combining the tree elements into subroutines and think about how we will apply them.
