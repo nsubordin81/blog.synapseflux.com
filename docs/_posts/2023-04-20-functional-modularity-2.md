@@ -26,14 +26,14 @@ In our first example, we will move on from lists of single elements to a 2 dimen
 First, let's define a concrete example matrix:
 
 ```scala
-    val myMatrix = List(List(1,2), List(3,4), List(5,6))
+val myMatrix = List(List(1,2), List(3,4), List(5,6))
 
-    /* visual
-    [ 
-      [ 1, 2 ],
-      [ 3, 4 ],
-      [ 5, 6]
-    ]
+/* visual
+[ 
+  [ 1, 2 ],
+  [ 3, 4 ],
+  [ 5, 6]
+]
 ```
 
 Now, let's set a goal. We want to add together every item in the matrix.
@@ -45,15 +45,15 @@ A matrix is a list of lists, so the first sub problem we'll choose is to sum all
 In the first post of this series we covered how the higher-order function foldRight makes it easy to build a function to sum numbers in a list. Let's reuse that:
 
 ```scala
-    def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
+def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 ```
 
-Sum by itself will only sum the items of one list, but we have a list made of lists. We need to apply sum to every sub-list. We can use another function that we derived from foldRight, map, to apply the sum function over every element (inner list) of the outer list.
+`sum` by itself will only sum the items of one list, but we have a list made of lists. We need to apply sum to every sub-list. We can use another function that we derived from `foldRight`, called `map`, to apply the `sum` function over every element (inner list) of the outer list.
 
 Even though we derived map from foldRight in the first post, it is also available natively for Immutable List in Scala[^1]. We'll use this library method for convenience:
 
 ```scala
-    myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
+myMatrix.map(sum) // res: List[Int] = List(3, 7, 11)
 ```
 
  Mapping over the matrix with the sum function will give us a list of intermediate row-wise sums. These intermediate sums are just a list of numbers again, so we can use our existing sum function on that list to get the total for the matrix. Putting everything we've done so far together, it looks like:
@@ -78,8 +78,8 @@ For this last example of gluing functions together, we will continue to explore 
 First, let's discuss the properties of our tree. every element of the tree is a `Node`, and every `Node` can have 0 or more `children`. You may be most familiar with binary trees, which have a simpler structure to the trees we are talking about here with a maximum of 2 `children`. In this case the number of `children` per `Node` is not given a limit. Here is our definition of the `Tree` type:
 
 ```scala
-    sealed trait Tree[A]
-    case class Node[A](value: A, children: List[Tree[A]]) extends Tree[A]
+sealed trait Tree[A]
+case class Node[A](value: A, children: List[Tree[A]]) extends Tree[A]
 ```
 
 Some things to note about this definition:
@@ -105,13 +105,13 @@ val myTree: Tree[Int] =
   )
 
 /*
-    Here is what myTree would look like:
+Here is what myTree would look like:
 
-                     1
-                   / | \  
-                  2  3  6
-                    / \
-                   4   5
+                  1
+                / | \  
+              2  3  6
+                / \
+                4   5
 */
 ```
 
@@ -171,7 +171,7 @@ Here is an example of calling this `foldTreeLine` function on our sample tree us
 val treeLineFoldResult: Int = foldTreeLine((a: Int, b: Int) => a + b, 0, treeLine)
 ```
 
-Now we are getting somewhere, this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explicitly ignoring the `rest` portion of that pattern match in each case.
+Now we are getting somewhere -- this correctly sums the values in the above constrained tree to 6! Before we break out the champagne though, we know this wouldn't work if we had more than one tree in a given `Node`'s `children` member, because we are explicitly ignoring the `rest` portion of that pattern match in each case.
 
 We've written a function that can handle a very small, very specific subset of the trees we want to be able to fold over, but it doesn't work for trees where Nodes can have more than one child. Nor does it meet our special requirement, that if we had more than one element in a `Node`'s `children`, we would want to be able to apply a different function than `f` to combine them.
 
@@ -226,7 +226,6 @@ object Tree {
       g(reduceTree(f, g, a, first), reduceSubtree(f, g, a, rest))
     case Nil => a
   }
-
 }
 ```
 
@@ -260,9 +259,9 @@ With "gluing functions together" sufficiently covered, the next post in the seri
 
 (I'm copying this section to the bottom of every post in the series to make it easy to find, so no need to read it again if you've been following along!)
 
-As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, “Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
+As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, "Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
 
-In this post we continued following section 3 of "Why Functional Programming Matters.” Its name in the article “Gluing Functions Together.” My hope was to reduce some of the assumptions the original memorandum makes about an academic audience by replacing the more rigorous proofs in the memo with analogy and entry level definitions. I was still, however, hoping to highlight the benefit of applying these ideas in the way Hughes's paper lit a fire under me when I first read it. I also wanted it to be a more interactive, hands-on learning experience so I used executable Scala3 code instead of pseudocode and I will aim to do this with future articles.  
+In this post we continued following section 3 of "Why Functional Programming Matters." Its name in the article "Gluing Functions Together." My hope was to reduce some of the assumptions the original memorandum makes about an academic audience by replacing the more rigorous proofs in the memo with analogy and entry level definitions. I was still, however, hoping to highlight the benefit of applying these ideas in the way Hughes's paper lit a fire under me when I first read it. I also wanted it to be a more interactive, hands-on learning experience so I used executable Scala3 code instead of pseudocode and I will aim to do this with future articles.  
 
 ## Footnotes
 
