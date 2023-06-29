@@ -17,7 +17,7 @@ If you missed the first post in this series, you can find it [here]({% post_url 
 
 ## Example 1: Higher Order Functions To Operate On Matrices
 
-If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](<https://www.scala-lang.org/download/>).
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download/).
 
 While in the first post I recommended using a scala 3 REPL to code these examples, for these I recommend an editor like Visual Studio Code and [scala 3 worksheets](<https://docs.scala-lang.org/scala3/book/tools-worksheets.html>) instead. We start working with slightly larger programs in these examples, and it will be easier to write longer procedures out and save them for later instead of submitting commands to a CLI interpreter. With worksheets we still get the benefit of not having to perform manual compile and run steps each time we want to see intermediate results.
 
