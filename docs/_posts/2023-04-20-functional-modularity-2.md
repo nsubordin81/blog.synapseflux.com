@@ -59,11 +59,11 @@ Even though we derived map from foldRight in the first post, it is also availabl
  Mapping over the matrix with the sum function will give us a list of intermediate row-wise sums. These intermediate sums are just a list of numbers again, so we can use our existing sum function on that list to get the total for the matrix. Putting everything we've done so far together, it looks like:
 
 ```scala
-    def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
+def sum(list:List[Int]):Int = list.foldRight(0)(_+_)
 
-    def matrixSum(matrix: List[List[Int]]): Int = sum(matrix.map(sum))
+def matrixSum(matrix: List[List[Int]]): Int = sum(matrix.map(sum))
 
-    val result = matrixSum(myMatrix)
+val result = matrixSum(myMatrix)
 ```
 
 With this example we took the higher order function 'glue' that we already used for folding a list, and with just one more higher order function (mapping over the inner lists) and one more function composition (taking the sum of the list of intermediate results), we were able to handle the sum operation over a whole matrix.
