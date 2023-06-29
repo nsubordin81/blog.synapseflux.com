@@ -188,7 +188,7 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
 
 ## Footnotes
 
-[^1]: A link to a pdf of the original publication of “Why Functional Programming Matters” can be found under "Background Papers" on [this page](<https://www.cs.kent.ac.uk/people/staff/dat/miranda/>). However, This version contains some errors that were fixed in a later publication which can be found instead on [this page](<https://www.cse.chalmers.se/~rjmh/Papers/whyfp.html>) and a link to one of the keynote addresses mentioned can be found [here](<https://www.youtube.com/watch?v=IyR04U66z7E&ab_channel=gnbitcom>)
+[^1]: A link to a pdf of the original publication of "Why Functional Programming Matters" can be found under "Background Papers" on [this page](<https://www.cs.kent.ac.uk/people/staff/dat/miranda/>). However, This version contains some errors that were fixed in a later publication which can be found instead on [this page](<https://www.cse.chalmers.se/~rjmh/Papers/whyfp.html>) and a link to one of the keynote addresses mentioned can be found [here](https://www.youtube.com/watch?v=IyR04U66z7E&ab_channel=gnbitcom)
 
 [^2]: If your background is like mine, you might be wondering where object-oriented programming (OOP) fits into Hughes's case for modularity.
       Any discussion of modularity surely should include some mention of OOP, right? Coined by Alan Kay, object-oriented programming paradigm is one in which you write your program as a collection of objects, little models of concepts that achieve a program's goals by sending and receiving each other's messages.
