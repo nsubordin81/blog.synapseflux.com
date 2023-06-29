@@ -67,7 +67,6 @@ Even though we derived map from foldRight in the first post, it is also availabl
 ```
 
 With this example we took the higher order function 'glue' that we already used for folding a list, and with just one more higher order function (mapping over the inner lists) and one more function composition (taking the sum of the list of intermediate results), we were able to handle the sum operation over a whole matrix.
-
 Whereas the folding of the list was the main feature of the set of examples in the first post, now it is just a component of a larger 'glued together' function that works on a more complex data structure.
 
 Our final example on gluing functions together will be even slightly more complex and involve folding trees, but we will still be able to build it up from the ideas we've already covered.
