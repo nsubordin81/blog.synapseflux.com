@@ -35,45 +35,45 @@ The two types of glue Hughes focuses on are higher-order functions and lazy eval
 
 ## Example 1: Modular Design in List Construction with Scala
 
-If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing ‘scala’ into your terminal.
+If you would like to follow along, all you need is the Scala 3 tools installed on your machine. View instructions specific to your OS [here on the scala download page](https://www.scala-lang.org/download/). Once installed, fire up a read-eval-print-loop (REPL) for Scala 3 by typing `scala` into your terminal.
 
 The aspect of programming we'll focus on to show modularity will be constructing and manipulating a List data structure. We'll start with creating a list.
 
 In Scala 3, creating a list has a clear, literal syntax:
 
 ```scala
-    val myList = List(1, 2, 3)
+val myList = List(1, 2, 3)
 ```
 
 But let us look deeper. This syntax is a convenience to make the language simpler to write in. These types of niceties in programming languages are often playfully dubbed 'sugars'. An equal way to build a list element-by-element in Scala 3 without the sugar is this:
 
 ```scala
-    val myList = 1::2::3::Nil
+val myList = 1::2::3::Nil
 ```
 
 Or, even more clear for our example we can use the prefix instead of infix notation and write it as  
 
 ```scala
-    val myList = ::(1,(::(2,(::(3, Nil)))))
+val myList = ::(1,(::(2,(::(3, Nil)))))
 ```
 
-Constructing the list with this syntax is verbose and less readable, but it reveals that this double colon operator '::', which is typically referred to as 'cons', can be viewed as a function we are calling multiple times to make our list.[^3] What 'cons' does is prepend an item to a collection of other items that match that item's type. The first argument is an object of some type, and the second argument is a list of that same type of object.
+Constructing the list with this syntax is verbose and less readable, but it reveals that this double colon operator `::`, which is typically referred to as `cons`, can be viewed as a function we are calling multiple times to make our list.[^3] What `cons` does is prepend an item to a collection of other items that match that item's type. The first argument is an object of some type, and the second argument is a list of that same type of object.
 
-In the code examples above, we constructed a linked list by calling 'cons' in a nested fashion. The first argument holds an element of the list, and the second argument holds the rest of the nested invocations to cons that form the list. This continues until we get to the innermost 'cons' call, holding the last element of the list as its first argument and an instance of the Nil companion object as its second. Nil's whole purpose is to indicate that we are at the end of a list.
+In the code examples above, we constructed a linked list by calling `cons` in a nested fashion. The first argument holds an element of the list, and the second argument holds the rest of the nested invocations to cons that form the list. This continues until we get to the innermost `cons` call, holding the last element of the list as its first argument and an instance of the `Nil` companion object as its second. `Nil`'s whole purpose is to indicate that we are at the end of a list.
 
-In our linked list example, we see how capturing the idea of prepending into a 'cons' function can build more complex functionality. Starting with the simple 2 argument 'cons' function, we have formed a list structure. It does not have to stop there either. Small alterations to the 'cons' interface like an additional arguments for other collections can lead to building other data structures like trees, tuples, and graphs.[^4]
+In our linked list example, we see how capturing the idea of prepending into a `cons` function can build more complex functionality. Starting with the simple 2 argument `cons` function, we have formed a list structure. It does not have to stop there either. Small alterations to the `cons` interface like an additional arguments for other collections can lead to building other data structures like trees, tuples, and graphs.[^4]
 
-This approach to building list does a few things worth noting for our conversation about modularity. First, it uses a simple function in 'cons' that represents the sub-problem of adding one item to a list as the only tool to build the list. Second, the calls to 'cons' always return the increasingly larger chunks of list as a new result instead of modifying some existing partial list that lives outside the function.
+This approach to building list does a few things worth noting for our conversation about modularity. First, it uses a simple function in `cons` that represents the sub-problem of adding one item to a list as the only tool to build the list. Second, the calls to `cons` always return the increasingly larger chunks of list as a new result instead of modifying some existing partial list that lives outside the function.
 
-Following rules like this is how functional approaches do what Hughes described and plan ahead for "gluing back together" by combining behaviors that operate on the data. Every 'cons' invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior from just linking the elements of the list together to some other outcome. Also, since 'cons' and future functions would not do anything outside of their scope, we do not have to worry that there would be any other impact on the original list or the new data we create other than what we intended.
+Following rules like this is how functional approaches do what Hughes described and plan ahead for "gluing back together" by combining behaviors that operate on the data. Every `cons` invocation is like an entry point where we could make a change to what we did, with a different function, and it would change the overall behavior from just linking the elements of the list together to some other outcome. Also, since `cons` and future functions would not do anything outside of their scope, we do not have to worry that there would be any other impact on the original list or the new data we create other than what we intended.
 
 To return to our ongoing analogy, whatever pre-modular device that you sawed in half, think about the foresight it took to instead break it apart in a clever way so that a door was left open for modularity (in my example of the stand mixer maybe someone changed out the insertion point for the two beaters for a drive shaft with a universal attachment). Following the principles of functional programming, we have laid the groundwork for future modularity in a similar way.
 
- So functions serve as Hughes's first example of glue, but how? Let's find out with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight, and we will see how it glues operations on lists with a recursive pattern that performs this operation between all list elements and accumulates a result.
+So functions serve as Hughes's first example of glue, but how? Let's find out with a class of functions common to functional programming known as higher-order functions. A higher order function is a function that may take another function as one or more of its arguments and may return a function as the result. In the next section, we introduce the higher order function foldRight, and we will see how it glues operations on lists with a recursive pattern that performs this operation between all list elements and accumulates a result.
 
 ## Example 2: Modular Design in List Operations
 
-This time instead of constructing lists we will perform operations on them. We will use the same example as John Hughes's “Why Functional Programming Matters” of summing the items of a list. Hughes presents the summing procedure as a recursive pattern, or a pattern that calls itself until some base case condition is met.
+This time instead of constructing lists we will perform operations on them. We will use the same example as John Hughes's "Why Functional Programming Matters" of summing the items of a list. Hughes presents the summing procedure as a recursive pattern, or a pattern that calls itself until some base case condition is met.
 
 The base case condition for the sum function is that it received an empty list as input, and for this it returns 0. The recursive case is that a list was passed in with one or more elements, and in this case the runtime interpreter will trace through the recursive function waiting until it reaches a base case, and as it hits invocations of itself it will add references to these invocations (called stack frames) to a first-in-last-out (FILO) structure called a call stack. Once the runtime interpreter exhausts the input, it will hit the return statement in the base case and it will know it can pop the stack frames off one after another and evaluate them.
 
@@ -118,14 +118,14 @@ product(List(1, 2, 3))
 1 * 2 * 3 * 1
 ```
 
-These examples require authoring an entirely new function each time, but the pattern of recursion to accumulate across the list elements is the same, except for the base case return value and the function that does the operation. So how do we break it up? Scala already provides functions for adding and multiplying
+These examples require authoring an entirely new function each time, but the pattern of recursion to accumulate across the list elements is the same, except for the base case return value and the function that does the operation. So how do we break it up? Scala already provides functions for adding and multiplying:
 
 ```scala
 (1.+(2)).+(3) // + is a function in scala
 (1.*(2)).*(3) // * is a function in scala
 ```
 
-but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function 'foldRight'. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. FoldRight is so called because it starts with the last or rightmost 2 items in the collection and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
+but the trickier part is that recursive pattern. It turns out scala has a function for that too in the function `foldRight`. Folding is a conventional name in most functional languages for a class of higher order functions that combine the elements of a collection. `foldRight` is so called because it starts with the last or rightmost 2 items in the collection and processes backwards towards the initial elements on left side. Since we have been showing recursive examples, here is a recursive implementation of a standalone foldRight that accepts the list to be folded as a parameter:
 
 ```scala
 def foldRight[A, B](z:B)(f:(A,B) => B)(l:List[A]): B = l match
@@ -133,7 +133,7 @@ def foldRight[A, B](z:B)(f:(A,B) => B)(l:List[A]): B = l match
     case head::tail => f(head, foldRight(z)(f)(l.tail))
 ```
 
-Now you can represent both sum and product with the same foldRight function, by passing different values for the base case and function to be performed during the fold. here are examples of that:
+Now you can represent both sum and product with the same `foldRight` function, by passing different values for the base case and function to be performed during the fold. here are examples of that:
 
 ```scala
 foldRight(0)((a: Int, b: Int) => a + b)(List(1, 2, 3)) // res: 6
@@ -142,53 +142,58 @@ foldRight(1)((a: Int, b: Int) => a * b)(List(1, 2, 3)) // res 6
 
 Let's quickly do a breakdown of this function.
 
-1. We are dealing with two generic types, 'A' and 'B', where 'A' represents the type of the objects in the incoming list and 'B' represents the type of the result foldRight returns.
-2. We have 3 parameters. 'z' of type 'B', the value to return for an empty list, 'f' is the function representing the operation we perform between each pair of list elements, and 'l' the original list passed in.
-3. The base case is we have 'Nil', where 'l' has no elements. In this case we return 'z'
-4. In the recursive case, we pattern match on the list using the 'cons' operator with 'head::tail'. Then we invoke our 'f' function, but before evaluating these calls to 'f' we are doing a recursive call to foldRight and building up the call stack until we reach the Nil case. The end result is a nested series of calls to 'f' that will be popped off the call stack, un-suspended, and evaluated, looking something like if we were to do
+1. We are dealing with two generic types, `A` and `B`, where `A` represents the type of the objects in the incoming list and `B` represents the type of the result foldRight returns.
+2. We have 3 parameters. `z` of type `B`, the value to return for an empty list; `f` is the function representing the operation we perform between each pair of list elements; and `l` the original list passed in.
+3. The base case is we have `Nil`, where `l` has no elements. In this case we return `z`
+4. In the recursive case, we pattern match on the list using the `cons` operator with `head::tail`. Then we invoke our `f` function, but before evaluating these calls to `f` we are doing a recursive call to `foldRight` and building up the call stack until we reach the `Nil` case. The end result is a nested series of calls to `f` that will be popped off the call stack, un-suspended, and evaluated, looking something like if we were to do
 
 `f(a(0), f(a(1), ... f(a(n-1), f(a(n), z))))`.
 
-The above example using the recursive form matches closely to our definitions of sum and product and also to the version Hughes uses in his memo. Back in our first example with 'cons', we spoke about how functional style was giving us a way to break a solution down while leaving the door open for interesting ways to glue it back together. This foldRight example puts that on display. With this implementation the pattern match shows that foldRight is specifically looking for that 'cons' link between elements, and then it is combining a new function 'f' in place of 'cons' to accumulate a value based on that function's evaluation. Since foldRight is a higher order function, 'f' doesn't to be a specific function, we can do this combining with any behavior we like.
+The above example using the recursive form matches closely to our definitions of sum and product and also to the version Hughes uses in his memo. Back in our first example with `cons`, we spoke about how functional style was giving us a way to break a solution down while leaving the door open for interesting ways to glue it back together. This foldRight example puts that on display. With this implementation the pattern match shows that foldRight is specifically looking for that `cons` link between elements, and then it is combining a new function `f` in place of `cons` to accumulate a value based on that function's evaluation. Since `foldRight` is a higher order function, `f` doesn't to be a specific function, we can do this combining with any behavior we like.
 
-We got there! We've built the programming version of our multi-purpose kitchen appliance, our all-in-one home gym apparatus, the printed circuit board in the computer I'm using to write this article, etc., all with some adherence to functional constraints and a function that can accept another function as a parameter. With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several uses outside of the way we were originally trying to apply it. In the stand mixer example, it would be like realizing that if we change the motor attachment then a whisk/egg beater was only one of many stirring actions we could support.
+We got there! We've built the programming version of our multi-purpose kitchen appliance, our all-in-one home gym apparatus, the printed circuit board in the computer I'm using to write this article, etc. -- all with some adherence to functional constraints and a function that can accept another function as a parameter. With the higher order functions, we can scalpel our code in half instead of sawing it, pull out the concrete subroutines and values and leave behind a pattern that may have several uses outside of the way we were originally trying to apply it. In the stand mixer example, it would be like realizing that if we change the motor attachment then a whisk/egg beater was only one of many stirring actions we could support.
 
-While you may not be able to bake delicious cakes with it, foldRight proves extremely versatile. Here are some examples of foldRight you can try in your Scala 3 REPL, using the List implementation of foldRight from Scala's standard library[^5]:
+While you may not be able to bake delicious cakes with it, `foldRight` proves extremely versatile. Here are some examples of `foldRight` you can try in your Scala 3 REPL, using the List implementation of foldRight from Scala's standard library[^5]:
 
 ```scala
-    val myList = List(1, 2, 3)
-    // sum
-    myList.foldRight(0)(_+_)
-    // product
-    myList.foldRight(1)(_*_)
-    // make a copy
-    myList.foldRight(List.empty)(_::_)
-    // append 2 lists together
-    val otherList = List(4, 5, 6)
-    myList.foldRight(otherList)(_::_)
-    // compose this double function with the copy function above 
-    // to demonstrate applying a function to every element (map)
-    def double(x:Int):Int = 2*x
-    myList.foldRight(List.empty)(double(_)::_)
+val myList = List(1, 2, 3)
+
+// sum
+myList.foldRight(0)(_+_)
+
+// product
+myList.foldRight(1)(_*_)
+
+// make a copy
+myList.foldRight(List.empty)(_::_)
+
+// append 2 lists together
+val otherList = List(4, 5, 6)
+myList.foldRight(otherList)(_::_)
+
+// compose this double function with the copy function above 
+// to demonstrate applying a function to every element (map)
+def double(x:Int):Int = 2*x
+myList.foldRight(List.empty)(double(_)::_)
 ```
 
-Notice how terse these definitions are and how they don’t require you to read through the detail of how the list is combined each time. FoldRight owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
+Notice how terse these definitions are and how they don't require you to read through the detail of how the list is combined each time. `foldRight` owns the repetitive functional form. We simply pass in the operation and what to return when we encounter the base case of an empty list. The examples above are also far from exhaustive in terms of things you can do with foldRight, but already they show several common operations being greatly simplified.
 
-Programming in this way is exciting in much the same way that designing for modularity is elsewhere. Finding ways to reuse foldRight in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like foldRight into your own coding projects.  
+Programming in this way is exciting in much the same way that designing for modularity is elsewhere. Finding ways to reuse `foldRight` in new contexts or produce other higher order functions becomes an exercise in creativity. I encourage you to try out more variations on your own or look for ways to work higher order functions like `foldRight` into your own coding projects.  
 
 ## Where Can I Learn More?
 
-As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, “Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
+As useful as I hope this post and those that follow are, their core ideas are not novel by any means. They are drawn from and lie in the shadow of a brilliant and thorough treatment by John Hughes that has been circulated in one form or another since 1984. Hughes is one of the designers of the Haskell programming language. He was also the author of, "Why Functional Programming Matters." Hughes's article was my inspiration and the basis for this post. If you are hungry for more after reading this, I recommend that you read "Why Functional Programming Matters." You may also enjoy the presentations Hughes adapted from that text. John Hughes and his wife Mary Sheeran have keynoted several conferences with it between 2015 and 2017 that add even more context to the article's points. This post and any that follow in my Modularity in Functional Programming series seek to serve as a mere tour guide through the well-established shrine of their ideas. You can find a link to the article and one of the talks in the footnotes below.
 
-In this post we looked at section 3 of "Why Functional Programming Matters.” Its name in the article “Gluing Functions Together.” My hope was to reduce some of the assumptions the original memorandum makes about an academic audience by replacing the more rigorous proofs in the memo with analogy and entry level definitions. I was still, however, hoping to highlight the benefit of applying these ideas in the way Hughes's paper lit a fire under me when I first read it. I also wanted it to be a more interactive, hands-on learning experience so I used executable Scala3 code instead of pseudocode and I will aim to do this with future articles.  
+In this post we looked at section 3 of "Why Functional Programming Matters." Its name in the article "Gluing Functions Together." My hope was to reduce some of the assumptions the original memorandum makes about an academic audience by replacing the more rigorous proofs in the memo with analogy and entry level definitions. I was still, however, hoping to highlight the benefit of applying these ideas in the way Hughes's paper lit a fire under me when I first read it. I also wanted it to be a more interactive, hands-on learning experience so I used executable Scala3 code instead of pseudocode and I will aim to do this with future articles.  
 
 Thanks for taking this journey with me. Questions? Comments? I would love to connect with you! Feel free to reach out via my social links.  
 
- Until Next Time... Or for you stand mixer/Portal fans out there, until we run out of cake!
+Until Next Time... Or for you stand mixer/Portal fans out there, until we run out of cake!
 
 ## Footnotes
 
-[^1]: A link to a pdf of the original publication of "Why Functional Programming Matters" can be found under "Background Papers" on [this page](<https://www.cs.kent.ac.uk/people/staff/dat/miranda/>). However, This version contains some errors that were fixed in a later publication which can be found instead on [this page](<https://www.cse.chalmers.se/~rjmh/Papers/whyfp.html>) and a link to one of the keynote addresses mentioned can be found [here](https://www.youtube.com/watch?v=IyR04U66z7E&ab_channel=gnbitcom)
+[^1]: A link to a pdf of the original publication of "Why Functional Programming Matters" can be found under "Background Papers" on [this page](https://www.cs.kent.ac.uk/people/staff/dat/miranda/). However, This version contains some errors that were fixed in a later publication which can be found instead on [this page](https://www.cse.chalmers.se/~rjmh/Papers/whyfp.html) and a link to one of the keynote addresses mentioned can be found [here](https://www.youtube.com/watch?v=IyR04U66z7E&ab_channel=gnbitcom)
 
 [^2]: If your background is like mine, you might be wondering where object-oriented programming (OOP) fits into Hughes's case for modularity.
       Any discussion of modularity surely should include some mention of OOP, right? Coined by Alan Kay, object-oriented programming paradigm is one in which you write your program as a collection of objects, little models of concepts that achieve a program's goals by sending and receiving each other's messages.
@@ -201,8 +206,10 @@ Thanks for taking this journey with me. Questions? Comments? I would love to con
       
       Imperative object-oriented code is what I learned in school and used for years, and my personal mileage with it is that you can be productive quickly but a functional approach can help prevent issues with shared mutable state and other pitfalls that are easy to fall into when you scale your programs.
 
-[^3]: The operator’s name ‘cons’ in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here](<https://en.wikipedia.org/wiki/Cons#:~:text=In%20computer%20programming%2C%20cons%20(%2F,%2C%20or%20(cons)%20pairs.>)
+[^3]: The operator's name `cons` in Scala is in homage to the cons cell data structure used as the basis for collections in many Lisp family languages. More information can be found [here][conslink]
 
-[^4]: Even though this article and the John Hughes memo will refer to 'cons' as though it were implemented entirely with functions, it usually isn't in practice. Scala uses a case class and factory method to build a list and hold it in memory, and it isn't alone. Lisp and other functional languages have opted for data structures because a truly stateless functional approach isn't as performant. For more on proving the 'cons' interface can be implemented solely with functions, see the reference to Church Encoding [here](https://en.wikipedia.org/wiki/Cons)
+[^4]: Even though this article and the John Hughes memo will refer to `cons` as though it were implemented entirely with functions, it usually isn't in practice. Scala uses a case class and factory method to build a list and hold it in memory, and it isn't alone. Lisp and other functional languages have opted for data structures because a truly stateless functional approach isn't as performant. For more on proving the `cons` interface can be implemented solely with functions, see the reference to Church Encoding [here](https://en.wikipedia.org/wiki/Cons)
 
 [^5]: [here is the foldRight source listing from List.scala](https://github.com/Scala/Scala/blob/v2.13.3/src/library/Scala/collection/immutable/List.Scala#L79) Even though this listing is from 2.13, this is also the immutable list class that Scala 3 uses, because Scala 3 uses the Scala 2.13 standard library. If you read the listing, you may be surprised to find that foldRight is implemented in an imperative fashion in the ImmutableList class, using a while loop control structure. Because the while loop would be applying the function from left to right, the list must be reversed for foldRight to ensure elements are processed in right to left order. While I don't know the reason for sure, I'd wager the decision to use this imperative approach is that foldRight in its easiest to read recursive form is not tail-recursive and can lead to stack overflow errors. If you'd like to learn more about this, [here is an article that covers it in depth](https://oldfashionedsoftware.com/2009/07/10/scala-code-review-foldleft-and-foldright/)
+
+[conslink]: <https://en.wikipedia.org/wiki/Cons#:~:text=In%20computer%20programming%2C%20cons%20(%2F,%2C%20or%20(cons)%20pairs.>
