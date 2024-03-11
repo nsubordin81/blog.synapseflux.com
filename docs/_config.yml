@@ -95,15 +95,7 @@ social:
 # Analytics
 analytics:
   provider: false # false (default), "google", "google-universal", "google-gtag", "custom"
-  google: "tracking_id:<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3M6LPSFHM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P3M6LPSFHM');
-</script>"
+  google: "G-P3M6LPSFHM"
     anonymize_ip: # true, false (default)
 
 # Site Author
