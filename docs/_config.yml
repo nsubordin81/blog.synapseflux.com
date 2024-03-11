@@ -96,7 +96,7 @@ social:
 analytics:
   provider: false # false (default), "google", "google-universal", "google-gtag", "custom"
   google: "G-P3M6LPSFHM"
-    anonymize_ip: # true, false (default)
+  anonymize_ip: # true, false (default)
 
 # Site Author
 author:
