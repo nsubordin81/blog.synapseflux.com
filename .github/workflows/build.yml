@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v1
         name: Run spell check
         with:
-          node-version: "14"
+          node-version: "21"
       - run: npm install -g cspell
       - run: cspell --config ./cSpell.json --no-progress "docs/**/*.md"
   build:
