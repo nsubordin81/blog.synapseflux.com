@@ -1,6 +1,6 @@
 ---
 title: "A Return To Form"
-date: 2023-04-20 00:00:00 -0500
+date: 2024-03-14 12:00:00 -0500
 excerpt: "After a year-long hiatus, I'm excited to return to my blog and recommit to regular updates. This platform has always been a passion project of mine, and I'm eager to rediscover its potential as a tool for personal expression and creativity."
 classes: wide
 ---
@@ -18,7 +18,7 @@ Some topics I hope to cover in the coming months:
 - Helpful Tips
   - Recommendations and time or effort saving tricks I've picked up along the way on my own projects
 - Surveys of Computational Creativity
-  - Coverage of new and old methods to enhance or supplement creative project with the help of computation
+  - Coverage of new and old methods to enhance or supplement creative projects with the help of computation
 - Inspired posts
   - in an effort to provided more consistent content, I'll be looking out for writing topics that catch my interest by happenstance
 
