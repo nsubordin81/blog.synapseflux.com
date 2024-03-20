@@ -19,3 +19,12 @@ I did a local setup to have a model that chats about an ebook lately. I'm sharin
         * get numbers for disk space and explanation, maybe for footnotes
 * lesson two: don't bring scuba gear to trench, know what you are willing to go deep on when. 
 * talk about starting with the readme on hugging face and their examples and running into issues because you didn't understand model terminologies, and then talk about how you were able to get running faster with ollama and langchain
+    * didn't know what to do but I'd heard llama was good. searching led me to know that llama 2 was performing the best next to the big models that openai and google and anthropic were putting out. 
+    * documentation said to get llama from Meta, the model should come from there, you have to sign a license agreement about usage and they want to track who is using them
+    * I did this first, and had a huge model now sitting on my hard disk
+    * I started looking around for an easy way to chat with it. I found facebook's repo first, llama repo. its instructions (review and report how you followed htings and what pitfalls you had.)
+    * the facebook repo points to the hugging face llama recipes repo for doing more with the models. 
+    * the llama-recipes github repo has you converting your model using a script to have hugging face checkpoints. they say all models on their site use this
+    * I then attempted to follow their rag tutorial and got stuck somewhere
+    * I then just tried to follow hello llama local tutorial which required conversion of the model to gguf format. after doing this and possibly the hugging face conversion for some reason the inference was extremely slow on my machine, which is not a slow machine. 
+    * I put in an issue but 
