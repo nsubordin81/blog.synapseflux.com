@@ -27,4 +27,5 @@ I did a local setup to have a model that chats about an ebook lately. I'm sharin
     * the llama-recipes github repo has you converting your model using a script to have hugging face checkpoints. they say all models on their site use this
     * I then attempted to follow their rag tutorial and got stuck somewhere
     * I then just tried to follow hello llama local tutorial which required conversion of the model to gguf format. after doing this and possibly the hugging face conversion for some reason the inference was extremely slow on my machine, which is not a slow machine. 
-    * I put in an issue but 
+    * I put in an issue to the llama recipes repo about it. They ahve been following up with me since to try and look into it, but generally advised it was slower inference. 
+    * While I was waiting for the hugging face team to respond, I decided to remove the old llama2 model from my computer and then switch to using ollama to download and manage the model and a langchain script to use it with somethign like RAG, maybe exactly RAG. 
