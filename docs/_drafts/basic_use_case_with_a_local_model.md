@@ -31,4 +31,6 @@ I did a local setup to have a model that chats about an ebook lately. I'm sharin
     * While I was waiting for the hugging face team to respond, I decided to remove the old llama2 model from my computer and then switch to using ollama to download and manage the model and a langchain script to use it with somethign like RAG, maybe exactly RAG.
     * I don't remember my headaches with this part, there were fewer of them. ollama worked pretty seamlessly but let me try and remember what the download process was like. I think I got it with brew. then there is a cli to install the model. that I remember being a little bit hard to find docs for. I remember wondering how to use the model once I downloaded it because it was just running on localhost. langchain wraps ollama's api so it wasn't so bad once I figured it out, and it was easy to add a text splitter and move forward. 
     * ideas for things I want to build with this simple approach: 
-        * an email classifier, and ultimately an agent to reorganize my emails and tell me what it did. 
+        * an email classifier, and ultimately an agent to reorganize my emails and tell me what it did.
+        * something to summarize large language model work
+        * something to help me build my practice app in scala in such a way that I learn what I'm doing as I do it. 
