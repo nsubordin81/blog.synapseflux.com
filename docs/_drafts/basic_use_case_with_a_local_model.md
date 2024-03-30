@@ -33,4 +33,6 @@ I did a local setup to have a model that chats about an ebook lately. I'm sharin
     * ideas for things I want to build with this simple approach: 
         * an email classifier, and ultimately an agent to reorganize my emails and tell me what it did.
         * something to summarize large language model work
-        * something to help me build my practice app in scala in such a way that I learn what I'm doing as I do it. 
+        * something to help me build my practice app in scala in such a way that I learn what I'm doing as I do it.
+    * quantization, what you learned about that. 
+    *  
