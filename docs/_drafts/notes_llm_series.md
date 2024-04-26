@@ -16,8 +16,8 @@
     * the llama-recipes github repo has you converting your model using a script to have hugging face checkpoints. they say all models on their site use this
     * I then attempted to follow their rag tutorial and got stuck somewhere
     * I then just tried to follow hello llama local tutorial which required conversion of the model to gguf format. after doing this and possibly the hugging face conversion for some reason the inference was extremely slow on my machine, which is not a slow machine. 
-    * I put in an issue to the llama recipes repo about it. They ahve been following up with me since to try and look into it, but generally advised it was slower inference. 
-    * While I was waiting for the hugging face team to respond, I decided to remove the old llama2 model from my computer and then switch to using ollama to download and manage the model and a langchain script to use it with somethign like RAG, maybe exactly RAG.
+    * I put in an issue to the llama recipes repo about it. They have been following up with me since to try and look into it, but generally advised it was slower inference. 
+    * While I was waiting for the hugging face team to respond, I decided to remove the old llama2 model from my computer and then switch to using ollama to download and manage the model and a langchain script to use it with something like RAG, maybe exactly RAG.
     * I don't remember my headaches with this part, there were fewer of them. ollama worked pretty seamlessly but let me try and remember what the download process was like. I think I got it with brew. then there is a cli to install the model. that I remember being a little bit hard to find docs for. I remember wondering how to use the model once I downloaded it because it was just running on localhost. langchain wraps ollama's api so it wasn't so bad once I figured it out, and it was easy to add a text splitter and move forward. 
     * ideas for things I want to build with this simple approach: 
         * an email classifier, and ultimately an agent to reorganize my emails and tell me what it did.
