@@ -13,7 +13,13 @@
         "pseudocode"
     ],
     "ignoreWords": [
-        "Sheeran"
+        "Sheeran",
+        "oversaturating",
+        "pyenv",
+        "langchain",
+        "gguf",
+        "ollama",
+        "ollama's"
     ],
     "ignoreRegExpList": [
         "\\((.*)\\)", // Markdown links

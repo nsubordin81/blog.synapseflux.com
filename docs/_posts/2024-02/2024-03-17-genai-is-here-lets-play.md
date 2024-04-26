@@ -7,7 +7,7 @@ classes: wide
 
 ## Large Models Are Here, How Should We Get Started?
 
-I'm starting this blog at a watershed moment in history, when Generative 
+I'm starting this blog at a watershed moment in history, when Generative
 AI is dominating conversations and oversaturating content feeds. It's hard to ignore the buzz surrounding large and generative models. It is a mammoth in the room if we are talking about computation and creativity today.
 
 There are countless directions to go to write about this, for for now I'll chronicle my attempts to create in this space, and maybe – just maybe – there's value in my struggles.

@@ -30,7 +30,7 @@ masthead_title: # overrides the website title displayed in the masthead, use " "
 # breadcrumbs            : false # true, false (default)
 words_per_minute: 200 # used to compute reading time
 comments:
-  provider: "false" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider: "giscus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname: # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -44,9 +44,9 @@ comments:
     theme: # "github-light" (default), "github-dark"
     issue_term: # "pathname" (default)
   giscus:
-    repo_id: "R_kgDOHDfHcQ" # Shown during giscus setup at https://giscus.app
+    repo_id: "R_kgDOJKjeAw" # Shown during giscus setup at https://giscus.app
     category_name: "Blog Comments" # Full text name of the category
-    category_id: "DIC_kwDOHDfHcc4COUvR" # Shown during giscus setup at https://giscus.app
+    category_id: "DIC_kwDOJKjeA84Ce7hM" # Shown during giscus setup at https://giscus.app
     discussion_term: "pathname" # "pathname" (default), "url", "title", "og:title"
     reactions_enabled: 1 # '1' for enabled (default), '0' for disabled
     theme: "light" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
@@ -94,7 +94,7 @@ social:
 
 # Analytics
 analytics:
-  provider: false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider: google-gtag # false (default), "google", "google-universal", "google-gtag", "custom"
   google: "G-P3M6LPSFHM"
   anonymize_ip: # true, false (default)
 
