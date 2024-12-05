@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Risks With Insecure YAML Serialization In Python"
 date: 2024-12-04
 categories: [security, python, yaml]
