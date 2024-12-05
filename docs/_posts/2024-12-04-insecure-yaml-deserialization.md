@@ -4,6 +4,7 @@ date: 2024-12-04
 categories: [security, python, yaml]
 tags: [python, yaml, security, serialization, deserialization]
 description: "Learn about the security risks associated with YAML serialization in Python and how to protect your applications from potential exploits."
+published: true
 ---
 
 YAML is a Python favorite for object serialization, especially around application configuration. So, it is good to be aware that you can expose yourself to security risks when using YAML and know how to avoid those pitfalls.
