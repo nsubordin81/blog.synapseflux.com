@@ -25,3 +25,4 @@
         * something to help me build my practice app in scala in such a way that I learn what I'm doing as I do it.
     * quantization, what you learned about that. 
     *  
+    * 
