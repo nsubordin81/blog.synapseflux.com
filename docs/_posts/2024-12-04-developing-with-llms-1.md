@@ -72,3 +72,6 @@ what is the difference between a web application and a typical application you w
 ok you officially have motion without action here, or I guess action but more in support of motion rather than the other way around. so commit to writing a backstory for this and covering how you got started later. for now, you will take notes as you learn how to make this thing an event sourced app. you will not shy away from understanding, you will not get lost in theory, you will not be afraid to try
 
 goal: take working rpg my life app and convert it to a version of that which is event sourced. it is still a full stack javascript application
+
+event sourcing. when instead of saving the application state directly and then overwriting it every time soomething changes, you save the sequence of events that occur to influence the state. its like if you were to record a video instead of taking a sequence of pictures. 
+
