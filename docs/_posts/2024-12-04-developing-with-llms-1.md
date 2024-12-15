@@ -73,5 +73,11 @@ ok you officially have motion without action here, or I guess action but more in
 
 goal: take working rpg my life app and convert it to a version of that which is event sourced. it is still a full stack javascript application
 
-event sourcing. when instead of saving the application state directly and then overwriting it every time soomething changes, you save the sequence of events that occur to influence the state. its like if you were to record a video instead of taking a sequence of pictures. 
+event sourcing. when instead of saving the application state directly and then overwriting it every time soomething changes, you save the sequence of events that occur to influence the state. its like if you were to record a video instead of taking a sequence of pictures.
+
+event sourcing has a simple enough premise, for as long as the application has been running historically, make sure all of the changes to state are recorded as events. 
+
+event sourcing starts out being easy, you can think of it as doing that left fold over all of the sequenced events to apply them and build up your application state, but there are always devils in the details. so like when you do that, yoiu might find the reconstruction each time to get kind of slow as the number of events grows. so the answer thwere is to cache the applicaiton state at more recent times with a snaphot of it. however, your event log could still remain the source of truth. 
+
+
 
