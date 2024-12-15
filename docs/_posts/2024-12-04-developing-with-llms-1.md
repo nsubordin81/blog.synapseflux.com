@@ -79,5 +79,56 @@ event sourcing has a simple enough premise, for as long as the application has b
 
 event sourcing starts out being easy, you can think of it as doing that left fold over all of the sequenced events to apply them and build up your application state, but there are always devils in the details. so like when you do that, yoiu might find the reconstruction each time to get kind of slow as the number of events grows. so the answer thwere is to cache the applicaiton state at more recent times with a snaphot of it. however, your event log could still remain the source of truth. 
 
+ok, plan. you will use event sourcing for rpgmylife. this will allow you to take advantage of the ability to query the events, reconstruct events, rewind, etc.
+
+pretty sure domain objects are encounters, quests, game store itmes, characters, abilities
+need to figure out events, but seems like
+- add new encounter
+- update existing encounter
+- complete encounter
+- delete encounter
+
+- add new quest
+- quest finished
+- update question information
+- delete quest
+
+- create new character
+- update character information
+- remove character
+- get character information
+
+should a get request be modeled into these domain objects? 
+
+encounter
+name - what it is for
+category tags - idea here is to get some identity values in here as well as some goals
+applicable quests
+how much experience you get for completing it
+how much gold you get for completing it
+state? new, in progress, abandoned, completed, redefined
+priority
+target completion date
+
+quest
+name
+category tags
+why am I doing it
+how much experimence you get for completing it
+how much gold you get for completing it
+state? new, in progress, abandoned, completed, redefined
+priority
+target completion date
+
+store item
+name
+cost (in points, eventually the points system will be different but for me it is 100 points = 1 USD)
+minimum character level to purchase
+state? created, ineligible to purchase, eligible to purchase, purchased, deprecated, deleted
+
+character 
+name
+kind - this would be like race if you are doing fantasy or sci fi, what kind of creature are you elf, troll, gnome, dwarf, wizard, etc. 
+class - warrior, rogue, thief, mage, etc. 
 
 
