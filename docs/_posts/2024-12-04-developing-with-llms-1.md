@@ -131,4 +131,16 @@ name
 kind - this would be like race if you are doing fantasy or sci fi, what kind of creature are you elf, troll, gnome, dwarf, wizard, etc. 
 class - warrior, rogue, thief, mage, etc. 
 
+ok, so starting down the path of transforming my app, which follows the pattern I'm used to, towards a more event sourcing friendly pattern. I want the benefits of being able to rewind my state and replay it if necessary. I want that event log book that I can use to recreate everything. 
 
+So, first thing that my llm tells me to do is start defining an event store and aggregates. 
+WTF are these? Event store becomes easy enough to understand, at least at a high level. 
+It looks like this will exist for each type of thing I can have events about in my data schema. 
+I'm starting with the character and gold accumulation, because between experience and gold updates those are the most importaqnt things to track to get the state at any given point. So for the Character in this case I will have an event store. there are more than one Characters and all of their events will live in the store.
+
+the aggregate part is starting to get a little bit more arcane. I did a bit of side reading. not super helpful. It seems like a powerful construct but I'm not sure of the utility here yet. 
+
+here is my attempt to put aggregates in my own words: 
+- you create a group of related things. this group is looked at like one thing from the outside, and there is one thing in the group which represents the group. within the group, there are relationshipos and all of hte things are unique from each other. things that are in the group can have duplicates outside the group, which is ok because from the outside you will never see those internal things. they call these things 'entities' and the entity that identifies the group is called the 'aggregate identitiy' 
+
+ah, ok, so reading a bit more I think I get why these are useful for event sourcing. aggregates are a tool for enforcing consistency. in event sourcing, things you do to an aggregate result in events, and these operations have to take place all or nothing for the whole aggregate or no event occurs and nothing changes. 
