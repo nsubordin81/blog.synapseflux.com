@@ -144,3 +144,47 @@ here is my attempt to put aggregates in my own words:
 - you create a group of related things. this group is looked at like one thing from the outside, and there is one thing in the group which represents the group. within the group, there are relationshipos and all of hte things are unique from each other. things that are in the group can have duplicates outside the group, which is ok because from the outside you will never see those internal things. they call these things 'entities' and the entity that identifies the group is called the 'aggregate identitiy' 
 
 ah, ok, so reading a bit more I think I get why these are useful for event sourcing. aggregates are a tool for enforcing consistency. in event sourcing, things you do to an aggregate result in events, and these operations have to take place all or nothing for the whole aggregate or no event occurs and nothing changes. 
+
+let's do a little documented learning while we work on the event store implementation. 
+how is this app that I generated organzied? 
+
+from the perspective of a vertical slice through the character actions: 
+- when you make a get request to the application for either a character retrieval or a charatcter creation, you hit the router first
+- threejs, there is a front end call when a user is interacting with the UI
+    - using the api.get() method, getting a response back, doing this as an async method, error handling
+- router exposes the routes that are acceptable. 
+    - how does express managed publishing those routes with the plugin? I don't know
+    - how does the browser handle this? how does the software that is lower level and standing in between your code and the browser handle this? how does it get handled on your computer? 
+    - the http request is recieved and routed to a controller ok
+- there is a controller involved in processing the request managed by the router
+    - take for example the getCharacter method. it is an async response that takes a request and response param and then will delegate to the character service's getCharacter method and return the model object for character and convert that to json to give back, and return a 404 if the character doesn't exist. 
+- there is a service layer that will handle business logic and then call the model methods and persist data. 
+- there is a model method which is "current state" based in my current design, which means we are directly mutating state in the model. 
+
+with event sourced, we will change this in the following ways: 
+- new events for every change to state instead of direct state mutation
+- storing of these events
+- rebuilding the state by replaying events. 
+
+
+concrete example: 
+character experienceGained event will not just add some provided amount to the experience for the character model object and save it, it will instead: 
+- create an event that is of type "GAINED_EXPERIENCE", and note that it containes the character id the payload of hwat to change and the version of the event to keep ordering. all makes sense. you save that instead. 
+
+why don't we just call the service layer directly from the router, all the controller seems to do is delegate to the service. 
+
+answer: 
+- the main purpose of controllers in this architecture is to remove the responsibility of http handling from the service layer objects. service layers don't take a request response pair, they don't handle http errors, they don't validate the http input, they don't convert output to json format for responding to the rest reqquest. 
+
+very cool. 
+
+here is what I'm trying to accomplish with my conversion to event sourcing
+
+HTTP request → Router → Controller
+Controller validates input
+Service loads character by replaying events
+Character aggregate creates new event
+Event is saved to event store
+Current state is returned to client
+
+
