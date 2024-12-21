@@ -187,4 +187,24 @@ Character aggregate creates new event
 Event is saved to event store
 Current state is returned to client
 
+oh boy do I love LLMs. they provided some great suggestiosn and now I just need to fill in the gaps! 
 
+I also have a clear way forward and suggestions fromt he LLM this is a great way to learn!
+
+documenting my larger scale plan for this: 
+
+first step: event sourcing for just the character entity, leaving the other three as state mutation style data architecture
+phase in event sourcing for each additonal after you have it working for character. that is still just encounters, quests, and store items
+once everything is event sourced, get a form of permanent persistence setup, a database that isn't ephemeral, and start using the damn thing
+features beyond that: 
+well by that point I would have a really rough interface for creating new encounters and quests and the character would update, I already have a level system that is decent and this would also mean a gold thing. what would make thsi better? 
+I would like to be able to see the abilities I've achieved over time
+I would like to see the encounters I've completed over time
+I would like to get data about the encounters I've completed presented in a visual and consumable way. i.e. "here are some stats about how many things you've done towards this tag of encounter in the last month
+I would like to eventually add to the incentive by creating the notion of npcs that you have to battle or help 
+I would like to add to the incentive by creating the notion of abilities you can use to battle better or find things better
+I would like to add to the incentive by have the visuals be modern looking 
+I would like to add ot the incentive by having a really fluid and responsive interface that makes entering data fun
+I would like to provide the way to scroll back and forward through time on a character profile to see where they were in the past as a way to build confidence in how far they have come building their habits
+I would like to build a way to have users go on 'campaigns' which coudl be preplanned towards helping them adopt new beneficial habits and structure their time
+I would really like to have a lot of these things be procedurally generated with the assistance of LLMs to the extent that I can provide a theme and someone can feel like they are doing DND with an LLM dungeonmaster. 
