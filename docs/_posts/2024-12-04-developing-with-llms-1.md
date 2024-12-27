@@ -260,3 +260,36 @@ there was dependency injection done at the top layer of the class in the constru
 it also did good grouping of import statements as well as strong js docs documentation of methods explaining the types taht were returned. since I'm not using typescript yet, this is crucial to debugging and contracts since I'm missing that layer of type checking that goes on.
 
 I've foudn there is a bit of a skilsset and a learning curve to providing the right context to the llm by opening and providing the right files. in cursor this is done by adding to its index of prioritized documents to embed and add to context and sometimes just having more things open. I found I couldn't directly control and prevent files from being added with the command + enter option so I took to a more surgical approach of adding the finels manually with the plus button when I really needed to restrict what it was seeing. furthermore, I had 3 reposityories goingf at once for my project, a monorepo in the ide might have been better but it also might have been worse since I'm working on a project with mvc pattern on the front and backend and there are overlaps in controller files and service files and routes files that aren't good to be overwritten when the llm gets confused between which is whigh. I found it was a pretty useful pattern to have an overall workspace file (which cursor gets from being a clone of vscode) that gave me all of the directories I wanted in one ide project explorer, and then be more selective when I wanted to but generally giving the llm chat the ability to see whatever files I had open and navigate through them more fluently myself. not a perfect solution and the llm itself is not going to be super discerning I have to give it the context that these things aren't related sometiems but it is pretty good at learning the context iteself also so in combo we had a pretty good time of it. 
+
+ran into another learning opportunity about es6 modules vs commonjs modules. 
+
+look at all the cools stuff it taught me: 
+
+Key Differences:
+Loading Behavior
+CommonJS: Synchronous, loads modules at runtime
+ES Modules: Asynchronous, can be statically analyzed at compile time
+Caching
+CommonJS: Modules are cached after first load
+ES Modules: Modules are singleton by design
+Module Resolution
+node_modules
+Dynamic Loading
+;
+Benefits of CommonJS:
+Simpler dynamic imports
+Works in older Node versions
+More flexible module resolution
+Easier circular dependencies handling
+Benefits of ES Modules:
+1. Static analysis possible (better tree shaking)
+Native browser support
+Top-level await
+Named exports are bound (live)
+Better error messages
+Future of JavaScript modules
+
+the llm pretty much told me that javascript community is deprecating commonjs modules even though older versions of node support them, is aware that I'm using newer node, and is still suggesting not to move away from commonjs so that I don't have to specify module as the type in my package.json. that is odd to me, I would prefer to be future proofed for 2026 if it is only like a one line change. so I asked it to just show me how to get the more recent support
+
+I learned that .js extensions are required for node when it is supporting ES modules syntax but it is not required by vite or webpack or other bundlers that are designed to support esmodules as they tend to handle resolutions for the file extensions without having them explicitly stated
+
