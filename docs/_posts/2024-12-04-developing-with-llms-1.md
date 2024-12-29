@@ -339,3 +339,6 @@ another thing, the llm injected a bunch of knowledge of the event type into the 
 I learned soemthign form the llm about how routers work with node. the routes are interpreted in top down order, and since there was a matcher for :id for a get request that happened above the match for level-info, level-info was interpreted as teh id field at the end of that earlier route, and then mongoose was trying to query itself with that label and breaking because it wasn't the right kind of id.
 
 having a fun new problem now, the character is always resetting when I go back tot he character screen, even in thes same session. this is not what I wanted, I want it to find the earliest character created event and then use that to load the player. I'm not seeing this, this is my next challenge to fix.
+
+point for the llm, it was able to troubleshoot the error I was seeing based on my code and just the post request I was sending that was faililng. it was a 500 error and the issue was with the way I was trying to do string interpolation. I'm python more than javascript and so I didn't realize I needed to cahgne the apostrophes I had ther einto backquotes to make the interpolation work. makes sense. 
+
