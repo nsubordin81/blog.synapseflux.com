@@ -293,3 +293,43 @@ the llm pretty much told me that javascript community is deprecating commonjs mo
 
 I learned that .js extensions are required for node when it is supporting ES modules syntax but it is not required by vite or webpack or other bundlers that are designed to support esmodules as they tend to handle resolutions for the file extensions without having them explicitly stated
 
+alrighty, looks like the llm is about to drop some great networking knowledge on me, let's see what it is saying. so I got a proxy error from my frontend trying to communicate to my backend. I have a feeling that it is becasue I changed the port that my backend was listening on, but let's see if it caught that and is telling me the thing. 
+
+it does a great job ob breaking things down. it is saying that the front end is setup to make reqeusts to /api/v2/characer route. 
+- it establishes that the expectation is that this is happening throiugh vite and that vite should know how to proxy this to the backend which is running on port 5001.  - the proxy isn't working, so then there is a proxy setting that vite needs to set on the frontend project so taht vite can use the right address to communicate to the backend. 
+- there is a configuration for the vite server to proxy the /api routes all tot he backend server. handling cors headers automatically is part of this as well which is a cool feature and somethign I need to learn more about. but taht is cross origin request 
+
+oh this is great, posting here: 
+
+first nugget: 
+Browser (localhost:3000) 
+    ↓ HTTP requests
+Vite Dev Server (localhost:3000)
+    ↓ Proxy requests to /api/*
+Backend Server (localhost:5001)
+
+second nugget: 
+```javascript
+// When your frontend code makes a request:
+fetch('/api/v2/character')
+
+// Vite intercepts this because it matches the proxy config:
+server: {
+  proxy: {
+    '/api': {
+      target: 'http://localhost:5001',
+      changeOrigin: true
+    }
+  }
+}
+```
+I was right that vite was acting as an intermediary web servier between the browser and the backend server, that is somethign I didn't reallize was happening, I thought it was doing all of its work prior to the runtime to transpile the code and prepare to serve it statically. 
+
+vite is acting as a reverse proxy in this case, because it is getting requests from the browswer and then forwarding them to the backend for processing. a forward proxy would be to stand in front of traffic goign to the browser I think and then do something with that or control where it is routed to. 
+
+thisf actually gets around the same origin policy for requests scripts make from them to potentially different origins. in this case front and backend locally are both running on local host address, but if this were deployed they would likely run from different network addresses. maybe they actually already do because they listen on different ports adn that could be cross origin because a dns resolves to an ip and port combo. yeah just checked my knowledge on this and llm is right, CORS applies at the socket level not the ip lvel it really operates at the http header level which includes protocol too I think. 
+
+the llm introduces but then explains its own bugs. for example for my event store, it was trying to get all the events using 'character' as an argument when the event store getEvents method only accepts an object id it was suppoesed to be the aggregate id of some character event which I don't have. 
+so instead of querying mongo for the id that wwe don't have as if it were an aggregate type, it realized it should be querying for all of the events of the type CHARACTER_CREATED, then it should be getting the first one if there are any, then get the id for that one and replay all events associated with it using the load() function we'd implemented earlier
+
+I was able to see how the llm addressed somethign I would need to do which was to update the error handling to have it set the character value to null so that the character creation form would show in the jsx. this was good but I encountered useeffect again and wasn't quite sure what to make of it. so I remember that use effect is related to the react 16 changes that were made to move react more towards a pure functional approacha nd away from class based using javascript classes that were stateful and mutating those within the scope of the component. instead, they were using things like useEffect to make the state changes happen in a similar way to the way that algebraic effects and monads work, but I don't really have that theory down just right so I need to think about this practically. What is the mechanism and purpose of useEffect? I should ask it
