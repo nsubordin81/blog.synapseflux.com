@@ -342,3 +342,8 @@ having a fun new problem now, the character is always resetting when I go back t
 
 point for the llm, it was able to troubleshoot the error I was seeing based on my code and just the post request I was sending that was faililng. it was a 500 error and the issue was with the way I was trying to do string interpolation. I'm python more than javascript and so I didn't realize I needed to cahgne the apostrophes I had ther einto backquotes to make the interpolation work. makes sense. 
 
+a lot of cool things just being suggested to me as I work through this, for example I am seeing that there is a color coliding going on when the front and backend hnow whcih was just a matter of using concurrently to async launchg my two package.json files and providing different prefix colors to each. that was immediately haelfpul for debugging and maintencance. love it. 
+
+props to llm again for helping me realize I needed a sub schema when I was troubleshooting schema issues with types not defined.
+
+llm was able to point out that I needed to make use of context for the character state management. that is a good insight I like it, great example of something I wouldn't have thought of myself necessarily.
