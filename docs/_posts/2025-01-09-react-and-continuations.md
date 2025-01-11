@@ -15,6 +15,7 @@ classes: wide
 toc: true
 toc_label: "FP Concepts"
 toc_icon: "code"
+published: false
 ---
 
 Continuations. really good talk about this comiing from Sam Galson a few years ago. https://youtu.be/5OPyjrKytLU?si=Nc_q_QOA3JN7vY5h. having to do with React3 fiber. 
