@@ -7,4 +7,9 @@ description: "My dream for a personal space on the web for the longest time has 
 published: false
 ---
 
-keeping a running list of things gen ai is uniquely good for as you think of them or try them or hear about them. 
+keeping a running list of things llms are uniquely good for as you think of them or try them or hear about them. 
+
+- user customization
+- breadth and open ended goals that aren't precise
+- dynamic experience
+- internet-in-your-pocket
