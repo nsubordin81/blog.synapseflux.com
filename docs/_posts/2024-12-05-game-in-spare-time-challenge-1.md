@@ -1,8 +1,15 @@
 ---
-title: "Deep Dives Series Topic 1 Article 1: Apis"
-date: 2024-12-04 10:49:00 -5:00
-# categories: [security, python, yaml]
-# tags: [python, yaml, security, serialization, deserialization]
-description: "My dream for a personal space on the web for the longest time has been an interactive experience. Now, with a lot of help from Bruno Simon and ThreeJSJourney, I may realize it. Chronicling what I learn in this effort."
+title: "Making a Game in My Spare Time: Part 1 - Getting Started"
+date: 2024-12-05 12:00:00 -0500
+categories:
+  - Game Development
+  - Programming
+tags:
+  - gamedev
+  - side project
+  - programming
+  - learning
+  - hobby projects
+description: "Documenting my journey of building a video game in my spare time. In this first article, I lay out my goals, constraints, and initial plan of attack for this long-term side project."
 published: false
 ---
