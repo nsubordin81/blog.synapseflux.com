@@ -39,4 +39,6 @@ devlog day 3 1/24 pomodoros
 - there are tradeoffs between scaling up the sprites v. scaling down the window size and stretching the canvas. a bit one is that fonts are going to be pixelated and hard to read
 - and of course the danger of having pre-existing knowledge, I go down a 15 minute rabbit hole wondering if I should use large file storage (LFS) when I set up my github repoitory for godot, check in all assets, or just check in source code and not worry about assets. I ultimately got a good nuanced answer from Claude that I think represents public opinion alright, but this was dewfnitely not something  needed to know to finish this tutorial!!!
 - ok, now discovering that there is a workflow, you close scenes and then open them to work on other ones, closing scenes and creating new ones is something I'll be doing a lot. that is command + w btw
+- somehow fell into a rabbit hole and then got out but lost a good 10 minutes or so on organizing and tagging my github repositories and then one of them reminded me of something I'd heard  and wanted to confirm about openai and I watched part of a youtube video before snappign myself out of it
+- 
 
