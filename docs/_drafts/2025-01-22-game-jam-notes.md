@@ -41,4 +41,5 @@ devlog day 3 1/24 spread across 3 25 minute pomodoros that were semi-productive
 - ok, now discovering that there is a workflow, you close scenes and then open them to work on other ones, closing scenes and creating new ones is something I'll be doing a lot. that is command + w btw
 - somehow fell into a rabbit hole and then got out but lost a good 10 minutes or so on organizing and tagging my github repositories and then one of them reminded me of something I'd heard  and wanted to confirm about openai and I watched part of a youtube video before snappign myself out of it
 - wow and somethign that was so hard for me to figure out becomes intuitive an simple with this godot tutorial, turns out all we needed to do was press a little grid button and you can get the frames from a spritesheet or tilemap. cool beans
-
+- the way that animating 2d sprites has been solved for by godot gives me hope as an indie developer with little time. once you know the tricks it is fairly step by step
+- stopping midway through to make sure I have time for other priorities to get done.
