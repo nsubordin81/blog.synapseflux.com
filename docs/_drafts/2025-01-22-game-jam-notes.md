@@ -29,7 +29,7 @@ another amazing game engine feature and benefit of making your own language. The
 whoops! inverted the vertical movement controlls, positive y is down. good to know
 whelp! thanks to Godot's ease of use despite my best efforts with two days and just under 2 hours of actual sitting in front of an editor and despite my best efforts I actually have a sprite dude walking around my screen
 
-devlog day 3 1/24 pomodoros
+devlog day 3 1/24 spread across 3 25 minute pomodoros that were semi-productive
 - memorize this hotkey: command + R. also F6. that is running your stuff, get that feedback loop going
 - for some reason the character is pretty small, think about units and measurment. you know, after you are done
 - forgot I need to reverse the direction of the character as they move. 
@@ -40,5 +40,5 @@ devlog day 3 1/24 pomodoros
 - and of course the danger of having pre-existing knowledge, I go down a 15 minute rabbit hole wondering if I should use large file storage (LFS) when I set up my github repoitory for godot, check in all assets, or just check in source code and not worry about assets. I ultimately got a good nuanced answer from Claude that I think represents public opinion alright, but this was dewfnitely not something  needed to know to finish this tutorial!!!
 - ok, now discovering that there is a workflow, you close scenes and then open them to work on other ones, closing scenes and creating new ones is something I'll be doing a lot. that is command + w btw
 - somehow fell into a rabbit hole and then got out but lost a good 10 minutes or so on organizing and tagging my github repositories and then one of them reminded me of something I'd heard  and wanted to confirm about openai and I watched part of a youtube video before snappign myself out of it
-- 
+- wow and somethign that was so hard for me to figure out becomes intuitive an simple with this godot tutorial, turns out all we needed to do was press a little grid button and you can get the frames from a spritesheet or tilemap. cool beans
 
