@@ -28,3 +28,10 @@ good for you godot script taking a page out of JQuery's book and making $ sugar 
 another amazing game engine feature and benefit of making your own language. They have reified delta time. a lot of engines have that living in some object or make you roll your own. it makes sense that if the engine can know how many milliseconds it takes for a frame to get replaced it should make that available to the developer
 whoops! inverted the vertical movement controlls, positive y is down. good to know
 whelp! thanks to Godot's ease of use despite my best efforts with two days and just under 2 hours of actual sitting in front of an editor and despite my best efforts I actually have a sprite dude walking around my screen
+
+devlog day 3 1/24 pomodoros
+- memorize this hotkey: command + R. also F6. that is running your stuff, get that feedback loop going
+- for some reason the character is pretty small, think about units and measurment. you know, after you are done
+- forgot I need to reverse the direction of the character as they move. 
+- already singing the praises of the godot course from gamedev.tv that I got, some of the issues I'd encountered with godot immediately addressed. saving and loading scenes and main scenes, backing out what I'd done following the godot user manual, and they point out that the default asset size (for kenney assets at least which is what I'm using) is tiny an I will need to resize them.
+- 
