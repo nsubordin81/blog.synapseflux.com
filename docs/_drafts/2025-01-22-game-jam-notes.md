@@ -34,4 +34,9 @@ devlog day 3 1/24 pomodoros
 - for some reason the character is pretty small, think about units and measurment. you know, after you are done
 - forgot I need to reverse the direction of the character as they move. 
 - already singing the praises of the godot course from gamedev.tv that I got, some of the issues I'd encountered with godot immediately addressed. saving and loading scenes and main scenes, backing out what I'd done following the godot user manual, and they point out that the default asset size (for kenney assets at least which is what I'm using) is tiny an I will need to resize them.
-- 
+- first key insight for pixel art game: use global default texture filter of 'nearest' because there are anti aliasing effects being applied to the low rez art making it look blurry when we want sharp edges
+- next one, needing to change the default window size to 1/4 of a typical monitor's display resolution and that makes the window larger, and then setting the stretch mode ot 'canvas items'. this is good for me to know but I'm not goitn to go into every detail like this on a blog post. 
+- there are tradeoffs between scaling up the sprites v. scaling down the window size and stretching the canvas. a bit one is that fonts are going to be pixelated and hard to read
+- and of course the danger of having pre-existing knowledge, I go down a 15 minute rabbit hole wondering if I should use large file storage (LFS) when I set up my github repoitory for godot, check in all assets, or just check in source code and not worry about assets. I ultimately got a good nuanced answer from Claude that I think represents public opinion alright, but this was dewfnitely not something  needed to know to finish this tutorial!!!
+- ok, now discovering that there is a workflow, you close scenes and then open them to work on other ones, closing scenes and creating new ones is something I'll be doing a lot. that is command + w btw
+
