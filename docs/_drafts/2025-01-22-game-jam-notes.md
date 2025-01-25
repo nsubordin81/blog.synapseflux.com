@@ -44,7 +44,7 @@ devlog day 3 1/24 spread across 3 25 minute pomodoros that were semi-productive
 - the way that animating 2d sprites has been solved for by godot gives me hope as an indie developer with little time. once you know the tricks it is fairly step by step
 - stopping midway through to make sure I have time for other priorities to get done.
 
-devlog day 4 1/25 
+devlog day 4 1/25  probably 20 minutes also watching a show
 - there is an add frame frm file option for when you only have a single frame animation
 - there is also a loop button that has animations loop instead of playing once, good to know
 - rectangular collider is better than capsule collider for 2d character doesn't fall off platforms
