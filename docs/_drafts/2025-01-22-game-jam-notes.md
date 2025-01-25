@@ -43,3 +43,10 @@ devlog day 3 1/24 spread across 3 25 minute pomodoros that were semi-productive
 - wow and somethign that was so hard for me to figure out becomes intuitive an simple with this godot tutorial, turns out all we needed to do was press a little grid button and you can get the frames from a spritesheet or tilemap. cool beans
 - the way that animating 2d sprites has been solved for by godot gives me hope as an indie developer with little time. once you know the tricks it is fairly step by step
 - stopping midway through to make sure I have time for other priorities to get done.
+
+devlog day 4 1/25 
+- there is an add frame frm file option for when you only have a single frame animation
+- there is also a loop button that has animations loop instead of playing once, good to know
+- rectangular collider is better than capsule collider for 2d character doesn't fall off platforms
+- making child scene is different than making nodes, shift + command + a instead of comand + a for nodes, or the link button. 
+- for some reason my character is falling but the one in the tutorial is not. I didn't attach a rigid body or anything, so maybe something different in the version of godot I'm using? 
