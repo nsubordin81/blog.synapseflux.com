@@ -1,4 +1,4 @@
-here I am, starting a game jam again. it started on january 17 but I've really done little else but plan and now it is january 22. I created a high level game design document but my mind continues to wander about what the narrative could be. 
+    here I am, starting a game jam again. it started on january 17 but I've really done little else but plan and now it is january 22. I created a high level game design document but my mind continues to wander about what the narrative could be. 
 
 I guess that is one important thing to internalize, if I let myself just dream on branches a narrative could take forever I'll never build a game! 
 
@@ -50,3 +50,6 @@ devlog day 4 1/25  probably 20 minutes also watching a show
 - rectangular collider is better than capsule collider for 2d character doesn't fall off platforms
 - making child scene is different than making nodes, shift + command + a instead of comand + a for nodes, or the link button. 
 - for some reason my character is falling but the one in the tutorial is not. I didn't attach a rigid body or anything, so maybe something different in the version of godot I'm using? 
+
+devlog day 5 1/26 so far 20 minutes, hopefully 40 by the end, another divided attention session during a naptime
+- quickly proved to myself how littele I know about godot, the script that was generated for the characterbody 2d was some kind of template, and it enabled gravity on the character and I couldn't test the animation. I fixed that but then deleted a variable and godot was complaining a bout not having it and I didn't know where to look in the UI to remove it there. will figure it out, had a nice diversion into the land of 'motion_mode" 
