@@ -61,6 +61,12 @@ devlog day 5 1/26 so far 20 minutes, hopefully 40 by the end, another divided at
 - ok, not sure why but I"m really satisfied, I thnk in about 20 more mihutes I managed to iterate fast on learning and got myself to having a character on a platform going left and right, but the code is good and I understand it. I took anims out but had them working so I'm pretty confidenct they'll work again whenever I put them in. feeling good about all of that, and how this was tested each time. I should porbably stop now, a lot to do in the rest of life and I'm getting sick I think
 
 
-devlog day 6 1 pomodoros so far
+devlog day 6 1/27 1 pomodoros so far
 - had a few hiccups but generally ioterating pretty fast, I think I got distractewd once or twice and pulled out of my zone by whispy needing food, by investigator discussion ,generally feeling ill, but my focus and dedication were mostly good an I'm follow ing along and trying to learn
 - here wa are at jump, this is the rabbit hole for platformers that I always get into. the physics feels floaty for my prototype hso I want to tweak the heck out of the jump until I either emulate mario or sonic or some other hting that I am used to, and then before I know it I sank a month into it but forgot a lot of what I learned about hbow to model the jump parabola. so this time I'm just toing to go with the flow and let the jump be floaty. I have art asset stuff to learn, music composition to do, a cool core mechanic involving environment interaction to map out, lots of cool stuff to do. 
+
+devlog day 7 just one pomodoro probably feeling sick
+- got really sick and felt discouraged about tacking these things, wich the idea of timelines and being impatient with advancing, but I shoulde embrace the concept of 'not yet' growth mindset
+- learned you can use ! and 'not' , but they don't have an 'or' and 'and' equivalent in gdscript
+- it turns out you can use the 'and' and 'or' operators and this person just didn't cover it. oh well.
+- actually did the challenge without looking at the answer, good for me, not rushing 
