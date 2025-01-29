@@ -70,3 +70,7 @@ devlog day 7 just one pomodoro probably feeling sick
 - learned you can use ! and 'not' , but they don't have an 'or' and 'and' equivalent in gdscript
 - it turns out you can use the 'and' and 'or' operators and this person just didn't cover it. oh well.
 - actually did the challenge without looking at the answer, good for me, not rushing 
+- flip_h set to direction == -1 shorthand for true when direction is negative fals when it is positive
+- animations happen in a separate function but I cat to name it and it seems to be pretty straightforward, taking in the direction var was a good call, something that I'll have to remember, some of this flows pretty intuitively
+- 
+
