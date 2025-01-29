@@ -65,7 +65,7 @@ devlog day 6 1/27 1 pomodoros so far
 - had a few hiccups but generally ioterating pretty fast, I think I got distractewd once or twice and pulled out of my zone by whispy needing food, by investigator discussion ,generally feeling ill, but my focus and dedication were mostly good an I'm follow ing along and trying to learn
 - here wa are at jump, this is the rabbit hole for platformers that I always get into. the physics feels floaty for my prototype hso I want to tweak the heck out of the jump until I either emulate mario or sonic or some other hting that I am used to, and then before I know it I sank a month into it but forgot a lot of what I learned about hbow to model the jump parabola. so this time I'm just toing to go with the flow and let the jump be floaty. I have art asset stuff to learn, music composition to do, a cool core mechanic involving environment interaction to map out, lots of cool stuff to do. 
 
-devlog day 7 just one pomodoro probably feeling sick
+devlog day 7 1/28 just one pomodoro probably feeling sick
 - got really sick and felt discouraged about tacking these things, wich the idea of timelines and being impatient with advancing, but I shoulde embrace the concept of 'not yet' growth mindset
 - learned you can use ! and 'not' , but they don't have an 'or' and 'and' equivalent in gdscript
 - it turns out you can use the 'and' and 'or' operators and this person just didn't cover it. oh well.
@@ -74,3 +74,13 @@ devlog day 7 just one pomodoro probably feeling sick
 - animations happen in a separate function but I cat to name it and it seems to be pretty straightforward, taking in the direction var was a good call, something that I'll have to remember, some of this flows pretty intuitively
 - 
 
+devlog day 8, 1/29 not getting enough time today again because I'm sick and lacked the focus to get through work fast enough this time. I'm getting better at this each day. 
+- renaming things so that they make sense in your project is a good idea
+- death zone doesn't haven to encompass your whole level it shoul be a rectangle that the player hits if they fall below the level
+- got a fast tutorial of how to set up physics layers in godot with collisions per layer, that was helpful. 
+- several good lessons today that I'll need to reinforce:
+    - there are layers of physics that you need to set up, I knew this from unity but godot has the same concept, collision layer is the one you are on, th mask are the ones that you can collide with, makes suer that things taht hit each other are the right things. 
+    - you send signals, which is just coding in hook functions that are predefined in the editor, unfortunately for me the vscode integration here doesn't seems to be great so I'll I think have to manually check the names and write them but it will hopefully work
+    - using a marker node is a way to have a visual representation of where in the world something invisible is happening so you can consisitently refer to it rather than keeping track of coordinates and work with it in your scene view
+    - you can make colliders visible on the screen with debug make collisions visible option. 
+    - 
