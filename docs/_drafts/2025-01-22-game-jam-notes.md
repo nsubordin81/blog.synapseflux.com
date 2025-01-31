@@ -84,3 +84,15 @@ devlog day 8, 1/29 not getting enough time today again because I'm sick and lack
     - using a marker node is a way to have a visual representation of where in the world something invisible is happening so you can consisitently refer to it rather than keeping track of coordinates and work with it in your scene view
     - you can make colliders visible on the screen with debug make collisions visible option. 
     - 
+
+devlog day 9, 1/30, feeling like in a  day full of potential I didn't get to sit down to this until the end. this is partly me, I had opportunities. I was also feeling really crappy because I'm sick,so you know, it is a victory that I did anything. 
+- setting up the spring jump myself. how did that go? well I made animations and kind of wobbled through things, let's see what they did that I didn't. 
+    -  I needed to use area2d for this thing
+    - the collider I got right but made it too big
+    - the animation playing I needed a handle to the animated sprite in the script
+    - the animations were good though. 
+    - gotta set those collision layers right with the masks
+- the next part that I haven't started  yet is  to use the is keyword instead of a collision layer in order to set up when the player makes contact with a jump that is more specific to those two objects and more dynamic but not as simple to remember.
+
+devlog day 10 1/31. this is the last day of the game jam. I significantly slowed down and eased things on myself becuase 1. I'm not in a position to push it, have too many competing priorities right now and 2. it is a victory to just achieve consistent work on this and be interested in it again. happy for that, going to keep up consistency and momentum for myself. I am a game creator. I'm not not a professional one. yet. I'm learning a ton by following these tutorials and I am excited for the opportunity to apply the lessons I'm learning and my own thought and problem solving abilities to my own projects. 
+- ok, so lesson for today was that even though the training I'm taking says to do something it may not be right. they had the editing on a different line for the class_name part and when I looked up the syntax myself it needed to come before the extends keyword, not after it. good to know, until I did that it just wasn't working. seems like that is one risk for troublesome debugging with games. sometimes things just won't work and you have to go through a deduction to find out what didn't get set up right, which might even involve doing things differently than some source told you to. 
