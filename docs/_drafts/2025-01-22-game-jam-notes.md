@@ -102,4 +102,13 @@ devlog day 11 2/3 - we are officially beyond the point of the game jam and now I
 
 today's lesson was a good one. I had a bug that was stopping me for maybe a quarter of an hour and it was to do with the fact that there was a careless typo in my function definition (function instead of func) and godot is pretty silent about telling me when I have issues with the editor code. it turne dout that I just needed to fix this but for the longest time I though tit was with another htin I was trying to do with the editor which was to get the editor to use a custom signal as was part of the lesson plan. 
 
+devlog day 12 2/4 - very short session
+- I learned that you can use the dollar sign in godot to access elements from the scene tree. so if a script belongs to a scene then it can instantiate on startup any node from that scene. 
+- 
 
+devlog day 13 2/6 - another short session, really don't have a lot of time right now, but some of that is within my control, I'd better get better about spending it
+- learning that there are two animation tools. there is the sprite animator in godot and there is the animator that animates all features of the node. 
+- you create animation there are basics of the timeline, you can zoom in and out and you canset the duration and there are controls for looping and auto playing and setting keyframes. 
+- the keyframes areon all proprties and youc an create a keyframe for somethign like the position of one of the nodes in your scenes tree. generally not a good idea to change or animate the root node's position. they don't say why. 
+u can also change the interpolation settings, cubic makes it smoother. 
+- didn't try this but there is a way to call a function during the course of an animation
