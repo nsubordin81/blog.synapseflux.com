@@ -112,3 +112,5 @@ devlog day 13 2/6 - another short session, really don't have a lot of time right
 - the keyframes areon all proprties and youc an create a keyframe for somethign like the position of one of the nodes in your scenes tree. generally not a good idea to change or animate the root node's position. they don't say why. 
 u can also change the interpolation settings, cubic makes it smoother. 
 - didn't try this but there is a way to call a function during the course of an animation
+- connecting the signals of the traps at the start of the game involves usage of arrays in godot. arrays work like they do in C except they are not typed and you can put anything in them. they ahve subscript operator for access and modification of elements and append(), remove(index) and size() methods as well as an erase() method that deletes teh value of an element without removing it
+- there are also groups that are tags you can give nodes. use the root nodes for this an dthe 'groups' tab. feels very jquery selector to use this and the scene tree to get all the nodes tagged with a specific group. efficient way to slice the available scene nodes
