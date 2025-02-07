@@ -114,3 +114,15 @@ u can also change the interpolation settings, cubic makes it smoother.
 - didn't try this but there is a way to call a function during the course of an animation
 - connecting the signals of the traps at the start of the game involves usage of arrays in godot. arrays work like they do in C except they are not typed and you can put anything in them. they ahve subscript operator for access and modification of elements and append(), remove(index) and size() methods as well as an erase() method that deletes teh value of an element without removing it
 - there are also groups that are tags you can give nodes. use the root nodes for this an dthe 'groups' tab. feels very jquery selector to use this and the scene tree to get all the nodes tagged with a specific group. efficient way to slice the available scene nodes
+
+
+devlog day 14 25 minutes
+- spent the first part of this finishing up the tutorial on how to get the traps working and navigate the node tree to extract an array by filtering from a set of group tags. used a for loop and also connected a signal to be able to set up relationships between the nodes and their events. 
+- next part of this session is spent on tilemaps. convetion to create a scene for the tilemap, to load in a tilesheet that has a certain dimension (16x16 for example) per tile, and then use that to create a tileset and within that tileset an atlas. 
+- atlas and tileset are used to set up the alignment of things, then tilemap is used to paint them into the scene. 
+- quick overview of all the tools available for tilemap, you have basic kidpix toolset
+- you caqn make patterns out of things you select int he tilemap and then use them to paint the pattern. 
+- you can paint on the tilemap from within the level scene but make sure to have the tilemap selected and also the pointer 
+- it is kind of roundabout how you get a collision shape set up for the whole tileset, you hae to kind of go in and do it from within the tileset and then apply it to all of them. 'f' key creates a collision shape. you can make smaller collision shape for your tiles. there is a way to make it so that you don't collide when cooming through the bottom but you d-o when going throiugh the top. it is called one way in the physics menu of the tileset. 
+- somethign I couldn't do whatn I tried it by myselfm, creating a new physics layer, the menu is hidden in the tileset.
+- 
