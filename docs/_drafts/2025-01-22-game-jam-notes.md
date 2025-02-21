@@ -130,4 +130,6 @@ devlog day 14 25 minutes 2/7
 devlog day 15 2/21 25 minutes 
 - noticing that without the game jam to help me stay motivated I went back to other focuses and didn't do any godot practice for something like 2 weeks.  
 - the next lesson I'm doing is about tilemap terrains. this is a way to paint tilemaps that doesn't involve having to select a pattern or a single unit and paint with it to be able to quickly build tilemaps. 
-- noticed that this works fairly well, it is a lot of setup but once you have it working you can paint levels and they just know which tiles to use. it assumes you are going to hve one surface texture and then several others, but that will be generally true. 
+- noticed that this works fairly well, it is a lot of setup but once you have it working you can paint levels and they just know which tiles to use. it assumes you are going to hve one surface texture and then several others, but that will be generally true.
+- the autotile option for the terrain system  wil use the masking rules that you set up to just figure out which tile to paint for you, adn this can bee use to correct things to so if you create two different terrains and then want to merge them together you can go back and paint over the tiles that don't match up and it will automatically fix it for you. there is a workflow where you create interesting terrain shapes and then go back and select them and move them close together and paint over them and are able to quickly make things that look good. 
+- 
