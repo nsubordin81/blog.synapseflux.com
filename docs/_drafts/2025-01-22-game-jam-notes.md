@@ -116,7 +116,7 @@ u can also change the interpolation settings, cubic makes it smoother.
 - there are also groups that are tags you can give nodes. use the root nodes for this an dthe 'groups' tab. feels very jquery selector to use this and the scene tree to get all the nodes tagged with a specific group. efficient way to slice the available scene nodes
 
 
-devlog day 14 25 minutes
+devlog day 14 25 minutes 2/7
 - spent the first part of this finishing up the tutorial on how to get the traps working and navigate the node tree to extract an array by filtering from a set of group tags. used a for loop and also connected a signal to be able to set up relationships between the nodes and their events. 
 - next part of this session is spent on tilemaps. convetion to create a scene for the tilemap, to load in a tilesheet that has a certain dimension (16x16 for example) per tile, and then use that to create a tileset and within that tileset an atlas. 
 - atlas and tileset are used to set up the alignment of things, then tilemap is used to paint them into the scene. 
@@ -126,3 +126,8 @@ devlog day 14 25 minutes
 - it is kind of roundabout how you get a collision shape set up for the whole tileset, you hae to kind of go in and do it from within the tileset and then apply it to all of them. 'f' key creates a collision shape. you can make smaller collision shape for your tiles. there is a way to make it so that you don't collide when cooming through the bottom but you d-o when going throiugh the top. it is called one way in the physics menu of the tileset. 
 - somethign I couldn't do whatn I tried it by myselfm, creating a new physics layer, the menu is hidden in the tileset.
 - 
+
+devlog day 15 2/21 25 minutes 
+- noticing that without the game jam to help me stay motivated I went back to other focuses and didn't do any godot practice for something like 2 weeks.  
+- the next lesson I'm doing is about tilemap terrains. this is a way to paint tilemaps that doesn't involve having to select a pattern or a single unit and paint with it to be able to quickly build tilemaps. 
+- noticed that this works fairly well, it is a lot of setup but once you have it working you can paint levels and they just know which tiles to use. it assumes you are going to hve one surface texture and then several others, but that will be generally true. 
