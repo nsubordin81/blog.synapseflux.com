@@ -89,12 +89,55 @@ but ORM frameworks have their place becasue:
 - there are often caching mechanisms built into ORMs which helps with efficiency and database load. 
 - migrating a database schema is something that involves tracking and managing these things and so if you are using ORMs already to do that, you get this for free. 
 
-#### Stopped right at 'the document data model fro one-to-many relationships
+#### Stopped right at 'the document data model for one-to-many relationships
 
 
 
 ## Event Sourcing and CQRS
 
+one big difference between this and other ways of storing data is that when you save the data and retrieve it you are doing it in the same format. for example, you store data as rows in a table or multiple table and that data represents the entity, then you retrieve the data the same way by querying that entity to get those rows back. 
+
+what if you wanted to store data in a uniform way that was not particular to any one of these methods (relational, document, graph)? one of the easiest and most expressive ways to do this that has been devised is with an 'event log' 
+
+this is the core of event sourcing: when you write data, you do so with a string that contains everythign you need to know about it. that has a timestamp also, then append it to a sequence of events. the events are immutable. 
+
+use case: conferencing software
+requirements: 
+- individual attendees pay by credit card
+- companies buy seats in bulk and pay invoice then assign seats later
+- seats can be reserved for VIPs
+- seat reservations can be cancelled
+- organizers might change the capacity of events by changing the venue
+
+how do we figure out how many seats there are? the query is complicated. 
+
+with an event log you can rcreate materialized views of each of your events. changes in state are recorded as an event. new events impact materialized views. 
+
+so the usage of the event log for state changes and source of truth is event sourcing. separately, there is the concept of command query responsibility segregation
+
+so there is a terminology to how this works, you have user interactions in the form of 
+*commands* and then the commands get checked and verified and that converts them to facts. once they are facts they make it into the event log
+
+event logs only get valid events and materialized views can only ingest events
+
+storing events in the past tense is a good approach because it reinforces the fact that these events did happen in the past and it is an immutable record. anything that changes the facts are separate events that are recorded at a future time.
+
+star schema fact tables of events are different from event sourcing because with event sourcing your event log has to be in the order events happened and the properties of events in the event log can have different schemas but then with the star schema fact tables they all need to have similar schemas.
+
+advantages of event sourcing: 
+- events are more human readable than updates to a relational structure or other data model
+- being able to reproduce the view reliably from the events makes it better because you have a reliable log and if there are issues with the reproduction, you know it is coming form the code that maintains the view
+- the views can be be made optimized for whatever query is being computed. you can make multiple views. can be any model, can be denormalized for faster reads. can even be in memory
+- the events in the event log are really flexible. you can add new types of events all the time, new properties to the existing events, chaining newer event types off of older events. 
+- no more irreversible actions, you just write a new event undoing the prior one and you can move forward. 
+- events are an audit log for the transaction history
+
+downsides of event sourcing and cqrs
+- external sources are not immutable, so they can cause sdie effects. if an event depends on some external source of truth when processing (for example an exchange rate for currency that is dependent on when it is pulled) then it can create a nondeterministic view generation. if you want to be able to faithfully reproduce events, the events need to contain the information rather than pulling it in from outside. 
+- you can have issues with user data becauws users can request that their data be deleted. the user ddata can be deleted in an event that focuses on multiple users and then deriving future data will be problematic. 
+- you can run into issues if you have externally visible side effects whenever you reapply all the events.
+
+any database that can process events in order is suitable for event sourcing, but some databases and even Kafka are suggested for doing so.
 
 
 
