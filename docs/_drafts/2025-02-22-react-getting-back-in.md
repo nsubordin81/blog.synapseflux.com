@@ -1,0 +1,35 @@
+```markdown
+---
+title: "Getting Back into React"
+date: 2025-02-22
+description: "I'm trying to get back into React after having not used it for years. This post will cover my journey, challenges, and the new features I've discovered."
+tags: ["React", "JavaScript", "Web Development"]
+---
+```
+
+# part one, the docs way
+
+- simple enough, for the uninitiated, talks about how react apps are made form components and those are chunks fof the UI that have discrete logic and appearance to them. small as a button, large as a page (that is right off the main site docs)
+- components are functions that return markup. 
+- you can nest them using jsx
+- convention is to use caps and html tags are lowercase
+- dipping into javascri pt syntax, they use the export default
+    - export and import are module style for ecmascript
+    - you can export variables, funcitons or classes
+    - you can define first and export later
+    - you can import within {} or you can import *, most build tools will remove unused imports when compiling your JS
+    - you can export line by line what is public, or you can just export default the one main thing from your module. you can only have one of these per file and when you import it it needs no curly braces. 
+    - 'named' vs 'default' exports is what we are talking about. 
+    - default doesn't need a name
+    - you can use the default keyword to import something that is ambiguous from a module tha thas a default export and named exports or to export later what was defined up top
+    - in favor of named exports they tell you exactly what htey are exporting and you ahve to import them by name. convention is that default exports anmes in iimports should coincide with name of the file. 
+    - you can 're-export' someting from anohter module within your module. export {name} from 'file.js' this is mainly useful when you want to exposed a common interface for a more hierarchical package that has a lot of modules.
+    - when re-exporting, if your module has named and default exports, you have to specify separately with the re-export syntax, {default} and * both to get named and default 
+    - there are such things as dynamic imports, but not getting to them right now. other ponit is you can hoist imports and exports so they can be anywher ein teh file so long as it isn't inside of {}
+- react uses JSX for markup. it is supported well for all local development react tooling. 
+    - jsx requires closing your tags, html doesn't. Components can't return more than one JSX tag so you need parent <div> or <> element. 
+    - css classes seem to work the same way in both jsx and html
+    - inside jsx you can use {} to inject javascript inline into it so you can embed variables and such
+    - this can also be done in attributes with the {} surroudning it
+    - you can conditionally supply jsx attriburtes with javascript around jsx, and some operators just work within jsx like ?, : and &&. 
+    - you have for and map control structures in javascript that you can use to generate jsx components. you need to have unique identifiers to ensure taht when things change react can specifically chase that element. 
