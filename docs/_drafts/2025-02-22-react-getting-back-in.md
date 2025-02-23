@@ -33,3 +33,8 @@ tags: ["React", "JavaScript", "Web Development"]
     - this can also be done in attributes with the {} surroudning it
     - you can conditionally supply jsx attriburtes with javascript around jsx, and some operators just work within jsx like ?, : and &&. 
     - you have for and map control structures in javascript that you can use to generate jsx components. you need to have unique identifiers to ensure taht when things change react can specifically chase that element. 
+    - there are event handler funcitons taht can be invoked via the onClick attribute of interactive components. you don't invoke them you just pass them. 
+    - useState is a way to declare state variables. when you deconsgtruct the state variable you get two things, the current state and a way to update it with a function handler. state is set up uniquely for each time the components is instanticated and not shared between instances of the components. 
+    - hooks can either be using the built in hooks or you can compose new ones out of the existing ones. you can only use hooks at the top of a component or other hook. so if you ewnat to use one you will need to extract a new component for the contents of that loop and put the hook at the top of that. 
+    - you share state between components instead of using local state when you need them to share state and always update together (so like they both have a reference to some underlying thing that can be updated. the simplest way to do this is to omve teh state up to the closest parent component that has all of them in it. 'lifting state up' is the typical name given to this approach. 
+    - 
