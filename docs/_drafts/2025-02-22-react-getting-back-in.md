@@ -44,6 +44,13 @@ tags: ["React", "JavaScript", "Web Development"]
 
 
     thinking in react document: 
-    - 
+    - flow is break apart user interface into components then describe the visual states then connect them so that data flows throiugh. 
+    - api + wireframe is a start. then you can draw boxes around them and name them. designers may have done this already. then apply these lenses: 
+        - single responsibily principle a component should do one thing or else be decomposed. 
+        - css class selectors as a guide
+        - design layers (this one makes less intuitive sense to me)
+    -  draw the boxes, labelt them, put htem into a hierarchy, they can evolve so do what makes sense now, not later. 
+    - the first step after designing the component structure is to impelment it as a static, no interaction one way data flow. communication between components would come later, instead you have no state in any components and you just have the top level copmonent get a version of the data model and send it down through props to the rest of the app. 
+    - when designing for state, the guidance is to start from minimal possible state and derive everything else on the fly from that state. 
 
     rules of react document.
