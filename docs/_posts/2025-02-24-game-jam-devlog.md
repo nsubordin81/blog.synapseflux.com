@@ -22,7 +22,7 @@ I appreciate that self-permission angle when trying to balance a day job, family
 
 ## Why Godot?
 
-I chose Godot, despite the popularity of Unreal and Unity and some prior experience in each. Figured this was my chance to get into it more because I was impressed when taking the odd course here and there and watching their intro videos and reading their docs. Seems to be working hard to be somethign that gets out of your way when you need it to but still provide high quality tools. A good fit for indie devs targeting not incredibly complex games. Open Source free as in speech and beer licensing is nice too. 
+I chose Godot because, even though Unreal and Unity are more popular and I have some experience with them, Godot really caught my eye. I was impressed by the courses I took, their intro videos, and the documentation. Godot seems to strike a great balance by getting out of your way when you need it to, while still providing high-quality tools. It feels like a perfect fit for indie developers who aren't aiming for incredibly complex games. Plus, the open-source nature and the free licensing (both in terms of speech and beer) are huge bonuses.
 
 ## The Daily Grind
 
