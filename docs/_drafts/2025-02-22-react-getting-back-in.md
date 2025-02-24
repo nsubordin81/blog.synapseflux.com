@@ -51,6 +51,17 @@ tags: ["React", "JavaScript", "Web Development"]
         - design layers (this one makes less intuitive sense to me)
     -  draw the boxes, labelt them, put htem into a hierarchy, they can evolve so do what makes sense now, not later. 
     - the first step after designing the component structure is to impelment it as a static, no interaction one way data flow. communication between components would come later, instead you have no state in any components and you just have the top level copmonent get a version of the data model and send it down through props to the rest of the app. 
-    - when designing for state, the guidance is to start from minimal possible state and derive everything else on the fly from that state. 
+    - when designing for state, the guidance is to start from minimal possible state and derive everything else on the fly from that state. there are 3 rules to look at to figure out if somethign shoudl be stored in state: 
+        - is unchanging? NOT STATE
+        - is it passed to a component throiugh a parent? NOT STATE
+        - can it be derived from state or props? NOT STATE
+    - figure out where state should live: 
+        - identify that common parent table of components sharing state
+        - you can put the state in the common parent or a parent of it. 
+        - if state doesn't seem to fit in the parent or a parent of a parent, consider putting it up in a new component just to hold it. 
+    - hooks are how you impolement state now in react, special functions that lest you hook into react . the deconstructed values as explained in getting started are the current state and the setter function handler. 
+    - you can set up the hooks so that if you set them properly to a default they will be passed down as props and displayed, however to do it when the user is interacting with a form, you need to pass the function handlers as props to the child that has the form in it. 
 
-    rules of react document.
+    ## rules of react
+
+
