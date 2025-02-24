@@ -11,8 +11,6 @@ tags:
     - Devlog
 ---
 
-# Game Jam Dabbling Log, Hopefully First Of Many
-
 ## The Setup
 
 Here I am, diving into another game jam. I've only particiated in 2 before. It officially started January 17th, but I spent the first five days just planning and thinking about directions it 'could' go, with whatever time I had which was not much.
