@@ -10,6 +10,9 @@ I saw some references providing reasons why you might still use CommonJS modules
 
 The intent of ESModules is to be the de facto standard for making JavaScript available outside its module. The few things that CommonJS still provides are easily mitigated, and ESModules bring a lot of advantages, like tree-shaking where they remove dead code from potential imports to save on performance, a more versatile and fairly intuitive syntax for imports and exports, working in the front end and being the default there, static analysis, and compatibility with CommonJS (though it doesn't go in the other direction).
 
+
+> **Note:** When working with Node.js and ES modules, remember to specify `"type": "module"` in your `package.json` to ensure proper ES module support. This small detail can save you from potential headaches when managing your project dependencies and module imports. For more information, check out [these docs](https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling).
+
 ## Sources
 
 - [CommonJS vs ES Modules](https://betterstack.com/community/guides/scaling-nodejs/commonjs-vs-esm/)

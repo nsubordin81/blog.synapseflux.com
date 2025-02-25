@@ -1,5 +1,5 @@
 ---
-title: "Game Jam Devlog: A Beginning Developer's Journey"
+title: "Game Jam Devlog: Early Days Recommitment To Game Dev"
 date: 2025-02-24
 categories: 
     - Game Development
@@ -82,4 +82,4 @@ _P.S. Consider joining a game jam with a growth mindset. Even without full commi
 
 _P.P.S. If you're interested in following my journey or sharing your own experiences, feel free to connect with me on social media or leave a comment below. Let's support each other in our game development adventures!_
 
-_P.P.P.S. While working with Godot, I noticed that when integrating with Node.js, you still need to specify `"type": "module"` in your `package.json` to ensure ES module support. This small detail can save you from potential headaches when managing your project dependencies and module imports. for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling for more information check out these docs: https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling_
+_P.P.P.S. While working with Godot, I noticed that when integrating with Node.js, you still need to specify `"type": "module"` in your `package.json` to ensure ES module support. This small detail can save you from potential headaches when managing your project dependencies and module imports. For more information check out [these docs](https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling)._
