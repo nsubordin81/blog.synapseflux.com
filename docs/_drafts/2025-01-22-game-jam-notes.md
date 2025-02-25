@@ -1,8 +1,8 @@
-    here I am, starting a game jam again. it started on january 17 but I've really done little else but plan and now it is january 22. I created a high level game design document but my mind continues to wander about what the narrative could be. 
+here I am, starting a game jam again. it started on january 17 but I've really done little else but plan and now it is january 22. I created a high level game design document but my mind continues to wander about what the narrative could be. 
 
 I guess that is one important thing to internalize, if I let myself just dream on branches a narrative could take forever I'll never build a game! 
 
-really thought a lot of it is just available time. Between my dayjob and family/house commitments I have a scarce amount of time to spend on this per day. even with the alotted 2 weeks, it is not likely I'll get to a finished product. Thor, the Pirate games founder who runs the community this jam is from, gave some encouraging advice on that front from a live stream, somethign to the effect of "this is a gift of time to yourself, it doesn't matter if you finish or submit or whatever just do it and if you learn something great." Now that is a level of commitment I can get behind.
+really thought a lot of it is just available time. Between my dayjob and family/house commitments I have a scarce amount of time to spend on this per day. even with the alotted 2 weeks, it is not likely I'll get to a finished product. Thor, the Pirate games founder who runs the community, provided encouraging advice during a live stream: "This is a gift of time to yourself. It doesn't matter if you finish or submit - just do it, and if you learn something, that's great." That's exactly the level of commitment I can embrace.
 
 ok, I'm using godot. I have reasons for this. unreal and unity have some friction to get started and I get bogged down customizing them. I want something a little less opinionated than I imagine gamemaekr studio to be, although that product has consistently been well reviewed and seems like maybe a better first choice. Had to pick something though.
 
@@ -29,20 +29,13 @@ another amazing game engine feature and benefit of making your own language. The
 whoops! inverted the vertical movement controlls, positive y is down. good to know
 whelp! thanks to Godot's ease of use despite my best efforts with two days and just under 2 hours of actual sitting in front of an editor and despite my best efforts I actually have a sprite dude walking around my screen
 
-devlog day 3 1/24 spread across 3 25 minute pomodoros that were semi-productive
-- memorize this hotkey: command + R. also F6. that is running your stuff, get that feedback loop going
-- for some reason the character is pretty small, think about units and measurment. you know, after you are done
-- forgot I need to reverse the direction of the character as they move. 
-- already singing the praises of the godot course from gamedev.tv that I got, some of the issues I'd encountered with godot immediately addressed. saving and loading scenes and main scenes, backing out what I'd done following the godot user manual, and they point out that the default asset size (for kenney assets at least which is what I'm using) is tiny an I will need to resize them.
-- first key insight for pixel art game: use global default texture filter of 'nearest' because there are anti aliasing effects being applied to the low rez art making it look blurry when we want sharp edges
-- next one, needing to change the default window size to 1/4 of a typical monitor's display resolution and that makes the window larger, and then setting the stretch mode ot 'canvas items'. this is good for me to know but I'm not goitn to go into every detail like this on a blog post. 
-- there are tradeoffs between scaling up the sprites v. scaling down the window size and stretching the canvas. a bit one is that fonts are going to be pixelated and hard to read
-- and of course the danger of having pre-existing knowledge, I go down a 15 minute rabbit hole wondering if I should use large file storage (LFS) when I set up my github repoitory for godot, check in all assets, or just check in source code and not worry about assets. I ultimately got a good nuanced answer from Claude that I think represents public opinion alright, but this was dewfnitely not something  needed to know to finish this tutorial!!!
-- ok, now discovering that there is a workflow, you close scenes and then open them to work on other ones, closing scenes and creating new ones is something I'll be doing a lot. that is command + w btw
-- somehow fell into a rabbit hole and then got out but lost a good 10 minutes or so on organizing and tagging my github repositories and then one of them reminded me of something I'd heard  and wanted to confirm about openai and I watched part of a youtube video before snappign myself out of it
-- wow and somethign that was so hard for me to figure out becomes intuitive an simple with this godot tutorial, turns out all we needed to do was press a little grid button and you can get the frames from a spritesheet or tilemap. cool beans
-- the way that animating 2d sprites has been solved for by godot gives me hope as an indie developer with little time. once you know the tricks it is fairly step by step
-- stopping midway through to make sure I have time for other priorities to get done.
+devlog day 3 1/24 (three 25-minute focused sessions)
+- Essential hotkeys: Command + R or F6 for running the game. Quick feedback loops are crucial.
+- The Godot course from gamedev.tv immediately addressed several issues I'd encountered. We covered scene management, main scenes, and proper asset sizing for Kenney's pixel art assets.
+- Key pixel art insights:
+  - Use 'nearest' global texture filter to maintain sharp edges instead of blurry anti-aliasing
+  - Set window size to 1/4 typical monitor resolution and use 'canvas items' stretch mode
+  - Consider tradeoffs between scaling sprites versus window sizing - pixelated fonts can become hard to read
 
 devlog day 4 1/25  probably 20 minutes also watching a show
 - there is an add frame frm file option for when you only have a single frame animation
@@ -106,15 +99,16 @@ devlog day 12 2/4 - very short session
 - I learned that you can use the dollar sign in godot to access elements from the scene tree. so if a script belongs to a scene then it can instantiate on startup any node from that scene. 
 - 
 
-devlog day 13 2/6 - another short session, really don't have a lot of time right now, but some of that is within my control, I'd better get better about spending it
-- learning that there are two animation tools. there is the sprite animator in godot and there is the animator that animates all features of the node. 
-- you create animation there are basics of the timeline, you can zoom in and out and you canset the duration and there are controls for looping and auto playing and setting keyframes. 
-- the keyframes areon all proprties and youc an create a keyframe for somethign like the position of one of the nodes in your scenes tree. generally not a good idea to change or animate the root node's position. they don't say why. 
-u can also change the interpolation settings, cubic makes it smoother. 
-- didn't try this but there is a way to call a function during the course of an animation
-- connecting the signals of the traps at the start of the game involves usage of arrays in godot. arrays work like they do in C except they are not typed and you can put anything in them. they ahve subscript operator for access and modification of elements and append(), remove(index) and size() methods as well as an erase() method that deletes teh value of an element without removing it
-- there are also groups that are tags you can give nodes. use the root nodes for this an dthe 'groups' tab. feels very jquery selector to use this and the scene tree to get all the nodes tagged with a specific group. efficient way to slice the available scene nodes
-
+devlog day 13 2/6 - Brief session today. Need to improve time management.
+- Discovered Godot's two animation tools:
+  1. Sprite animator for character animations
+  2. Node animator for animating any node properties
+- Animation basics:
+  - Timeline controls for zoom and duration
+  - Loop and autoplay settings
+  - Keyframe creation for node properties
+  - Cubic interpolation for smoother transitions
+  - Function calls can be triggered during animations
 
 devlog day 14 25 minutes 2/7
 - spent the first part of this finishing up the tutorial on how to get the traps working and navigate the node tree to extract an array by filtering from a set of group tags. used a for loop and also connected a signal to be able to set up relationships between the nodes and their events. 
@@ -137,5 +131,5 @@ devlog day 15 2/21 25 minutes
 devlog day 16 2/22 
 - making a parallax background background that moves at a different speed, there are layers of background that each move at a different speed and it gives the illusion of depth. 
 -  you have to set up a parallax background scene and then another one with a sprite
-- I had an issue with the parallax background I need to dig into everything seems scaled differently in the example they are using, something I need to bone up on regarding scales. 
+- I had an issue with the parallax background I need to dig into everything seems scaled differently in the example they are using, something I need to bone up on regarding scales.
 
