@@ -11,7 +11,7 @@ tags:
     - Devlog
 ---
 
-## The Setup
+> **Note:** I originally wrote this as a longform journal with all the gory details and thought processes I was going through (or at least what I decided to capture). That was put through an LLM-assistance filter to get to these crisper bullet points. I'd love to hear your thoughts on this level of detail. How does it compare to my other articles that have been human-reviewed or self-reviewed? Please share your feedback in the comments below!
 
 My third game jam began on January 17th. Despite the two-week timeline, I only managed brief planning sessions during the first five days. Between work and family commitments, finding time was challenging.
 
@@ -82,4 +82,4 @@ _P.S. Consider joining a game jam with a growth mindset. Even without full commi
 
 _P.P.S. If you're interested in following my journey or sharing your own experiences, feel free to connect with me on social media or leave a comment below. Let's support each other in our game development adventures!_
 
-_P.P.P.S. While working with Godot, I noticed that when integrating with Node.js, you still need to specify `"type": "module"` in your `package.json` to ensure ES module support. This small detail can save you from potential headaches when managing your project dependencies and module imports. For more information check out [these docs](https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling)._
+
