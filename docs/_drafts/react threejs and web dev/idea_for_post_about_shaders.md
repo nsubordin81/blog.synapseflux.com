@@ -1,0 +1,1 @@
+you haven't seen anything out there that is talking about how shaders can be anything but also what they are typically used for in a contrastive way. you've seen some examples from three js journey about how cool they can be just as an art form, but they are readily used as video game stuff. this would be a more in depth post. 
