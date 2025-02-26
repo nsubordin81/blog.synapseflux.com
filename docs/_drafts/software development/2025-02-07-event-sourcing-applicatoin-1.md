@@ -165,7 +165,11 @@ problem is I was using an ephemeral container memory to store the mongo stuff, s
 - eventually, maybe kafka
 
 LLM helped me out, suggested that I use docker compose and also split out my persistent volumes
-between event store and everything else. it also suggested that I should do the file appender and persistent volume approaches both now and table kafka because I don't have the requirements that would justify it, not being distrubited or having scale in terms of services taht would require the pub sub model on steroids that is kafka
+between event store and everything else. It recommended this because it said that this way it was easier to manage these as spearate types of data, migrate the event data elsewhere, and independently backupo and restore teh event store. 
+
+it also suggested that I should do the file appender and persistent volume approaches both now and table kafka because I don't have the requirements that would justify it, not being distrubited or having scale in terms of services taht would require the pub sub model on steroids that is kafka
+
+as I learned mofre about what it was intending there, I realized that it wasn't actually a good idea because from their standpoint I either needed to bifurcate into two mongo dataqbases in anticipation of having a separate event store or I would need to use collections which I was already using and there wasn't a way to specify that the second volume mount corresopnded to that collection. so as long as I'm not migrating event store data to another data source, (maybe filesystem ok that is coming up soon) this is premature optimization and I had to tell the coding assistant to remove it for me
 
 
 

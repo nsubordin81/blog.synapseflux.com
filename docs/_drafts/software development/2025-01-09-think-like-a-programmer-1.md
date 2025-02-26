@@ -30,3 +30,12 @@ ideas:
 - single responsibility
 - encryption
 - 
+
+- normalization, 'hardcoding', DRY, 
+
+- 'event driven' , nodejs, kafka, reactive functional programming, 
+
+- 'owndership' in rust and how it is simialr to other thigns
+
+- nondeterministic vs deterministic
+
