@@ -91,6 +91,22 @@ but ORM frameworks have their place becasue:
 
 #### Stopped right at 'the document data model for one-to-many relationships
 
+showing that relational tables have limitations. you get a tuple for a person entity but they may have more than one of some other thing like experience at a company. for htose you need a one to many relationship in the tables and then you need to have a separate table and separate queries or join statements in a single complex query just to bring everything in. 
+
+this is a 'data locality' issue, and with a json document you can have these other things be nested becusae they essentially belong ot the person document so you can get everything back at once just by bringing in the new person object. this is closer to representing objects like they are in OOP but not the same, so impedance mismatch is not resolved
+
+json creates a tree representation where documents have a root adn leaves and nodes connected, and that fits a lot of data shapes. it is that one to many relationship between a single kind of parent row and its child rows. it actually is better when this is 'one to few' becuase it gets unweildy if you truly have a lot of children. 
+
+storing things in lists instead of as plain text strings that are duplicated in a bunch of places is normalization. replacing a name with an ID.it is meaningful, there are ids to refer to everything. storing text directly is denormalized human meaningul information in every record that uses it. 
+
+normalizing a piece of data into an ID removes the human meaningful part. this means it doesn't have to cahnge. it is a pointer to the data the is meaningful and that can change but it will also continue. 
+
+the flipside of normalized is that you have a non human meaningful thing like and ID, you will have hto do a lookup to that table to be able to resolve it to the human meaningful aspect. 
+
+document dbs can be stored in a normal form, but it is more often associated with denormalized fields. there aren't great supports for joins in doc dbs so normally lookups aren't happening a lot and whole docs are stored with the inline human meaningful data hardcoded. 
+
+
+
 
 
 ## Event Sourcing and CQRS
@@ -138,6 +154,18 @@ downsides of event sourcing and cqrs
 - you can run into issues if you have externally visible side effects whenever you reapply all the events.
 
 any database that can process events in order is suitable for event sourcing, but some databases and even Kafka are suggested for doing so.
+
+## notes from RPGMyLife implementation
+
+ran into a decision point. for most of this time building out the app I continued using the excel spreadksheet pilot version of my app to track my tasks and goals, which meant Iwas less likely to dogfood. the functionality also just wasn't there, so it made sense. once I got the event sourcing kinda sorta working, I decided I should double track in the database and in my app to put the stuff to the test, I should have an MVP by now, and if things break or I hit something, it will be a test of the claims that the event sourcing model is flexible to change. 
+
+problem is I was using an ephemeral container memory to store the mongo stuff, so I had some options: 
+- use a persistent volume to do it
+- use a commit log through a file append structure to get the events stored on the filesystem
+- eventually, maybe kafka
+
+LLM helped me out, suggested that I use docker compose and also split out my persistent volumes
+between event store and everything else. it also suggested that I should do the file appender and persistent volume approaches both now and table kafka because I don't have the requirements that would justify it, not being distrubited or having scale in terms of services taht would require the pub sub model on steroids that is kafka
 
 
 
