@@ -31,11 +31,22 @@ ideas:
 - encryption
 - 
 
-- normalization, 'hardcoding', DRY, 
+familiar syntax
+- using @ for annotation based things that operate indirectly
 
-- 'event driven' , nodejs, kafka, reactive functional programming, 
+
+metaprogramming
+
+
+
+- normalization, 'hardcoding', DRY, 
 
 - 'owndership' in rust and how it is simialr to other thigns
 
 - nondeterministic vs deterministic
+
+
+Events
+- callbacks
+- 'event driven' , nodejs, kafka, reactive functional programming, 
 
