@@ -36,6 +36,22 @@ latency throughput tradeoff: more messages in a batch means you can send more at
 
 schema is formatting for the message structure, XML and json are classic options, a new, probably better one is apache avro. Avro provides forward and backward compatibility, strong typing, schemas that can be stored separately from code and don't require regeneration after changing
 
+it is important to have the same schema, stored in a central location, this is for decoupling, so they don't have to coordinate to translate the messages back and forth. 
+
+the next set of hierarchical concepts to get through with kafka is that messages are pushe dot topics, which are like tables in a database, the container that holds the messages that have been sent.
+
+messages belong to topics. 
+
+then there are partitions, which are the logs, whidch receive messages in append order
+order is not guaranteed across partitions but within a partition the messages will always be recieved in the order in which they were sent. 
+
+partitions can be replicated and topics can be distributed across partitions. 
+
+this kind of makes sense but I would like to see them. 
+
+streams in this case refer to the topic of data and the movement of it from producer to consumer. the number of partitions and whether or not they are replicated is irrelevant. 
+
+using the term 'stream' emphasizes that these things are being sent in real time, not saved in batch for later processing, which is what hadoop for example would do. 
 
 
 
