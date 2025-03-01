@@ -53,6 +53,13 @@ streams in this case refer to the topic of data and the movement of it from prod
 
 using the term 'stream' emphasizes that these things are being sent in real time, not saved in batch for later processing, which is what hadoop for example would do. 
 
+producers and consumers are two thypes of 'clients' which are usersw of the kafka system. these are the most basic ways of interacting with kafka. there are more advanced ways such as the Connect API and Streams APIs, and htose are more or less functionality built on a composition of consumers and producers. 
+
+pub sub generally has the concept of producers, publishers, or writers, taht write messages to the topics. 
+
+consumers are also known as readers or subscribers in other pub sub tech. 
+
+so in addition to the message key to help with partitioning, there is a message offset that is added to the message when it is produced and appended to a partition. the offests are increasing in order, but becuase messages can be sent to different partitions, they are not monotonically increasing, they can skip numbers. this is essentially a mechanism for consumers to get backt to their place if the stop and then restart, they remember the offest of the last message they consumed. 
 
 
 

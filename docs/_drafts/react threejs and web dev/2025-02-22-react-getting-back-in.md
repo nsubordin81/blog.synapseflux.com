@@ -64,4 +64,13 @@ tags: ["React", "JavaScript", "Web Development"]
 
     ## rules of react
 
+### encountering them as I go through rpgmylife code. 
 
+hooks are cool and special and different 
+
+useEffect is a special type of hook designed to help reach out to external sources
+you do set up and teardown and then you list the dependencies and the effect will trigger again whenever one of thse dependencies change. 
+
+the effect will update state.
+
+same rule as other hooks, you can't call it in a loop for some reason or other control structure. 
