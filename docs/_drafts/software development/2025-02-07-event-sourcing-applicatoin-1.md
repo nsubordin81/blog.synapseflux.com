@@ -105,6 +105,7 @@ the flipside of normalized is that you have a non human meaningful thing like an
 
 document dbs can be stored in a normal form, but it is more often associated with denormalized fields. there aren't great supports for joins in doc dbs so normally lookups aren't happening a lot and whole docs are stored with the inline human meaningful data hardcoded. 
 
+locality is an advantage for performance for document style data stores, as is teh fact that the schema is flexible, especially if you have3 too many types of objects represented in one table, your model naturally nests a lot, or yout don't control the schema and it is changing a lot.
 
 
 
@@ -154,6 +155,8 @@ downsides of event sourcing and cqrs
 - you can run into issues if you have externally visible side effects whenever you reapply all the events.
 
 any database that can process events in order is suitable for event sourcing, but some databases and even Kafka are suggested for doing so.
+
+
 
 ## notes from RPGMyLife implementation
 
