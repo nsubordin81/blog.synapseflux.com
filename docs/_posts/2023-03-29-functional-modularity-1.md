@@ -2,6 +2,15 @@
 title: "Modularity With Functional Programming Part 1"
 date: 2023-03-29 00:00:00 -0500
 excerpt: "Welcome to Modularity in Functional Programming! In this series, I will be addressing how using aspects of the functional paradigm can lead to program components that are easier to reuse and expand upon."
+categories:
+    - Functional Programming
+    - Scala
+tags:
+    - functional programming
+    - theory
+    - scala
+    - modularity
+    - higher-order functions
 classes: wide
 ---
 

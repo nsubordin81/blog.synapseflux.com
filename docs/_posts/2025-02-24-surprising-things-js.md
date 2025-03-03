@@ -1,3 +1,18 @@
+---
+title: "Surprising Things About JavaScript"
+date: 2025-02-24
+author: "Taylor Bird"
+categories:
+    - Javascript
+    - Web Development
+tags: 
+    - javascript
+    - esmodules
+    - commonjs
+    - node.js
+    - web development
+---
+
 I've been modernizing my JavaScript knowledge lately after some professional time away. I am running into interesting idiosyncrasies in the conventions of usage and I thought I'd catalog some. Here is the first one.
 
 I've been building a full stack JS project for personal use and I noticed that in the React front end of my project, most of the docs are pointing me towards using the ES Modules syntax and its `import` keyword to bring in new modules. Meanwhile, on the backend of my project, most sources I follow are using CommonJS modules and their `require` syntax.

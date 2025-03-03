@@ -1,8 +1,16 @@
 ---
 title: "Risks With Insecure YAML Serialization In Python"
 date: 2024-12-04
-categories: [security, python, yaml]
-tags: [python, yaml, security, serialization, deserialization]
+categories: 
+    - Security
+    - Python
+    - Yaml
+tags: 
+    - python
+    - yaml
+    - security
+    - serialization
+    - deserialization
 description: "Learn about the security risks associated with YAML serialization in Python and how to protect your applications from potential exploits."
 published: true
 ---

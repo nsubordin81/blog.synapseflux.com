@@ -5,10 +5,10 @@ categories:
     - Game Development
     - Godot
 tags: 
-    - Game Jam
-    - Godot Engine
-    - Indie Development
-    - Devlog
+    - game jam
+    - godot engine
+    - indie development
+    - devlog
 ---
 
 > **Note:** I originally wrote this as a longform journal with all the gory details and thought processes I was going through (or at least what I decided to capture). That was put through an LLM-assistance filter to get to these crisper bullet points. I'd love to hear your thoughts on this level of detail. How does it compare to my other articles that have been human-reviewed or self-reviewed? Please share your feedback in the comments below!
