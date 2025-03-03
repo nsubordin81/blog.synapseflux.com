@@ -14,7 +14,7 @@ classes: wide
 toc: false
 ---
 
-So it looks as though the React team is saying goodbye to their create-react-app starter script. You can read more about the history of this configuration and the rationale for moving away from it on their blog where they announced the deprecation [here](https://react.dev/blog/2025/02/14/sunsetting-create-react-app).
+So it looks as though the React team is saying goodbye to their create-react-app starter configuration. You can read more about the history of this configuration and the rationale for moving away from it on their blog where they announced the deprecation [here](https://react.dev/blog/2025/02/14/sunsetting-create-react-app).
 
 I happened to run into a better way of building React apps already anyway as a student of [ThreeJS Journey](https://threejs-journey.com) for Bruno Simon's ThreeJS Journey course where he covers it in his ['first-react-application'](https://threejs-journey.com/lessons/first-react-application) lesson. I want to keep this post short and sweet so I'll condense his advice on it into these two things: 
 
@@ -43,7 +43,7 @@ Ok to proceed? (y) y
 ◇  Select a variant:
 │  JavaScript
 │
-◇  Scaffolding project in /Users/taylor.bird/code/myapps/threejs_journey/vite-react-example...
+◇  Scaffolding project in /Users/...
 │
 └  Done. Now run:
 
