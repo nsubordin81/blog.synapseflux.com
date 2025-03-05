@@ -61,6 +61,16 @@ consumers are also known as readers or subscribers in other pub sub tech.
 
 so in addition to the message key to help with partitioning, there is a message offset that is added to the message when it is produced and appended to a partition. the offests are increasing in order, but becuase messages can be sent to different partitions, they are not monotonically increasing, they can skip numbers. this is essentially a mechanism for consumers to get backt to their place if the stop and then restart, they remember the offest of the last message they consumed. 
 
+consumers consume messages from a partition, consumer groups help make sure that consumers have an assigned partition and there aren't two consmers reading messages from the same partition, becuase I guess that would mean that they would consume messages that the other consumer then wouldn't get to consume. 
+
+kafka servers are brokers. the brokers are the ones producers talk to, adn the assign the offsets to teh messages, they put them on disk also. but then ion the other side they are also getting messages for consumers that hav been published. brokers can scale to thousands of partitions and millions of messgaes per second.
+
+brokers expect to be part of clusters . in a cluster, one broker is the controller. controllers are chosed by election amongst all participating brokers. controllers tell brokers which partitions to use and they look for brokers that areb roken. it is one broker perpartition, and that is called the leader broker for that partition. then if the partiion is replicated, the replicas get brokers assigned too and those are called followers. so if the main partiion fails, then one of the replica partiions becomes the main and the follower broker for that partiion become sthe lead one. 
+
+it is important to note that the kafka broker beomes the leader for a pairing of topic and partition, and for others it can be a folower. it is the partition that is replicated, not the broker. 
+
+data retention settings exist globally and detemrine a minimum threshold for how much data is held onto at any time in terms of days or size of the partition. the retention policies can be done per topic as well so you only retain data for a long time from topics you really want to hold onto. 
+
 
 
 
