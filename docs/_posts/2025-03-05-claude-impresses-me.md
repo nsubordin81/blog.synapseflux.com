@@ -22,7 +22,7 @@ I've been interested in learning about learning for a while and wanted an app to
 
 [Here is a link to the public repository](https://github.com/nsubordin81/learning-helper) in case you would like to see what it built for me. It is usable for your own purposes, and Claude built in ways to add and expand on the app.
 
-The prompts I gave it were somethign along the lines of 
+The prompts I gave it were something along the lines of 
 
 > I'm currently working on refreshing my knowledge of updates to react and learning react three fiber for threejs as well as event-driven architecture and distributed computing concepts in system design. I'm simultaneously trying to learn godot and how to design effective game mechanics.
 
