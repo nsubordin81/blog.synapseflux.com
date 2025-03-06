@@ -21,3 +21,11 @@ That tangent aside, I do find LLMs to be extraordinary and very impressive for w
 I've been interested in learning about learning for a while and wanted an app to help with that. Normally, I try to ad-hoc these things, but I asked Claude 3.7 to build me an app, and it did! The app worked inline in the Anthropic console window and was easy to spin off into a React application. It was only front-end, but with more conversations with Claude, I got suggestions to persist data to local storage or a local database. The app provides a schedule, checkboxes, and logic for spaced repetition. While it might not have taken me long to write the core functionality, populating the initial list with data and aesthetics would have taken much longer. Claude did it in less than 2 minutes for the first iteration, with successive prompts totaling less than 8 minutes.
 
 [Here is a link to the public repository](https://github.com/nsubordin81/learning-helper) in case you would like to see what it built for me. It is usable for your own purposes, and Claude built in ways to add and expand on the app.
+
+The prompts I gave it were somethign along the lines of 
+
+> I'm currently working on refreshing my knowledge of updates to react and learning react three fiber for threejs as well as event-driven architecture and distributed computing concepts in system design. I'm simultaneously trying to learn godot and how to design effective game mechanics.
+
+and a simple follow up prompt,
+
+> can you build me a simple app that will guide me through the process?
