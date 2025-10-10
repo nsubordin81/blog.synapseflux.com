@@ -9,3 +9,5 @@ published: false
 ---
 
 placeholder. this will be about the higher level glue aspect that john hughes was talking about, namely gluing programs together with lazy evaluation. or it might be going more into the examples he provided for using higher order functions I'm forgetting how much of his post I didn't relate yet.
+
+wow I should definitely finish this one
