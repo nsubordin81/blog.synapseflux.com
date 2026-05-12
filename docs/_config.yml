@@ -105,7 +105,7 @@ analytics:
 author:
   name: "Taylor Bird"
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "Professionally Taylor is a data scientist and software developer for Excella Consulting where he works with really cool people to tackle interesting problems. Personally he likes exploring the ideas that make up this blog, getting lost in the creative worlds of others, and fiddling with fledgling creations of his own."
+  bio: "Professionally Taylor is a data scientist and software developer, working with really cool people to tackle interesting problems. Personally, he likes exploring the ideas that make up this blog, getting lost in the creative worlds of others, and fiddling with fledgling creations of his own."
   location: "Eastern US"
   email: # Add your e-mail here to add it to the author info.
   links: # NOTE: You can add custom links here as well. You can use a label and font-awesome class
